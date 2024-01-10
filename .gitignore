@@ -1,4 +1,5 @@
 build/
+resources/
 
 # vim specific
 tags
