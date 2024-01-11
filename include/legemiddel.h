@@ -11,8 +11,13 @@ namespace festlib
   namespace xml
   {
 
-    // Class that is included in all Medicines categories, like KatLegemiddelMerkevare and KatLegemiddelpakning.
-    // all categories that contains data about drugs contains this class.
+    // Legemiddel = Drug.
+    // Contains drug information.
+    // Is used as a component by classes:
+    // - Legemiddeldose (Drug dosage)
+    // - Legemiddelvirkestoff (Drug active ingredient)
+    // - Legemiddelmerkevare
+    // - Legemiddelpakningmerkevare
     class Legemiddel
     {
       using Name = std::string;

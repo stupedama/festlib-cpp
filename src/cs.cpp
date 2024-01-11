@@ -1,6 +1,6 @@
 #include "cs.h"
 
-// CS = Coded Simple Value
+// CS = Coded Simple Value.
 // V and DN is manidatory values in the Xml fest file
 
 namespace festlib
@@ -36,13 +36,13 @@ namespace festlib
 
     // no--member functions
 
+    // compare the V attributes
     bool operator==(const Cs& lhs, const Cs& rhs)
     {
-      // CS is missing the S value, we will compare it by
-      // V, the smallest value
       return lhs.value() == rhs.value();
     }
 
+    // compare the V attributes
     bool operator==(const Cs& lhs, const char* str)
     {
       std::string compare_string{str};

@@ -8,6 +8,10 @@ namespace festlib
 {
   namespace xml
   {
+
+    // Enkeltoppforing = Entry.
+    // All the entries of the xml file contains a "Enkeltoppforing".
+    // Shows information if the entry is active, entry date and unique ID.
     class Enkeltoppforing
     {
       public:
@@ -24,6 +28,7 @@ namespace festlib
 
     bool operator==(const Enkeltoppforing& lhs, const Enkeltoppforing& rhs);
     bool operator==(const Enkeltoppforing& lhs, const char* str);
+
   } // namespace
 } // namespace
 

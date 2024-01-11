@@ -37,11 +37,13 @@ namespace festlib
 
     // no--member functions
 
+    // compare the V values
     bool operator==(const Cv& lhs, const Cv& rhs)
     {
       return lhs.value() == rhs.value();
     }
 
+    // compare V values
     bool operator==(const Cv& lhs, const char* str)
     {
       std::string compare_string{str};

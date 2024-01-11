@@ -27,6 +27,7 @@ namespace festlib {
     return m_result;
   }
 
+  // return the root of the Fest XML
   pugi::xml_node Festlib::get_node() const
   {
     return m_doc.child("FEST");
@@ -36,9 +37,6 @@ namespace festlib {
 
   namespace {
 
-    // Enkeltoppforing = Entry.
-    // Shows information if the entry is active, entry date and ID.
-    // All the entries of the xml file contains a "Enkeltoppforing".
     xml::Enkeltoppforing get_enkeltoppforing(const pugi::xml_node& node)
     {
       std::string_view id{get_value(node, "Id")};
@@ -53,7 +51,6 @@ namespace festlib {
       return xml::Enkeltoppforing{id, date, oppforing_status};
     }
 
-    // CV (Coded Value)
     xml::Cv get_cv(const pugi::xml_node& node, std::string_view attribute)
     {
       pugi::xml_node child{node.child(attribute.data())};
@@ -65,7 +62,6 @@ namespace festlib {
       return xml::Cv{v, s, dn};
     }
 
-    // CS (Coded Simple Value)
     xml::Cs get_cs(const pugi::xml_node& node, std::string_view attribute)
     {
       pugi::xml_node child{node.child(attribute.data())};
@@ -94,7 +90,7 @@ namespace festlib {
       const Cs preparattype{get_cs(node, "Preparattype")};
       const Cs typesoknadslv{get_cs(node, "TypeSoknadSlv")};
 
-      // get OpioidSoknad. It is stored as a string as true or false
+      // get OpioidSoknad. It is stored as a string value: true or false
       const std::string opioid_string{get_value(node, "Opioidsoknad")};
       bool opioid{false};
 

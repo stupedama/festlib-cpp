@@ -12,7 +12,7 @@ namespace festlib
 
     const std::string& Enkeltoppforing::id() const
     {
-      return m_id;
+      return m_id; // unique ID.
     }
 
     const std::string& Enkeltoppforing::date() const
@@ -27,11 +27,13 @@ namespace festlib
 
     // no--member functions
 
+    // Enkeltoppforing contains a unique ID.
     bool operator==(const Enkeltoppforing& lhs, const Enkeltoppforing& rhs)
     {
       return lhs.id() == rhs.id();
     }
 
+    // Enkeltoppforing contains a unique ID.
     bool operator==(const Enkeltoppforing& lhs, const char* str)
     {
       std::string compare_string{str};
