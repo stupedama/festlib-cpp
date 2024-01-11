@@ -4,7 +4,8 @@
 TEST_CASE("Load xml file", "[festlib]") {
   using festlib::Festlib;
 
-  Festlib fest(std::string_view{"hello.txt"});
+  Festlib fest{};
+  fest.load_file("fest251.xml");
 
-  REQUIRE(true == true);
+  REQUIRE_NOTHROW(fest);
 }
