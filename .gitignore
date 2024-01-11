@@ -2,4 +2,4 @@ build/
 resources/
 
 # vim specific
-tags
+tags*
