@@ -6,3 +6,6 @@ tags*
 
 # computer specific
 compile_commands.json
+
+# caches
+.cache/
