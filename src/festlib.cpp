@@ -1,7 +1,5 @@
 #include "festlib.h"
 
-#include <iostream>
-
 namespace festlib {
 
   Festlib::Festlib()
