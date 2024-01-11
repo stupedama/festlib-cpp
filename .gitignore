@@ -3,3 +3,6 @@ resources/
 
 # vim specific
 tags*
+
+# computer specific
+compile_commands.json
