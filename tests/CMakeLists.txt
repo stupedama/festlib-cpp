@@ -9,6 +9,8 @@ add_executable(
     xml.cpp
     enkeltoppforing.cpp
     legemiddel.cpp
+    get_container.cpp
+    administrering_legemiddel.cpp
 )
 
 target_link_libraries(festlib_unit_tests PRIVATE Catch2::Catch2WithMain festlib pugixml)
