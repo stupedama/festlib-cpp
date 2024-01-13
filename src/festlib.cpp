@@ -1,5 +1,7 @@
 #include "festlib.h"
 
+#include <iostream>
+
 namespace festlib {
 
   Festlib::Festlib()
@@ -37,6 +39,42 @@ namespace festlib {
 
   namespace {
 
+    xml::Cv get_cv(const pugi::xml_node& node, std::string_view attribute)
+    {
+      pugi::xml_node child = node;
+
+      if(attribute.length() > 0)
+      {
+        child = node.child(attribute.data());
+      }
+
+      std::string_view v{child.attribute("V").value()};
+      std::string_view s{child.attribute("S").value()};
+      std::string_view dn{child.attribute("DN").value()};
+
+      return xml::Cv{v, s, dn};
+    }
+
+    xml::Cs get_cs(const pugi::xml_node& node, std::string_view attribute)
+    {
+      pugi::xml_node child = node;
+
+      if(attribute.length() > 0)
+      {
+        child = node.child(attribute.data());
+      }
+
+      std::string_view v{child.attribute("V").value()};
+      std::string_view dn{child.attribute("DN").value()};
+
+      return xml::Cs{v, dn};
+    }
+
+    Value get_value(const pugi::xml_node& node, std::string_view attribute)
+    {
+      return node.child_value(attribute.data());
+    }
+
     xml::Enkeltoppforing get_enkeltoppforing(const pugi::xml_node& node)
     {
       std::string_view id{get_value(node, "Id")};
@@ -49,32 +87,6 @@ namespace festlib {
         oppforing_status = true;
 
       return xml::Enkeltoppforing{id, date, oppforing_status};
-    }
-
-    xml::Cv get_cv(const pugi::xml_node& node, std::string_view attribute)
-    {
-      pugi::xml_node child{node.child(attribute.data())};
-
-      std::string_view v{child.attribute("V").value()};
-      std::string_view s{child.attribute("S").value()};
-      std::string_view dn{child.attribute("DN").value()};
-
-      return xml::Cv{v, s, dn};
-    }
-
-    xml::Cs get_cs(const pugi::xml_node& node, std::string_view attribute)
-    {
-      pugi::xml_node child{node.child(attribute.data())};
-
-      std::string_view v{child.attribute("V").value()};
-      std::string_view dn{child.attribute("DN").value()};
-
-      return xml::Cs{v, dn};
-    }
-
-    Value get_value(const pugi::xml_node& node, std::string_view attribute)
-    {
-      return node.child_value(attribute.data());
     }
 
     xml::Legemiddel get_legemiddel(const pugi::xml_node& node)
@@ -103,6 +115,12 @@ namespace festlib {
         refvilkar, preparattype, typesoknadslv, opioid, svarttrekant};
     }
 
+    xml::AdministreringLegemiddel get_administreringlegemiddel(const pugi::xml_node& node)
+    {
+      using festlib::xml::Cv;
+      using festlib::xml::Cs;
+    }
+
   } // namespace
 
   // Get the creation date (<FEST><HentetDato> timestamp </HentetDato></FEST>)
@@ -116,10 +134,27 @@ namespace festlib {
 
 // give access to inline functions for testing purposes
 #ifdef ENABLE_TESTING
+
+  xml::Cv test_get_cv(const pugi::xml_node& node, std::string_view attribute)
+  {
+    return get_cv(node, attribute);
+  }
+
+  xml::Cs test_get_cs(const pugi::xml_node& node, std::string_view attribute)
+  {
+    return get_cs(node, attribute);
+  }
+
   xml::Legemiddel test_get_legemiddel(const pugi::xml_node& node)
   {
     return get_legemiddel(node);
   }
+
+  xml::AdministreringLegemiddel test_get_administreringlegemiddel(const pugi::xml_node& node)
+  {
+    return get_administreringlegemiddel(node);
+  }
+
 #endif
 
 } // namespace
