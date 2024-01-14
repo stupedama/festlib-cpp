@@ -5,16 +5,16 @@ namespace festlib
   namespace xml
   {
 
-    using Name = std::string;
-    using Reference = std::string;
-
-    Legemiddel::Legemiddel(Cv atc, const Name& navnformstyrke, Cs reseptgruppe,
-        Cv legemiddelformkort, const Reference& refvilkar, Cs preparattype,
-        Cs typesoknadslv, bool opioidsoknad, Cv svarttrekant, Refusjon refusjon)
+    Legemiddel::Legemiddel(const Cv& atc, const Name& navnformstyrke,
+        const Cs& reseptgruppe, const Cv& legemiddelformkort,
+        const Reference& refvilkar, const Cs& preparattype,
+        const Cs& typesoknadslv, bool opioidsoknad,
+        const Cv& svarttrekant, const Refusjon& refusjon,
+        const PakningByttegruppe& pakningbyttegruppe)
       : m_atc{atc}, m_navnformstyrke{navnformstyrke}, m_reseptgruppe{reseptgruppe},
       m_legemiddelformkort{legemiddelformkort}, m_refvilkar{refvilkar}, m_preparattype{preparattype},
       m_typesoknadslv{typesoknadslv}, m_opioidsoknad{opioidsoknad}, m_svarttrekant{svarttrekant},
-      m_refusjon{refusjon}
+      m_refusjon{refusjon}, m_pakningbyttegruppe{pakningbyttegruppe}
     {
     }
 
@@ -69,6 +69,14 @@ namespace festlib
         return {};
 
       return m_refusjon;
+    }
+
+    std::optional<PakningByttegruppe> Legemiddel::pakningbyttegruppe() const
+    {
+      if(m_pakningbyttegruppe.refbyttegruppe().empty())
+        return {};
+
+      return m_pakningbyttegruppe;
     }
 
   } // namespace

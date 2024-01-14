@@ -7,12 +7,15 @@
 #include "check_empty.h"
 #include "cv.h"
 #include "cs.h"
+#include "pakningbyttegruppe.h"
 #include "refusjon.h"
 
 namespace festlib
 {
   namespace xml
   {
+    using Name = std::string;
+    using Reference = std::string;
 
     // Legemiddel = Drug.
     // Contains drug information.
@@ -23,14 +26,15 @@ namespace festlib
     // - Legemiddelpakningmerkevare
     class Legemiddel
     {
-      using Name = std::string;
-      using Reference = std::string;
 
       public:
         Legemiddel() = default;
-        explicit Legemiddel(Cv atc, const Name& navnformstyrke, Cs reseptgruppe,
-            Cv legemiddelformkort, const Reference& refvilkar, Cs preparattype,
-            Cs typesoknadslv, bool opioidsoknad, Cv svarttrekant, Refusjon refusjon);
+        explicit Legemiddel(const Cv& atc, const Name& navnformstyrke, 
+            const Cs& reseptgruppe, const Cv& legemiddelformkort, 
+            const Reference& refvilkar, const Cs& preparattype,
+            const Cs& typesoknadslv, bool opioidsoknad, 
+            const Cv& svarttrekant, const Refusjon& refusjon,
+            const PakningByttegruppe& pakningbyttegruppe);
         ~Legemiddel() = default;
 
         // getters
@@ -44,6 +48,7 @@ namespace festlib
         bool opioidsoknad() const;
         Cv svarttrekant() const;
         std::optional<Refusjon> refusjon() const;
+        std::optional<PakningByttegruppe> pakningbyttegruppe() const;
       private:
         // named as they are in the xml file, only all lowercase.
         Cv m_atc{};
@@ -56,6 +61,7 @@ namespace festlib
         bool m_opioidsoknad{};
         Cv m_svarttrekant{};
         Refusjon m_refusjon{};
+        PakningByttegruppe m_pakningbyttegruppe{};
     };
 
   } // namespace

@@ -12,6 +12,9 @@ add_executable(
     refusjon.cpp
     get_container.cpp
     administrering_legemiddel.cpp
+    preparatomtaleavsnitt.cpp
+    pakningbyttegruppe.cpp
+    lenke.cpp
 )
 
 target_link_libraries(festlib_unit_tests PRIVATE Catch2::Catch2WithMain festlib pugixml)

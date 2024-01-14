@@ -115,9 +115,10 @@ namespace festlib {
       const Cv svarttrekant{get_cv(node, "SvartTrekant")};
 
       const xml::Refusjon refusjon{get_refusjon(node)};
+      const xml::PakningByttegruppe byttegruppe{get_pakningbyttegruppe(node)};
 
       return xml::Legemiddel{atc, navnformstyrke, reseptgruppe, legemiddelformkort,
-        refvilkar, preparattype, typesoknadslv, opioid, svarttrekant, refusjon};
+        refvilkar, preparattype, typesoknadslv, opioid, svarttrekant, refusjon, byttegruppe};
     }
 
     xml::Refusjon get_refusjon(const pugi::xml_node& node)
@@ -135,6 +136,22 @@ namespace festlib {
       const Date utleverestildato{get_value(refusjon_node, "UtleveresTilDato")};
 
       return xml::Refusjon{refrefusjonsgruppe, gyldigfradato, forskrivestildato, utleverestildato};
+    }
+    
+    xml::Preparatomtaleavsnitt get_preparatomtaleavsnitt(const pugi::xml_node& node)
+    {
+      const pugi::xml_node avsnitt_node{node.child("Preparatomtaleavsnitt")};
+
+      const xml::Cs avsnittoverskrift = get_cs(avsnitt_node, "Avsnittoverskrift");
+      const xml::Lenke lenke = get_lenke(avsnitt_node);
+
+      return xml::Preparatomtaleavsnitt{avsnittoverskrift, lenke};
+    }
+
+    xml::Lenke get_lenke(const pugi::xml_node& node)
+    {
+      const pugi::xml_node lenke_node{node.child("Lenke").child("Www")};
+      return lenke_node.attribute("V").value();
     }
 
     xml::AdministreringLegemiddel get_administreringlegemiddel(const pugi::xml_node& node)
@@ -201,6 +218,17 @@ namespace festlib {
         forhandsregelinntak};
     }
 
+    xml::PakningByttegruppe get_pakningbyttegruppe(const pugi::xml_node& node)
+    {
+      const pugi::xml_node pakning_node{node.child("PakningByttegruppe")};
+
+      xml::IDREF refbyttegruppe{get_value(pakning_node, "RefByttegruppe")};
+      Date gyldigfradato{get_value(pakning_node, "GyldigFraDato")};
+      Date gyldigtildato{get_value(pakning_node, "GyldigTilDato")};
+
+      return xml::PakningByttegruppe{refbyttegruppe, gyldigfradato, gyldigtildato};
+    }
+
   } // namespace
 
   // Get the creation date (<FEST><HentetDato> timestamp </HentetDato></FEST>)
@@ -235,9 +263,24 @@ namespace festlib {
     return get_refusjon(node);
   }
 
+  xml::Preparatomtaleavsnitt test_get_preparatomtaleavsnitt(const pugi::xml_node& node)
+  {
+    return get_preparatomtaleavsnitt(node);
+  }
+
+  xml::Lenke test_get_lenke(const pugi::xml_node& node)
+  {
+    return get_lenke(node);
+  }
+
   xml::AdministreringLegemiddel test_get_administreringlegemiddel(const pugi::xml_node& node)
   {
     return get_administreringlegemiddel(node);
+  }
+  
+  xml::PakningByttegruppe test_get_pakningbyttegruppe(const pugi::xml_node& node)
+  {
+    return get_pakningbyttegruppe(node);
   }
 
 #endif

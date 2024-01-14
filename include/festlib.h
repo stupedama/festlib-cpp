@@ -22,7 +22,10 @@
 #include "enkeltoppforing.h"
 #include "idref.h"
 #include "legemiddel.h"
+#include "preparatomtaleavsnitt.h"
 #include "refusjon.h"
+#include "lenke.h"
+#include "pakningbyttegruppe.h"
 
 namespace festlib {
 
@@ -123,15 +126,33 @@ namespace festlib {
     // bool load = fest.load_file(filename);
     // auto node = node.get_node();
     //
-    // node = node.child("KateLegemiddelpakning").child("OppfLegemiddelpakning").child("Legemiddelpakning");
+    // node = node.child("KatLegemiddelpakning").child("OppfLegemiddelpakning").child("Legemiddelpakning");
     // Refusjon refusjon = get_refusjon(node);
     xml::Refusjon get_refusjon(const pugi::xml_node& node);
+
+
+    // Contains SPC and url to SPC.
+    // Example:
+    //
+    // node = node.child("KatLegemiddeMerkevare").child("OppfLegemiddelMerkevare").child("LegemiddelMerkevare");
+    // Preparatomtaleavsnitt avsnitt = get_preparatomtaleavsnitt(node);
+    xml::Preparatomtaleavsnitt get_preparatomtaleavsnitt(const pugi::xml_node& node);
+
+    // Lenke = URL
+    // Example:
+    //
+    // node = node.child("KatLegemiddelpakning").child("OppfLegemiddelpakning").child("Legemiddelpakning");
+    // Lenke www = get_lenke(node);
+    xml::Lenke get_lenke(const pugi::xml_node& node);
 
     // AdministreringLegemiddel
     // only used in class LegemiddelMerkevare and LegemiddelVirkestoff
     // contains information about administration of the drug
     // for example: precautions for intake, usage/indication on pharmacy label.
     xml::AdministreringLegemiddel get_administreringlegemiddel(const pugi::xml_node& node);
+
+
+    xml::PakningByttegruppe get_pakningbyttegruppe(const pugi::xml_node& node);
 
   } // namespace
 
@@ -148,7 +169,10 @@ namespace festlib {
   xml::Cv test_get_cv(const pugi::xml_node& node, std::string_view attribute = "");
   xml::Legemiddel test_get_legemiddel(const pugi::xml_node& node);
   xml::Refusjon test_get_refusjon(const pugi::xml_node& node);
+  xml::Preparatomtaleavsnitt test_get_preparatomtaleavsnitt(const pugi::xml_node& node);
+  xml::Lenke test_get_lenke(const pugi::xml_node& node);
   xml::AdministreringLegemiddel test_get_administreringlegemiddel(const pugi::xml_node& node);
+  xml::PakningByttegruppe test_get_pakningbyttegruppe(const pugi::xml_node& node);
 
   template<typename T>
   Container<T> test_get_container(const pugi::xml_node& node, std::string_view attribute, std::function<T(const pugi::xml_node& n)> func)
