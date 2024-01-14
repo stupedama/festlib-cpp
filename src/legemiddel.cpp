@@ -10,10 +10,11 @@ namespace festlib
 
     Legemiddel::Legemiddel(Cv atc, const Name& navnformstyrke, Cs reseptgruppe,
         Cv legemiddelformkort, const Reference& refvilkar, Cs preparattype,
-        Cs typesoknadslv, bool opioidsoknad, Cv svarttrekant)
+        Cs typesoknadslv, bool opioidsoknad, Cv svarttrekant, Refusjon refusjon)
       : m_atc{atc}, m_navnformstyrke{navnformstyrke}, m_reseptgruppe{reseptgruppe},
       m_legemiddelformkort{legemiddelformkort}, m_refvilkar{refvilkar}, m_preparattype{preparattype},
-      m_typesoknadslv{typesoknadslv}, m_opioidsoknad{opioidsoknad}, m_svarttrekant{svarttrekant}
+      m_typesoknadslv{typesoknadslv}, m_opioidsoknad{opioidsoknad}, m_svarttrekant{svarttrekant},
+      m_refusjon{refusjon}
     {
     }
 
@@ -60,6 +61,14 @@ namespace festlib
     Cv Legemiddel::svarttrekant() const
     {
       return m_svarttrekant;
+    }
+
+    std::optional<Refusjon> Legemiddel::refusjon() const
+    {
+      if(m_refusjon.refrefusjonsgruppe().empty())
+        return {};
+
+      return m_refusjon;
     }
 
   } // namespace

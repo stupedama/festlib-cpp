@@ -9,6 +9,7 @@ add_executable(
     xml.cpp
     enkeltoppforing.cpp
     legemiddel.cpp
+    refusjon.cpp
     get_container.cpp
     administrering_legemiddel.cpp
 )

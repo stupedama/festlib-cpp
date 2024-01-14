@@ -114,8 +114,10 @@ namespace festlib {
 
       const Cv svarttrekant{get_cv(node, "SvartTrekant")};
 
+      const xml::Refusjon refusjon{get_refusjon(node)};
+
       return xml::Legemiddel{atc, navnformstyrke, reseptgruppe, legemiddelformkort,
-        refvilkar, preparattype, typesoknadslv, opioid, svarttrekant};
+        refvilkar, preparattype, typesoknadslv, opioid, svarttrekant, refusjon};
     }
 
     xml::Refusjon get_refusjon(const pugi::xml_node& node)
