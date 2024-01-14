@@ -1,4 +1,5 @@
 #include "enkeltoppforing.h"
+#include <optional>
 
 namespace festlib
 {
@@ -10,12 +11,12 @@ namespace festlib
     {
     }
 
-    const std::string& Enkeltoppforing::id() const
+    std::string Enkeltoppforing::id() const
     {
       return m_id; // unique ID.
     }
 
-    const std::string& Enkeltoppforing::date() const
+    std::string Enkeltoppforing::date() const
     {
       return m_date;
     }

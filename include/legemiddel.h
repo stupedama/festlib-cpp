@@ -25,8 +25,8 @@ namespace festlib
 
       public:
         Legemiddel() = default;
-        explicit Legemiddel(Cv atc, Name navnformstyrke, Cs reseptgruppe,
-            Cv legemiddelformkort, Reference refvilkar, Cs preparattype,
+        explicit Legemiddel(Cv atc, const Name& navnformstyrke, Cs reseptgruppe,
+            Cv legemiddelformkort, const Reference& refvilkar, Cs preparattype,
             Cs typesoknadslv, bool opioidsoknad, Cv svarttrekant);
         ~Legemiddel() = default;
 

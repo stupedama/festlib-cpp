@@ -1,8 +1,6 @@
 #ifndef FESTLIB_H_
 #define FESTLIB_H_
 
-#include <iostream>
-
 // Main class that handles the reading of the XML file or string.
 // after loading the source, it contains a pugi::xml_node and the pugi::xml_document.
 // non-member functions is used to get the data.
@@ -43,6 +41,7 @@ namespace festlib {
 
     using Value = std::string;
     using Date = std::string;
+    using IDREF = std::string;
 
     // CV (Coded Value) from node
     // Example:
@@ -74,7 +73,7 @@ namespace festlib {
     // auto node = node.get_node(); // gets the root.
     //
     // Value date = get_value(node, "HentetDato");
-    Value get_value(const pugi::xml_node& node, std::string_view attribute);
+    Value get_value(const pugi::xml_node& node, std::string_view attribute = "");
 
     // Iterates over a attribute that contains one or more values
     // template<typename T>
@@ -90,6 +89,9 @@ namespace festlib {
           node_container.push_back(func(child_node));
         }
       }
+
+      if(node_container.size() == 0)
+        return {};
 
       return node_container;
     }

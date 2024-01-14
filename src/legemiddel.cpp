@@ -8,8 +8,8 @@ namespace festlib
     using Name = std::string;
     using Reference = std::string;
 
-    Legemiddel::Legemiddel(Cv atc, Name navnformstyrke, Cs reseptgruppe,
-        Cv legemiddelformkort, Reference refvilkar, Cs preparattype,
+    Legemiddel::Legemiddel(Cv atc, const Name& navnformstyrke, Cs reseptgruppe,
+        Cv legemiddelformkort, const Reference& refvilkar, Cs preparattype,
         Cs typesoknadslv, bool opioidsoknad, Cv svarttrekant)
       : m_atc{atc}, m_navnformstyrke{navnformstyrke}, m_reseptgruppe{reseptgruppe},
       m_legemiddelformkort{legemiddelformkort}, m_refvilkar{refvilkar}, m_preparattype{preparattype},

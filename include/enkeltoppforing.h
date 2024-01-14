@@ -17,8 +17,8 @@ namespace festlib
       public:
         Enkeltoppforing(std::string_view id, std::string_view date, bool status);
         ~Enkeltoppforing() = default;
-        const std::string& id() const;
-        const std::string& date() const;
+        std::string id() const;
+        std::string date() const;
         bool status() const;
       private:
         std::string m_id{};

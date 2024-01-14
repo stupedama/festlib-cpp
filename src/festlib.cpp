@@ -1,7 +1,5 @@
 #include "festlib.h"
 
-#include <iostream>
-
 namespace festlib {
 
   Festlib::Festlib()
@@ -72,8 +70,13 @@ namespace festlib {
 
     Value get_value(const pugi::xml_node& node, std::string_view attribute)
     {
-      return node.child_value(attribute.data());
+      if(attribute.length() > 0)
+      {
+        return node.child_value(attribute.data());
+      } else {
+        return node.value();
     }
+  }
 
     xml::Enkeltoppforing get_enkeltoppforing(const pugi::xml_node& node)
     {
@@ -119,6 +122,65 @@ namespace festlib {
     {
       using festlib::xml::Cv;
       using festlib::xml::Cs;
+
+      const pugi::xml_node admin_node{node.child("AdministreringLegemiddel")};
+
+      // TODO: use the pugi:: to return .bool()
+      bool blandingsveske{false};
+      const std::string blandingsveske_string{get_value(admin_node, "Blandingsveske")};
+
+      if(blandingsveske_string.compare("true") == 0)
+        blandingsveske = true;
+
+      const Container<IDREF> refbladingsveske{get_container<IDREF>(admin_node, "RefBlandingsVeske", [](const pugi::xml_node& n)
+      {
+        IDREF ref{get_value(n)};
+        return ref;
+      })};
+
+      const Container<Cv> administrasjonsvei{get_container<Cv>(admin_node, "Administrasjonsvei", [](const pugi::xml_node& n)
+      {
+        Cv vei{get_cv(n)};
+        return vei;
+      // get_container returns a std::optional, but this value should always be 1 or more.
+      })};
+
+      const Cs kanknuses{get_cs(node, "KanKnuses")};
+      const Cs kanapnes{get_cs(node, "KanApnes")};
+      const Cs bolus{get_cs(node, "Bolus")};
+      const Cs injeksjonshastighetbolus{get_cs(node, "InjeksjonshastighetBolus")};
+      const Cs deling{get_cs(node, "Deling")};
+
+      const Container<Cv> enhetdosering{get_container<Cv>(admin_node, "EnhetDosering", [](const pugi::xml_node& n)
+          {
+            Cv enhet{get_cv(n)};
+            return enhet;
+          })};
+
+      const Container<Cv> kortdose{get_container<Cv>(admin_node, "Kortdose", [](const pugi::xml_node& n)
+          {
+            Cv dose{get_cv(n)};
+            return dose;
+          })};
+
+      const Container<Cv> forhandsregelinntak{get_container<Cv>(admin_node, "ForhandsregelInntak", [](const pugi::xml_node& n)
+          {
+            Cv regel{get_cv(n)};
+            return regel;
+          })};
+
+      return xml::AdministreringLegemiddel{
+        blandingsveske,
+        refbladingsveske,
+        administrasjonsvei,
+        kanknuses,
+        kanapnes,
+        bolus,
+        injeksjonshastighetbolus,
+        deling,
+        enhetdosering,
+        kortdose,
+        forhandsregelinntak};
     }
 
   } // namespace
