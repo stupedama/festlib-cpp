@@ -1,0 +1,23 @@
+#include "reseptgyldighet.h"
+
+namespace festlib
+{
+  namespace xml
+  {
+    Reseptgyldighet::Reseptgyldighet(const Cs& kjonn, std::string_view varighet)
+      : m_kjonn{kjonn}, m_varighet{varighet}
+    {
+    }
+
+    std::optional<Cs> Reseptgyldighet::kjonn() const
+    {
+      return check_empty(m_kjonn);
+    }
+
+    std::string Reseptgyldighet::varighet() const
+    {
+      return m_varighet;
+    }
+
+  } // namespace
+} // namespace
