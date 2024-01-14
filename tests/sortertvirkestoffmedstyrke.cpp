@@ -3,8 +3,6 @@
 #include "festlib.h"
 #include "sortertvirkestoff.h"
 
-#include <iostream>
-
 TEST_CASE("Create Class from xml string", "[SortertVirkestoffMedStyrke]")
 {
   using festlib::Festlib;

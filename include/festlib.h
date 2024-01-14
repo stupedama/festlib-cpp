@@ -167,7 +167,11 @@ namespace festlib {
     // defines the duration of the prescription
     xml::Reseptgyldighet get_reseptgyldighet(const pugi::xml_node& node);
 
+    // Sorts the active ingridient after strength and reference to active ingridient
     xml::SortertVirkestoff get_sorteringvirkestoffmedstyrke(const pugi::xml_node& node);
+
+    // Sorts the active ingridient without strength and reference to active ingridient
+    xml::SortertVirkestoff get_sorteringvirkestoffutenstyrke(const pugi::xml_node& node);
 
   } // namespace
 
@@ -190,6 +194,7 @@ namespace festlib {
   xml::ProduktInfo test_get_produktinfo(const pugi::xml_node& node);
   xml::Reseptgyldighet test_get_reseptgyldighet(const pugi::xml_node& node);
   xml::SortertVirkestoff test_get_sorteringvirkestoffmedstyrke(const pugi::xml_node& node);
+  xml::SortertVirkestoff test_get_sorteringvirkestoffutenstyrke(const pugi::xml_node& node);
 
   template<typename T>
   Container<T> test_get_container(const pugi::xml_node& node, std::string_view attribute, std::function<T(const pugi::xml_node& n)> func)

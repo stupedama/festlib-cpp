@@ -17,6 +17,7 @@ add_executable(
     produktinfo.cpp
     reseptgyldighet.cpp
     sortertvirkestoffmedstyrke.cpp
+    sortertvirkestoffutenstyrke.cpp
     lenke.cpp
 )
 

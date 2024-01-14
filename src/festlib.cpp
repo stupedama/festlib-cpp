@@ -282,6 +282,31 @@ namespace festlib {
       return sortertmedstyrke;
     }
 
+    xml::SortertVirkestoff get_sorteringvirkestoffutenstyrke(const pugi::xml_node& node)
+    {
+      xml::SortertVirkestoff sortertmedstyrke{};
+
+      // get the sortering and reference
+      const Container<std::pair<int, xml::IDREF>> sortering = get_container<std::pair<int,xml::IDREF>>(node, "SortertVirkestoffUtenStyrke",
+          [](const pugi::xml_node& n)
+          {
+            const std::string sort{get_value(n, "Sortering")};
+            int sort_num = std::stoi(sort);
+
+            const xml::IDREF ref{get_value(n, "RefVirkestoff")};
+            return std::pair<int, xml::IDREF>{sort_num, ref};
+          });
+
+      for(const auto& pair : sortering)
+      {
+        // the pair.first should be unique, starting from 0
+        // .push_back() checks if container already contains a 'sorting'
+        sortertmedstyrke.push_back(pair.first, pair.second);
+      }
+
+      return sortertmedstyrke;
+    }
+
   } // namespace
 
   // Get the creation date (<FEST><HentetDato> timestamp </HentetDato></FEST>)
@@ -349,6 +374,11 @@ namespace festlib {
   xml::SortertVirkestoff test_get_sorteringvirkestoffmedstyrke(const pugi::xml_node& node)
   {
     return get_sorteringvirkestoffmedstyrke(node);
+  }
+
+  xml::SortertVirkestoff test_get_sorteringvirkestoffutenstyrke(const pugi::xml_node& node)
+  {
+    return get_sorteringvirkestoffutenstyrke(node);
   }
 
 #endif
