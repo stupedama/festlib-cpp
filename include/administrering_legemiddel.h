@@ -6,6 +6,7 @@
 #include "cv.h"
 #include "cs.h"
 #include "container.h"
+#include "idref.h"
 
 // TODO: add std::option for the class members who are optional.
 
@@ -13,8 +14,6 @@ namespace festlib
 {
   namespace xml
   {
-    using IDREF = std::string;
-
     // Used only by class LegemiddelMerkevare and LegemiddelVirkestoff.
     class AdministreringLegemiddel
     {

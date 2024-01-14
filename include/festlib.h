@@ -15,10 +15,12 @@
 #include <string_view>
 #include <pugixml.hpp>
 #include "administrering_legemiddel.h"
+#include "date.h"
 #include "container.h"
 #include "cv.h"
 #include "cs.h"
 #include "enkeltoppforing.h"
+#include "idref.h"
 #include "legemiddel.h"
 
 namespace festlib {
@@ -40,8 +42,6 @@ namespace festlib {
   namespace {
 
     using Value = std::string;
-    using Date = std::string;
-    using IDREF = std::string;
 
     // CV (Coded Value) from node
     // Example:
@@ -135,6 +135,7 @@ namespace festlib {
 #ifdef ENABLE_TESTING
 
   xml::Cs test_get_cs(const pugi::xml_node& node, std::string_view attribute = "");
+#include "idref.h"
   xml::Cv test_get_cv(const pugi::xml_node& node, std::string_view attribute = "");
   xml::Legemiddel test_get_legemiddel(const pugi::xml_node& node);
   xml::AdministreringLegemiddel test_get_administreringlegemiddel(const pugi::xml_node& node);

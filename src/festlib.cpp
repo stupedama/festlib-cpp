@@ -132,9 +132,9 @@ namespace festlib {
       if(blandingsveske_string.compare("true") == 0)
         blandingsveske = true;
 
-      const Container<IDREF> refbladingsveske{get_container<IDREF>(admin_node, "RefBlandingsVeske", [](const pugi::xml_node& n)
+      const Container<xml::IDREF> refbladingsveske{get_container<xml::IDREF>(admin_node, "RefBlandingsVeske", [](const pugi::xml_node& n)
       {
-        IDREF ref{get_value(n)};
+      xml::IDREF ref{get_value(n)};
         return ref;
       })};
 
