@@ -3,8 +3,6 @@
 #include "festlib.h"
 #include "cv.h"
 
-#include <iostream>
-
 TEST_CASE("Test iteratoring of a node", "[get_container]")
 {
   using festlib::Festlib;
