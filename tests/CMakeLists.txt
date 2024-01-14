@@ -14,6 +14,9 @@ add_executable(
     administrering_legemiddel.cpp
     preparatomtaleavsnitt.cpp
     pakningbyttegruppe.cpp
+    produktinfo.cpp
+    reseptgyldighet.cpp
+    sortertvirkestoffmedstyrke.cpp
     lenke.cpp
 )
 

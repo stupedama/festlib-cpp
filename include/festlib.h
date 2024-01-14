@@ -26,6 +26,9 @@
 #include "refusjon.h"
 #include "lenke.h"
 #include "pakningbyttegruppe.h"
+#include "produktinfo.h"
+#include "reseptgyldighet.h"
+#include "sortertvirkestoffmedstyrke.h"
 
 namespace festlib {
 
@@ -155,6 +158,17 @@ namespace festlib {
     // RefByttegruppe ID is a link to other generics
     xml::PakningByttegruppe get_pakningbyttegruppe(const pugi::xml_node& node);
 
+    // ProductInfo. 
+    // Contains information about marketing authorization and
+    // name of producer.
+    xml::ProduktInfo get_produktinfo(const pugi::xml_node& node);
+
+    // Prescription duration
+    // defines the duration of the prescription
+    xml::Reseptgyldighet get_reseptgyldighet(const pugi::xml_node& node);
+
+    xml::SortertVirkestoffMedStyrke get_sorteringvirkestoffmedstyrke(const pugi::xml_node& node);
+
   } // namespace
 
   // library interface
@@ -166,7 +180,6 @@ namespace festlib {
 #ifdef ENABLE_TESTING
 
   xml::Cs test_get_cs(const pugi::xml_node& node, std::string_view attribute = "");
-#include "idref.h"
   xml::Cv test_get_cv(const pugi::xml_node& node, std::string_view attribute = "");
   xml::Legemiddel test_get_legemiddel(const pugi::xml_node& node);
   xml::Refusjon test_get_refusjon(const pugi::xml_node& node);
@@ -174,6 +187,9 @@ namespace festlib {
   xml::Lenke test_get_lenke(const pugi::xml_node& node);
   xml::AdministreringLegemiddel test_get_administreringlegemiddel(const pugi::xml_node& node);
   xml::PakningByttegruppe test_get_pakningbyttegruppe(const pugi::xml_node& node);
+  xml::ProduktInfo test_get_produktinfo(const pugi::xml_node& node);
+  xml::Reseptgyldighet test_get_reseptgyldighet(const pugi::xml_node& node);
+  xml::SortertVirkestoffMedStyrke test_get_sorteringvirkestoffmedstyrke(const pugi::xml_node& node);
 
   template<typename T>
   Container<T> test_get_container(const pugi::xml_node& node, std::string_view attribute, std::function<T(const pugi::xml_node& n)> func)

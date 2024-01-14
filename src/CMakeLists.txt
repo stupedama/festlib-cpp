@@ -6,6 +6,10 @@ add_library(${PROJECT_NAME} SHARED
     legemiddelmerkevare.cpp
     preparatomtaleavsnitt.cpp
     pakningbyttegruppe.cpp
+    sortertvirkestoffmedstyrke.cpp
     refusjon.cpp
+    produktinfo.cpp
     cv.cpp
+    produktinfo.cpp
+    reseptgyldighet.cpp
     cs.cpp)

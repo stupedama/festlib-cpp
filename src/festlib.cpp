@@ -137,7 +137,7 @@ namespace festlib {
 
       return xml::Refusjon{refrefusjonsgruppe, gyldigfradato, forskrivestildato, utleverestildato};
     }
-    
+
     xml::Preparatomtaleavsnitt get_preparatomtaleavsnitt(const pugi::xml_node& node)
     {
       const pugi::xml_node avsnitt_node{node.child("Preparatomtaleavsnitt")};
@@ -229,6 +229,59 @@ namespace festlib {
       return xml::PakningByttegruppe{refbyttegruppe, gyldigfradato, gyldigtildato};
     }
 
+    xml::ProduktInfo get_produktinfo(const pugi::xml_node& node)
+    {
+      const pugi::xml_node produktinfo_node{node.child("ProduktInfo")};
+
+      // TODO: use the pugi:: to return .bool()
+      bool varseltrekant{false};
+      const std::string varseltrekant_string{get_value(produktinfo_node, "Varseltrekant")};
+
+      if(varseltrekant_string.compare("true") == 0)
+        varseltrekant = true;
+
+      const std::string referanseprodukt{get_value(produktinfo_node, "Referanseprodukt")};
+      const xml::Cv vaksinestandard{get_cv(produktinfo_node, "Vaksinestandard")};
+      const std::string produsent{get_value(produktinfo_node, "Produsent")};
+
+      return xml::ProduktInfo{varseltrekant, referanseprodukt, vaksinestandard, produsent};
+    }
+
+    xml::Reseptgyldighet get_reseptgyldighet(const pugi::xml_node& node)
+    {
+      const pugi::xml_node gyldighet_node{node.child("Reseptgyldighet")};
+
+      const xml::Cs kjonn{get_cs(gyldighet_node, "Kjonn")};
+      const std::string varighet{get_value(gyldighet_node, "Varighet")};
+
+      return xml::Reseptgyldighet{kjonn, varighet};
+    }
+
+    xml::SortertVirkestoffMedStyrke get_sorteringvirkestoffmedstyrke(const pugi::xml_node& node)
+    {
+      xml::SortertVirkestoffMedStyrke sortertmedstyrke{};
+
+      // get the sortering and reference
+      const Container<std::pair<int, xml::IDREF>> sortering = get_container<std::pair<int,xml::IDREF>>(node, "SortertVirkestoffMedStyrke",
+          [](const pugi::xml_node& n)
+          {
+            const std::string sort{get_value(n, "Sortering")};
+            int sort_num = std::stoi(sort);
+
+            const xml::IDREF ref{get_value(n, "RefVirkestoffMedStyrke")};
+            return std::pair<int, xml::IDREF>{sort_num, ref};
+          });
+
+      for(const auto& pair : sortering)
+      {
+        // the pair.first should be unique, starting from 0
+        // .push_back() checks if container already contains a 'sorting'
+        sortertmedstyrke.push_back(pair.first, pair.second);
+      }
+
+      return sortertmedstyrke;
+    }
+
   } // namespace
 
   // Get the creation date (<FEST><HentetDato> timestamp </HentetDato></FEST>)
@@ -277,10 +330,25 @@ namespace festlib {
   {
     return get_administreringlegemiddel(node);
   }
-  
+
   xml::PakningByttegruppe test_get_pakningbyttegruppe(const pugi::xml_node& node)
   {
     return get_pakningbyttegruppe(node);
+  }
+
+  xml::ProduktInfo test_get_produktinfo(const pugi::xml_node& node)
+  {
+    return get_produktinfo(node);
+  }
+
+  xml::Reseptgyldighet test_get_reseptgyldighet(const pugi::xml_node& node)
+  {
+    return get_reseptgyldighet(node);
+  }
+  
+  xml::SortertVirkestoffMedStyrke test_get_sorteringvirkestoffmedstyrke(const pugi::xml_node& node)
+  {
+    return get_sorteringvirkestoffmedstyrke(node);
   }
 
 #endif
