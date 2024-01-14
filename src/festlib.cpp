@@ -257,9 +257,9 @@ namespace festlib {
       return xml::Reseptgyldighet{kjonn, varighet};
     }
 
-    xml::SortertVirkestoffMedStyrke get_sorteringvirkestoffmedstyrke(const pugi::xml_node& node)
+    xml::SortertVirkestoff get_sorteringvirkestoffmedstyrke(const pugi::xml_node& node)
     {
-      xml::SortertVirkestoffMedStyrke sortertmedstyrke{};
+      xml::SortertVirkestoff sortertmedstyrke{};
 
       // get the sortering and reference
       const Container<std::pair<int, xml::IDREF>> sortering = get_container<std::pair<int,xml::IDREF>>(node, "SortertVirkestoffMedStyrke",
@@ -345,8 +345,8 @@ namespace festlib {
   {
     return get_reseptgyldighet(node);
   }
-  
-  xml::SortertVirkestoffMedStyrke test_get_sorteringvirkestoffmedstyrke(const pugi::xml_node& node)
+
+  xml::SortertVirkestoff test_get_sorteringvirkestoffmedstyrke(const pugi::xml_node& node)
   {
     return get_sorteringvirkestoffmedstyrke(node);
   }

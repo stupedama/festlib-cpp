@@ -6,7 +6,7 @@ add_library(${PROJECT_NAME} SHARED
     legemiddelmerkevare.cpp
     preparatomtaleavsnitt.cpp
     pakningbyttegruppe.cpp
-    sortertvirkestoffmedstyrke.cpp
+    sortertvirkestoff.cpp
     refusjon.cpp
     produktinfo.cpp
     cv.cpp

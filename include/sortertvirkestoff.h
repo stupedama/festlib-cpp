@@ -1,5 +1,5 @@
-#ifndef SORTERTVIRKESTOFFMEDSTYRKE_H_
-#define SORTERTVIRKESTOFFMEDSTYRKE_H_
+#ifndef SORTERTVIRKESTOFF_H_
+#define SORTERTVIRKESTOFF_H_
 
 #include <utility>
 #include "container.h"
@@ -10,16 +10,16 @@ namespace festlib
   namespace xml
   {
 
-    // sorting of active ingredient. 
+    // sorting of active ingredient.
     // sorts the order of the ingredient
-    class SortertVirkestoffMedStyrke
+    class SortertVirkestoff
     {
       public:
-        SortertVirkestoffMedStyrke() = default;
-        explicit SortertVirkestoffMedStyrke(int sortering,
-            const IDREF& refvirkestoffmedstyrke);
+        SortertVirkestoff() = default;
+        explicit SortertVirkestoff(int sortering,
+            const IDREF& refvirkestoff);
         Container<std::pair<int, IDREF>> sortering() const;
-        bool push_back(int sortering, const IDREF& refvirkestoffmedstyrke);
+        bool push_back(int sortering, const IDREF& refvirkestoff);
       private:
         // check if m_sortering already contains sortering value
         bool check_container(int sortering) const;

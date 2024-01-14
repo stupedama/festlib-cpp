@@ -1,7 +1,7 @@
 #include <string>
 #include <catch2/catch_all.hpp>
 #include "festlib.h"
-#include "sortertvirkestoffmedstyrke.h"
+#include "sortertvirkestoff.h"
 
 #include <iostream>
 
@@ -16,7 +16,7 @@ TEST_CASE("Create Class from xml string", "[SortertVirkestoffMedStyrke]")
 
   pugi::xml_node node = fest.get_node();
   node = node.child("KatLegemiddelMerkevare").child("OppfLegemiddelMerkevare").child("LegemiddelMerkevare");
-  festlib::xml::SortertVirkestoffMedStyrke sorteringvirkestoff = festlib::test_get_sorteringvirkestoffmedstyrke(node);
+  festlib::xml::SortertVirkestoff sorteringvirkestoff = festlib::test_get_sorteringvirkestoffmedstyrke(node);
 
   auto sortering = sorteringvirkestoff.sortering();
   REQUIRE(sortering.size() == 3);
