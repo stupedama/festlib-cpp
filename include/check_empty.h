@@ -8,32 +8,32 @@
 namespace festlib
 {
 
-    template<typename T>
-    std::optional<T> check_empty(const T& value)
-    {
-      if(value.long_value().empty())
-        return {};
+  template<typename T>
+  std::optional<T> check_empty(const T& value)
+  {
+    if(value.long_value().empty())
+      return {};
 
-      return value;
-    }
+    return value;
+  }
 
-    template<typename T>
-    std::optional<Container<T>> check_empty(const Container<T>& value)
-    {
-      if(value.empty())
-        return {};
+  template<typename T>
+  std::optional<Container<T>> check_empty(const Container<T>& value)
+  {
+    if(value.empty())
+      return {};
 
-      return value;
-    }
+    return value;
+  }
 
-    template<typename T = std::string>
-    std::optional<std::string> check_empty(const std::string& str)
-    {
-      if(str.empty())
-        return {};
+  template<typename T = std::string>
+  std::optional<std::string> check_empty(const std::string& str)
+  {
+    if(str.empty())
+      return {};
 
-      return str;
-    }
+    return str;
+  }
 
 } // namespace
 
