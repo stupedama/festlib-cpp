@@ -151,7 +151,8 @@ namespace festlib {
     // for example: precautions for intake, usage/indication on pharmacy label.
     xml::AdministreringLegemiddel get_administreringlegemiddel(const pugi::xml_node& node);
 
-
+    // PakningByttegruppe identifies what generic group it is.
+    // RefByttegruppe ID is a link to other generics
     xml::PakningByttegruppe get_pakningbyttegruppe(const pugi::xml_node& node);
 
   } // namespace
