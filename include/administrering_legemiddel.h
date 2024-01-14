@@ -19,6 +19,7 @@ namespace festlib
     class AdministreringLegemiddel
     {
       public:
+        AdministreringLegemiddel() = default;
         explicit AdministreringLegemiddel(
             bool blandingsveske,
             const Container<IDREF>& refbladingsveske,
@@ -125,7 +126,7 @@ namespace festlib
         // KodeVerk: 7488
         Container<Cv> m_bruksomradeetikett{};
     };
-    
+
     template<typename T>
     std::optional<T> AdministreringLegemiddel::check_empty(const T& value) const
     {
