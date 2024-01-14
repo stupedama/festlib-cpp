@@ -5,6 +5,7 @@
 #include <string>
 #include "cv.h"
 #include "cs.h"
+#include "check_empty.h"
 #include "container.h"
 #include "idref.h"
 
@@ -43,11 +44,6 @@ namespace festlib
         std::optional<Container<Cv>> enhetdosering() const;
         std::optional<Container<Cv>> kortdose() const;
         std::optional<Container<Cv>> forhandsregelinntak() const;
-      private:
-        template<typename T>
-        std::optional<T> check_empty(const T& value) const;
-        template<typename T>
-        std::optional<Container<T>> check_empty(const Container<T>& value) const;
       private:
         // used for all drugs that can be mixed liquid.
         // it will be set to true, other drugs that are not mixing liquids
@@ -125,24 +121,6 @@ namespace festlib
         // KodeVerk: 7488
         Container<Cv> m_bruksomradeetikett{};
     };
-
-    template<typename T>
-    std::optional<T> AdministreringLegemiddel::check_empty(const T& value) const
-    {
-      if(value.long_value().empty())
-        return {};
-
-      return value;
-    }
-
-    template<typename T>
-    std::optional<Container<T>> AdministreringLegemiddel::check_empty(const Container<T>& value) const
-    {
-      if(value.empty())
-        return {};
-
-      return value;
-    }
 
   } // namespace
 } // namespace

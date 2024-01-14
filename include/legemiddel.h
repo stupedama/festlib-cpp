@@ -1,10 +1,13 @@
 #ifndef LEGEMIDDEL_H_
 #define LEGEMIDDEL_H_
 
+#include <optional>
 #include <string>
 #include <string_view>
+#include "check_empty.h"
 #include "cv.h"
 #include "cs.h"
+#include "refusjon.h"
 
 namespace festlib
 {
@@ -27,7 +30,7 @@ namespace festlib
         Legemiddel() = default;
         explicit Legemiddel(Cv atc, const Name& navnformstyrke, Cs reseptgruppe,
             Cv legemiddelformkort, const Reference& refvilkar, Cs preparattype,
-            Cs typesoknadslv, bool opioidsoknad, Cv svarttrekant);
+            Cs typesoknadslv, bool opioidsoknad, Cv svarttrekant, Refusjon refusjon);
         ~Legemiddel() = default;
 
         // getters
@@ -40,6 +43,7 @@ namespace festlib
         Cs typesoknadslv() const;
         bool opioidsoknad() const;
         Cv svarttrekant() const;
+        std::optional<Refusjon> refusjon() const;
       private:
         // named as they are in the xml file, only all lowercase.
         Cv m_atc{};
@@ -51,6 +55,7 @@ namespace festlib
         Cs m_typesoknadslv{};
         bool m_opioidsoknad{};
         Cv m_svarttrekant{};
+        Refusjon m_refusjon{};
     };
 
   } // namespace
