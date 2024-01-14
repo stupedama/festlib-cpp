@@ -22,6 +22,7 @@
 #include "enkeltoppforing.h"
 #include "idref.h"
 #include "legemiddel.h"
+#include "refusjon.h"
 
 namespace festlib {
 
@@ -90,9 +91,6 @@ namespace festlib {
         }
       }
 
-      if(node_container.size() == 0)
-        return {};
-
       return node_container;
     }
 
@@ -118,6 +116,17 @@ namespace festlib {
     // Legemiddel lm = get_legemiddel(node);
     xml::Legemiddel get_legemiddel(const pugi::xml_node& node);
 
+    // Refusjon = Refund. Contains reference to refundgroup and periode the refund is valid
+    // Example:
+    //
+    // Festlib fest{};
+    // bool load = fest.load_file(filename);
+    // auto node = node.get_node();
+    //
+    // node = node.child("KateLegemiddelpakning").child("OppfLegemiddelpakning").child("Legemiddelpakning");
+    // Refusjon refusjon = get_refusjon(node);
+    xml::Refusjon get_refusjon(const pugi::xml_node& node);
+
     // AdministreringLegemiddel
     // only used in class LegemiddelMerkevare and LegemiddelVirkestoff
     // contains information about administration of the drug
@@ -138,6 +147,7 @@ namespace festlib {
 #include "idref.h"
   xml::Cv test_get_cv(const pugi::xml_node& node, std::string_view attribute = "");
   xml::Legemiddel test_get_legemiddel(const pugi::xml_node& node);
+  xml::Refusjon test_get_refusjon(const pugi::xml_node& node);
   xml::AdministreringLegemiddel test_get_administreringlegemiddel(const pugi::xml_node& node);
 
   template<typename T>

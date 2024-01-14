@@ -74,8 +74,8 @@ namespace festlib {
       {
         return node.child_value(attribute.data());
       } else {
-        return node.value();
-    }
+        return node.child_value();
+      }
   }
 
     xml::Enkeltoppforing get_enkeltoppforing(const pugi::xml_node& node)
@@ -118,6 +118,23 @@ namespace festlib {
         refvilkar, preparattype, typesoknadslv, opioid, svarttrekant};
     }
 
+    xml::Refusjon get_refusjon(const pugi::xml_node& node)
+    {
+      const pugi::xml_node refusjon_node{node.child("Refusjon")};
+
+      const Container<xml::IDREF> refrefusjonsgruppe{get_container<xml::IDREF>(refusjon_node, "RefRefusjonsgruppe", [](const pugi::xml_node& n)
+      {
+        xml::IDREF ref{get_value(n)};
+        return ref;
+      })};
+
+      const Date gyldigfradato{get_value(refusjon_node, "GyldigFraDato")};
+      const Date forskrivestildato{get_value(refusjon_node, "ForskrivesTilDato")};
+      const Date utleverestildato{get_value(refusjon_node, "UtleveresTilDato")};
+
+      return xml::Refusjon{refrefusjonsgruppe, gyldigfradato, forskrivestildato, utleverestildato};
+    }
+
     xml::AdministreringLegemiddel get_administreringlegemiddel(const pugi::xml_node& node)
     {
       using festlib::xml::Cv;
@@ -134,7 +151,7 @@ namespace festlib {
 
       const Container<xml::IDREF> refbladingsveske{get_container<xml::IDREF>(admin_node, "RefBlandingsVeske", [](const pugi::xml_node& n)
       {
-      xml::IDREF ref{get_value(n)};
+        xml::IDREF ref{get_value(n)};
         return ref;
       })};
 
@@ -142,7 +159,6 @@ namespace festlib {
       {
         Cv vei{get_cv(n)};
         return vei;
-      // get_container returns a std::optional, but this value should always be 1 or more.
       })};
 
       const Cs kanknuses{get_cs(node, "KanKnuses")};
@@ -210,6 +226,11 @@ namespace festlib {
   xml::Legemiddel test_get_legemiddel(const pugi::xml_node& node)
   {
     return get_legemiddel(node);
+  }
+
+  xml::Refusjon test_get_refusjon(const pugi::xml_node& node)
+  {
+    return get_refusjon(node);
   }
 
   xml::AdministreringLegemiddel test_get_administreringlegemiddel(const pugi::xml_node& node)
