@@ -46,9 +46,9 @@ namespace festlib {
         child = node.child(attribute.data());
       }
 
-      std::string_view v{child.attribute("V").value()};
-      std::string_view s{child.attribute("S").value()};
-      std::string_view dn{child.attribute("DN").value()};
+      std::string v{child.attribute("V").value()};
+      std::string s{child.attribute("S").value()};
+      std::string dn{child.attribute("DN").value()};
 
       return xml::Cv{v, s, dn};
     }
@@ -62,8 +62,8 @@ namespace festlib {
         child = node.child(attribute.data());
       }
 
-      std::string_view v{child.attribute("V").value()};
-      std::string_view dn{child.attribute("DN").value()};
+      std::string v{child.attribute("V").value()};
+      std::string dn{child.attribute("DN").value()};
 
       return xml::Cs{v, dn};
     }
@@ -80,9 +80,9 @@ namespace festlib {
 
     xml::Enkeltoppforing get_enkeltoppforing(const pugi::xml_node& node)
     {
-      std::string_view id{get_value(node, "Id")};
-      std::string_view date{get_value(node, "Tidspunkt")}; // Tidspunkt = Entry date
-      std::string_view status{node.child("Status").first_attribute().value()};
+      std::string id{get_value(node, "Id")};
+      std::string date{get_value(node, "Tidspunkt")}; // Tidspunkt = Entry date
+      std::string status{node.child("Status").first_attribute().value()};
 
       bool oppforing_status{false};
 
@@ -306,6 +306,29 @@ namespace festlib {
 
       return sortertmedstyrke;
     }
+    
+    xml::LegemiddelMerkevare get_legemiddelmerkevare(const pugi::xml_node& node)
+    {
+      pugi::xml_node merkevare_node{node.child("LegemiddelMerkevare")};
+
+      const xml::Enkeltoppforing enkeltoppforing{get_enkeltoppforing(node)};
+
+      // get the parts what is unique to LegemiddelMerkevare
+      const std::string varenavn{get_value(merkevare_node, "Varenavn")};
+      const std::string legemiddelformlang{get_value(merkevare_node, "LegemiddelformLang")};
+      const xml::Cs smak{get_cs(merkevare_node, "Smak")};
+
+      // shared parts
+      const xml::AdministreringLegemiddel administreringlegemiddel{get_administreringlegemiddel(merkevare_node)};
+      const xml::Legemiddel legemiddel{get_legemiddel(merkevare_node)};
+      const xml::Preparatomtaleavsnitt preparatomtaleavsnitt{get_preparatomtaleavsnitt(merkevare_node)};
+      const xml::ProduktInfo produktinfo{get_produktinfo(merkevare_node)};
+      const xml::Reseptgyldighet reseptgyldighet{get_reseptgyldighet(merkevare_node)};
+      const xml::SortertVirkestoff sortervirkestoffmedstyrke{get_sorteringvirkestoffmedstyrke(merkevare_node)};
+      const xml::SortertVirkestoff sortertvirkestoffutenstyrke{get_sorteringvirkestoffutenstyrke(merkevare_node)};
+
+    return xml::LegemiddelMerkevare{enkeltoppforing, varenavn, legemiddelformlang, smak, administreringlegemiddel, legemiddel, preparatomtaleavsnitt, produktinfo, reseptgyldighet, sortervirkestoffmedstyrke, sortertvirkestoffutenstyrke};
+    }
 
   } // namespace
 
@@ -379,6 +402,11 @@ namespace festlib {
   xml::SortertVirkestoff test_get_sorteringvirkestoffutenstyrke(const pugi::xml_node& node)
   {
     return get_sorteringvirkestoffutenstyrke(node);
+  }
+  
+  xml::LegemiddelMerkevare test_get_legemiddelmerkevare(const pugi::xml_node& node)
+  {
+    return get_legemiddelmerkevare(node);
   }
 
 #endif

@@ -29,6 +29,7 @@
 #include "produktinfo.h"
 #include "reseptgyldighet.h"
 #include "sortertvirkestoff.h"
+#include "legemiddelmerkevare.h"
 
 namespace festlib {
 
@@ -173,6 +174,10 @@ namespace festlib {
     // Sorts the active ingridient without strength and reference to active ingridient
     xml::SortertVirkestoff get_sorteringvirkestoffutenstyrke(const pugi::xml_node& node);
 
+    // LegemiddelMerkevare is a top entry of the category KatLegemiddelMerkevare.
+    // contains information about name of product, taste, formulation etc.
+    xml::LegemiddelMerkevare get_legemiddelmerkevare(const pugi::xml_node& node);
+
   } // namespace
 
   // library interface
@@ -195,6 +200,7 @@ namespace festlib {
   xml::Reseptgyldighet test_get_reseptgyldighet(const pugi::xml_node& node);
   xml::SortertVirkestoff test_get_sorteringvirkestoffmedstyrke(const pugi::xml_node& node);
   xml::SortertVirkestoff test_get_sorteringvirkestoffutenstyrke(const pugi::xml_node& node);
+  xml::LegemiddelMerkevare test_get_legemiddelmerkevare(const pugi::xml_node& node);
 
   template<typename T>
   Container<T> test_get_container(const pugi::xml_node& node, std::string_view attribute, std::function<T(const pugi::xml_node& n)> func)

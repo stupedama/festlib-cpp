@@ -19,6 +19,7 @@ add_executable(
     sortertvirkestoffmedstyrke.cpp
     sortertvirkestoffutenstyrke.cpp
     lenke.cpp
+    legemiddelmerkevare.cpp
 )
 
 target_link_libraries(festlib_unit_tests PRIVATE Catch2::Catch2WithMain festlib pugixml)
