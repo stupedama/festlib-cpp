@@ -50,5 +50,21 @@ namespace festlib
       return compare_string.compare(lhs.value()) == 0;
     }
 
+    xml::Cv get_cv(const pugi::xml_node& node, std::string_view attribute)
+    {
+      pugi::xml_node child = node;
+
+      if(attribute.length() > 0)
+      {
+        child = node.child(attribute.data());
+      }
+
+      std::string v{child.attribute("V").value()};
+      std::string s{child.attribute("S").value()};
+      std::string dn{child.attribute("DN").value()};
+
+      return xml::Cv{v, s, dn};
+    }
+
   } // namespace
 } // namespace

@@ -86,5 +86,71 @@ namespace festlib
       return check_empty(m_forhandsregelinntak);
     }
 
+    // non-member functions
+
+    xml::AdministreringLegemiddel get_administreringlegemiddel(const pugi::xml_node& node)
+    {
+      using festlib::xml::Cv;
+      using festlib::xml::Cs;
+
+      const pugi::xml_node admin_node{node.child("AdministreringLegemiddel")};
+
+      // TODO: use the pugi:: to return .bool()
+      bool blandingsveske{false};
+      const std::string blandingsveske_string{get_value(admin_node, "Blandingsveske")};
+
+      if(blandingsveske_string.compare("true") == 0)
+        blandingsveske = true;
+
+      const Container<xml::IDREF> refbladingsveske{get_container<xml::IDREF>(admin_node, "RefBlandingsVeske", [](const pugi::xml_node& n)
+      {
+        xml::IDREF ref{get_value(n)};
+        return ref;
+      })};
+
+      const Container<Cv> administrasjonsvei{get_container<Cv>(admin_node, "Administrasjonsvei", [](const pugi::xml_node& n)
+      {
+        Cv vei{get_cv(n)};
+        return vei;
+      })};
+
+      const Cs kanknuses{get_cs(node, "KanKnuses")};
+      const Cs kanapnes{get_cs(node, "KanApnes")};
+      const Cs bolus{get_cs(node, "Bolus")};
+      const Cs injeksjonshastighetbolus{get_cs(node, "InjeksjonshastighetBolus")};
+      const Cs deling{get_cs(node, "Deling")};
+
+      const Container<Cv> enhetdosering{get_container<Cv>(admin_node, "EnhetDosering", [](const pugi::xml_node& n)
+          {
+            Cv enhet{get_cv(n)};
+            return enhet;
+          })};
+
+      const Container<Cv> kortdose{get_container<Cv>(admin_node, "Kortdose", [](const pugi::xml_node& n)
+          {
+            Cv dose{get_cv(n)};
+            return dose;
+          })};
+
+      const Container<Cv> forhandsregelinntak{get_container<Cv>(admin_node, "ForhandsregelInntak", [](const pugi::xml_node& n)
+          {
+            Cv regel{get_cv(n)};
+            return regel;
+          })};
+
+      return xml::AdministreringLegemiddel{
+        blandingsveske,
+        refbladingsveske,
+        administrasjonsvei,
+        kanknuses,
+        kanapnes,
+        bolus,
+        injeksjonshastighetbolus,
+        deling,
+        enhetdosering,
+        kortdose,
+        forhandsregelinntak};
+    }
+
   } // namespace
 } // namespace

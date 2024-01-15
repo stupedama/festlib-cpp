@@ -25,6 +25,19 @@ namespace festlib
       return check_empty(m_gyldigtildato);
     }
 
+    // non-member functions
+
+    xml::PakningByttegruppe get_pakningbyttegruppe(const pugi::xml_node& node)
+    {
+      const pugi::xml_node pakning_node{node.child("PakningByttegruppe")};
+
+      xml::IDREF refbyttegruppe{get_value(pakning_node, "RefByttegruppe")};
+      Date gyldigfradato{get_value(pakning_node, "GyldigFraDato")};
+      Date gyldigtildato{get_value(pakning_node, "GyldigTilDato")};
+
+      return xml::PakningByttegruppe{refbyttegruppe, gyldigfradato, gyldigtildato};
+    }
+
   } // namespace
 } // namespace
 

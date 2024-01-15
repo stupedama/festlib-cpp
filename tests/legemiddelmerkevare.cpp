@@ -1,7 +1,8 @@
 #include <string>
-#include <catch2/catch_all.hpp>
+#include <catch2/catch_test_macros.hpp>
 #include "festlib.h"
 #include "legemiddelmerkevare.h"
+#include "get_category.h"
 
 TEST_CASE("Create Class from xml string", "[LegemiddelMerkevare]")
 {
@@ -14,7 +15,7 @@ TEST_CASE("Create Class from xml string", "[LegemiddelMerkevare]")
 
   pugi::xml_node node = fest.get_node();
   node = node.child("KatLegemiddelMerkevare").child("OppfLegemiddelMerkevare");
-  festlib::xml::LegemiddelMerkevare merkevare = festlib::test_get_legemiddelmerkevare(node);
+  festlib::xml::LegemiddelMerkevare merkevare = festlib::xml::get_legemiddelmerkevare(node);
 
   std::string id = merkevare.enkeltoppforing().id();
   REQUIRE(id.compare("ID_DE995772-8BBC-4164-8A0C-044CFC522794") == 0);
@@ -37,9 +38,9 @@ TEST_CASE("Create container from LegemiddelMerkevare category", "[LegemiddelMerk
 
   pugi::xml_node node = fest.get_node();
 
-  auto container = festlib::test_get_category<festlib::xml::LegemiddelMerkevare>(node, "KatLegemiddelMerkevare", [](const pugi::xml_node& n)
+  auto container = festlib::xml::get_category<festlib::xml::LegemiddelMerkevare>(node, "KatLegemiddelMerkevare", [](const pugi::xml_node& n)
     {
-      festlib::xml::LegemiddelMerkevare val{festlib::test_get_legemiddelmerkevare(n)};
+      festlib::xml::LegemiddelMerkevare val{festlib::xml::get_legemiddelmerkevare(n)};
       return val;
     });
 

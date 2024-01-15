@@ -1,7 +1,7 @@
-#include <catch2/catch_all.hpp>
 #include <catch2/catch_test_macros.hpp>
 #include "festlib.h"
 #include "cv.h"
+#include "get_container.h"
 
 TEST_CASE("Test iteratoring of a node", "[get_container]")
 {
@@ -16,9 +16,9 @@ TEST_CASE("Test iteratoring of a node", "[get_container]")
   pugi::xml_node node = fest.get_node();
   node = node.child("KatLegemiddelMerkevare").child("OppfLegemiddelMerkevare").child("LegemiddelMerkevare").child("AdministreringLegemiddel");
 
-  auto res = festlib::test_get_container<Cv>(node, "Administrasjonsvei", [](const pugi::xml_node& n)
+  auto res = festlib::xml::get_container<Cv>(node, "Administrasjonsvei", [](const pugi::xml_node& n)
     {
-      Cv val{festlib::test_get_cv(n)};
+      Cv val{festlib::xml::get_cv(n)};
       return val;
     });
 
@@ -26,9 +26,9 @@ TEST_CASE("Test iteratoring of a node", "[get_container]")
   REQUIRE(res[1] == "53");
   REQUIRE(res.size() == 2);
 
-  auto new_res = festlib::test_get_container<Cv>(node, "EnhetDosering", [](const pugi::xml_node& n)
+  auto new_res = festlib::xml::get_container<Cv>(node, "EnhetDosering", [](const pugi::xml_node& n)
       {
-        Cv val{festlib::test_get_cv(n)};
+        Cv val{festlib::xml::get_cv(n)};
         return val;
       });
 

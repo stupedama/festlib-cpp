@@ -1,4 +1,3 @@
-#include <catch2/catch_all.hpp>
 #include <catch2/catch_test_macros.hpp>
 #include "festlib.h"
 #include "pakningbyttegruppe.h"
@@ -18,9 +17,8 @@ TEST_CASE("Get the value of a pakningbyttegruppe", "[PakningByttegruppe]")
   pugi::xml_node node = fest.get_node();
   node = node.child("KatLegemiddelpakning").child("OppfLegemiddelpakning").child("Legemiddelpakning");
 
-  auto pakningbyttegruppe = festlib::test_get_pakningbyttegruppe(node);
+  auto pakningbyttegruppe = festlib::xml::get_pakningbyttegruppe(node);
   REQUIRE(pakningbyttegruppe.refbyttegruppe().compare("ID_BF16B775-2109-41A1-8369-2230FDE6B0EE") == 0);
   REQUIRE(pakningbyttegruppe.gyldigfradato().compare("2023-01-01") == 0);
   REQUIRE(pakningbyttegruppe.gyldigtildato().has_value() == false);
-
 }

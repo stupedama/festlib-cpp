@@ -19,5 +19,17 @@ namespace festlib
       return m_varighet;
     }
 
+    // non-member functions
+
+    xml::Reseptgyldighet get_reseptgyldighet(const pugi::xml_node& node)
+    {
+      const pugi::xml_node gyldighet_node{node.child("Reseptgyldighet")};
+
+      const xml::Cs kjonn{get_cs(gyldighet_node, "Kjonn")};
+      const std::string varighet{get_value(gyldighet_node, "Varighet")};
+
+      return xml::Reseptgyldighet{kjonn, varighet};
+    }
+
   } // namespace
 } // namespace

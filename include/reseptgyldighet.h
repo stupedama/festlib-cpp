@@ -4,15 +4,17 @@
 #include <optional>
 #include <string>
 #include <string_view>
+#include <pugixml.hpp>
 #include "check_empty.h"
 #include "cs.h"
+#include "get_value.h"
 
-namespace festlib 
+namespace festlib
 {
   namespace xml
   {
-    
-    // Defines the duration fo the prescription
+
+    // Defines the duration of the prescription
     class Reseptgyldighet
     {
       public:
@@ -28,6 +30,12 @@ namespace festlib
         // <KodeVerk> 3101
         std::string m_varighet{};
     };
+
+    // non-member functions
+
+    // Prescription duration
+    // defines the duration of the prescription
+    xml::Reseptgyldighet get_reseptgyldighet(const pugi::xml_node& node);
 
   } // namespace
 } // namespace

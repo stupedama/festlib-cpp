@@ -4,6 +4,7 @@
 #include <optional>
 #include <string>
 #include <string_view>
+#include <pugixml.hpp>
 #include "check_empty.h"
 #include "cv.h"
 #include "cs.h"
@@ -29,10 +30,10 @@ namespace festlib
 
       public:
         Legemiddel() = default;
-        explicit Legemiddel(const Cv& atc, const Name& navnformstyrke, 
-            const Cs& reseptgruppe, const Cv& legemiddelformkort, 
+        explicit Legemiddel(const Cv& atc, const Name& navnformstyrke,
+            const Cs& reseptgruppe, const Cv& legemiddelformkort,
             const Reference& refvilkar, const Cs& preparattype,
-            const Cs& typesoknadslv, bool opioidsoknad, 
+            const Cs& typesoknadslv, bool opioidsoknad,
             const Cv& svarttrekant, const Refusjon& refusjon,
             const PakningByttegruppe& pakningbyttegruppe);
         ~Legemiddel() = default;
@@ -63,6 +64,19 @@ namespace festlib
         Refusjon m_refusjon{};
         PakningByttegruppe m_pakningbyttegruppe{};
     };
+
+    // non-member functions
+
+    // Legemiddel = Drug. Contains ATC, formulation, name and more
+    // Example:
+    //
+    // Festlib fest{};
+    // bool load = fest.load_file(filename);
+    // auto node = node.get_node(); // gets the root
+    //
+    // node = node.child("KatLegemiddelMerkevare").child("OppfLegemiddelMerkevare").child("LegemiddelMerkevare");
+    // Legemiddel lm = get_legemiddel(node);
+    xml::Legemiddel get_legemiddel(const pugi::xml_node& node);
 
   } // namespace
 } // namespace

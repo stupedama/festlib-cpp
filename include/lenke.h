@@ -2,6 +2,7 @@
 #define LENKE_H_
 
 #include <string>
+#include <pugixml.hpp>
 
 namespace festlib
 {
@@ -9,6 +10,13 @@ namespace festlib
   {
 
     using Lenke = std::string;
+
+    // Lenke = URL
+    // Example:
+    //
+    // node = node.child("KatLegemiddelpakning").child("OppfLegemiddelpakning").child("Legemiddelpakning");
+    // Lenke www = get_lenke(node);
+    xml::Lenke get_lenke(const pugi::xml_node& node);
 
   } // namespace
 } // namespace

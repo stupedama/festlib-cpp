@@ -1,5 +1,4 @@
-#include <catch2/catch_all.hpp>
-#include <string>
+#include <catch2/catch_test_macros.hpp>
 #include "festlib.h"
 #include "reseptgyldighet.h"
 
@@ -14,7 +13,7 @@ TEST_CASE("Create Class from xml string", "[Reseptgyldighet]")
 
   pugi::xml_node node = fest.get_node();
   node = node.child("KatLegemiddelMerkevare").child("OppfLegemiddelMerkevare").child("LegemiddelMerkevare");
-  festlib::xml::Reseptgyldighet gyldighet = festlib::test_get_reseptgyldighet(node);
+  festlib::xml::Reseptgyldighet gyldighet = festlib::xml::get_reseptgyldighet(node);
 
   REQUIRE(gyldighet.varighet().compare("P1Y") == 0);
 }

@@ -3,8 +3,10 @@
 
 #include <optional>
 #include <string>
+#include <pugixml.hpp>
 #include "cv.h"
 #include "check_empty.h"
+#include "get_value.h"
 
 namespace festlib
 {
@@ -38,6 +40,13 @@ namespace festlib
         // like hospital pharmacy that is listed
         std::string m_produsent;
     };
+
+    // non-member functions
+
+    // ProductInfo.
+    // Contains information about marketing authorization and
+    // name of producer.
+    xml::ProduktInfo get_produktinfo(const pugi::xml_node& node);
 
   } // namespace
 } // namespace

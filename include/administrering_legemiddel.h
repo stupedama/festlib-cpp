@@ -3,11 +3,14 @@
 
 #include <optional>
 #include <string>
+#include <pugixml.hpp>
 #include "cv.h"
 #include "cs.h"
 #include "check_empty.h"
 #include "container.h"
 #include "idref.h"
+#include "get_value.h"
+#include "get_container.h"
 
 // TODO: add std::option for the class members who are optional.
 
@@ -15,6 +18,7 @@ namespace festlib
 {
   namespace xml
   {
+
     // Used only by class LegemiddelMerkevare and LegemiddelVirkestoff.
     class AdministreringLegemiddel
     {
@@ -121,6 +125,14 @@ namespace festlib
         // KodeVerk: 7488
         Container<Cv> m_bruksomradeetikett{};
     };
+
+    // non-member functions
+
+    // AdministreringLegemiddel
+    // only used in class LegemiddelMerkevare and LegemiddelVirkestoff
+    // contains information about administration of the drug
+    // for example: precautions for intake, usage/indication on pharmacy label.
+    xml::AdministreringLegemiddel get_administreringlegemiddel(const pugi::xml_node& node);
 
   } // namespace
 } // namespace

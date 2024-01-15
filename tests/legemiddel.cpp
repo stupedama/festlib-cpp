@@ -1,4 +1,4 @@
-#include <catch2/catch_all.hpp>
+#include <catch2/catch_test_macros.hpp>
 #include <string>
 #include "cs.h"
 #include "festlib.h"
@@ -17,7 +17,7 @@ TEST_CASE("Create Class from xml string", "[Legemiddel]")
 
   pugi::xml_node node = fest.get_node();
   node = node.child("KatLegemiddelMerkevare").child("OppfLegemiddelMerkevare").child("LegemiddelMerkevare");
-  festlib::xml::Legemiddel lm = festlib::test_get_legemiddel(node);
+  festlib::xml::Legemiddel lm = festlib::xml::get_legemiddel(node);
 
   festlib::xml::Cv atc = lm.atc();
   REQUIRE(atc == "N02AJ07");
@@ -63,7 +63,7 @@ TEST_CASE("Testing refusjon in legemiddel", "[Legemiddel]")
 
   pugi::xml_node node = fest.get_node();
   node = node.child("KatLegemiddelpakning").child("OppfLegemiddelpakning").child("Legemiddelpakning");
-  festlib::xml::Legemiddel lm = festlib::test_get_legemiddel(node);
+  festlib::xml::Legemiddel lm = festlib::xml::get_legemiddel(node);
 
   REQUIRE(lm.refusjon().has_value() == true);
 

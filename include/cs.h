@@ -3,6 +3,7 @@
 
 #include <string>
 #include <string_view>
+#include <pugixml.hpp>
 
 namespace festlib
 {
@@ -24,8 +25,22 @@ namespace festlib
         std::string m_dn{};
     };
 
+    // non-member functions
+
     bool operator==(const Cs& lhs, const Cs& rhs);
     bool operator==(const Cs& lhs, const char* str);
+
+    // CS (Coded Simple Value)
+    // Example:
+    //
+    // Festlib fest{};
+    // bool load = fest.load_file(filename);
+    // auto node = node.get_node(); // gets the root.
+    //
+    // node = node.child("KatLegemiddelMerkevare").child("OppfLegemiddelMerkevare").child("LegemiddelMerkevare");
+    // Cs preparattype = get_cs(node, "Preparattype");
+    xml::Cs get_cs(const pugi::xml_node& node, std::string_view attribute = "");
+
   } // namespace
 } // namespace
 

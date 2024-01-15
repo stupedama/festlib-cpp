@@ -1,9 +1,7 @@
-#include <catch2/catch_all.hpp>
 #include <catch2/catch_test_macros.hpp>
-#include <string>
 #include "festlib.h"
+#include "administrering_legemiddel.h"
 
-#include <iostream>
 
 TEST_CASE("Create class from xml string", "[AdministreringLegemiddel]")
 {
@@ -19,12 +17,12 @@ TEST_CASE("Create class from xml string", "[AdministreringLegemiddel]")
   pugi::xml_node node = fest.get_node();
   node = node.child("KatLegemiddelMerkevare").child("OppfLegemiddelMerkevare").child("LegemiddelMerkevare");
 
-  auto administrering = festlib::test_get_administreringlegemiddel(node);
+  auto administrering = festlib::xml::get_administreringlegemiddel(node);
 
   auto blandingsveske = administrering.blandingsveske();
   REQUIRE(blandingsveske == false);
 
-  auto refblandingsveske = administrering.refbladingsveske(); 
+  auto refblandingsveske = administrering.refbladingsveske();
   REQUIRE(refblandingsveske.has_value() == false);
 
   auto administrasjonsvei = administrering.administrasjonsvei();
@@ -38,7 +36,7 @@ TEST_CASE("Create class from xml string", "[AdministreringLegemiddel]")
 
   auto bolus = administrering.bolus();
   REQUIRE(bolus.has_value() == false);
-  
+
   auto injeksjonshastighetbolus = administrering.injeksjonshastighetbolus();
   REQUIRE(injeksjonshastighetbolus.has_value() == false);
 

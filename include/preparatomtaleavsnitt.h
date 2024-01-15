@@ -1,6 +1,7 @@
 #ifndef PREPARATOMTALEAVSNITT_H_
 #define PREPARATOMTALEAVSNITT_H_
 
+#include <pugixml.hpp>
 #include "cs.h"
 #include "lenke.h"
 
@@ -22,6 +23,15 @@ namespace festlib
         Cs m_avsnittoverskrift{};
         Lenke m_lenke{};
     };
+
+    // non-member functions
+
+    // Contains SPC and url to SPC.
+    // Example:
+    //
+    // node = node.child("KatLegemiddeMerkevare").child("OppfLegemiddelMerkevare").child("LegemiddelMerkevare");
+    // Preparatomtaleavsnitt avsnitt = get_preparatomtaleavsnitt(node);
+    xml::Preparatomtaleavsnitt get_preparatomtaleavsnitt(const pugi::xml_node& node);
 
   } // namespace
 } // namespace

@@ -10,6 +10,8 @@ add_library(${PROJECT_NAME} SHARED
     refusjon.cpp
     produktinfo.cpp
     cv.cpp
+    lenke.cpp
     produktinfo.cpp
     reseptgyldighet.cpp
+    get_value.cpp
     cs.cpp)

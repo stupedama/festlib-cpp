@@ -4,6 +4,7 @@
 #include <optional>
 #include <string>
 #include <string_view>
+#include <pugixml.hpp>
 #include "administrering_legemiddel.h"
 #include "enkeltoppforing.h"
 #include "legemiddel.h"
@@ -56,6 +57,12 @@ namespace festlib
         SortertVirkestoff m_sortertvirkestoffmedstyrke{};
         SortertVirkestoff m_sortertvirkestoffutenstyrke{};
     };
+
+    // non-member functions
+
+    // LegemiddelMerkevare is a top entry of the category KatLegemiddelMerkevare.
+    // contains information about name of product, taste, formulation etc.
+    xml::LegemiddelMerkevare get_legemiddelmerkevare(const pugi::xml_node& node);
 
   } // namespace
 } // namespace

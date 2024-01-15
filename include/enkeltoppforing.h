@@ -3,6 +3,8 @@
 
 #include <string>
 #include <string_view>
+#include <pugixml.hpp>
+#include "get_value.h"
 
 namespace festlib
 {
@@ -27,8 +29,21 @@ namespace festlib
         bool m_status{};
     };
 
+    // non-member functions
+
     bool operator==(const Enkeltoppforing& lhs, const Enkeltoppforing& rhs);
     bool operator==(const Enkeltoppforing& lhs, const char* str);
+
+    // Enkeltoppforing = Entry.
+    // Example:
+    //
+    // Festlib fest{};
+    // bool load = fest.load_file(filename);
+    // auto node = node.get_node(); // gets the root
+    //
+    // node = node.child("KatLegemiddelMerkevare").child("OppfLegemiddelMerkevare");
+    // auto entry = get_enkeltoppforing(node);
+    xml::Enkeltoppforing get_enkeltoppforing(const pugi::xml_node& node);
 
   } // namespace
 } // namespace

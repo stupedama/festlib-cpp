@@ -35,5 +35,57 @@ namespace festlib
       return false;
     }
 
+    // non-member functions
+
+    xml::SortertVirkestoff get_sorteringvirkestoffmedstyrke(const pugi::xml_node& node)
+    {
+      xml::SortertVirkestoff sortertmedstyrke{};
+
+      // get the sortering and reference
+      const Container<std::pair<int, xml::IDREF>> sortering = get_container<std::pair<int,xml::IDREF>>(node, "SortertVirkestoffMedStyrke",
+          [](const pugi::xml_node& n)
+          {
+            const std::string sort{get_value(n, "Sortering")};
+            int sort_num = std::stoi(sort);
+
+            const xml::IDREF ref{get_value(n, "RefVirkestoffMedStyrke")};
+            return std::pair<int, xml::IDREF>{sort_num, ref};
+          });
+
+      for(const auto& pair : sortering)
+      {
+        // the pair.first should be unique, starting from 0
+        // .push_back() checks if container already contains a 'sorting'
+        sortertmedstyrke.push_back(pair.first, pair.second);
+      }
+
+      return sortertmedstyrke;
+    }
+
+    xml::SortertVirkestoff get_sorteringvirkestoffutenstyrke(const pugi::xml_node& node)
+    {
+      xml::SortertVirkestoff sortertmedstyrke{};
+
+      // get the sortering and reference
+      const Container<std::pair<int, xml::IDREF>> sortering = get_container<std::pair<int,xml::IDREF>>(node, "SortertVirkestoffUtenStyrke",
+          [](const pugi::xml_node& n)
+          {
+            const std::string sort{get_value(n, "Sortering")};
+            int sort_num = std::stoi(sort);
+
+            const xml::IDREF ref{get_value(n, "RefVirkestoff")};
+            return std::pair<int, xml::IDREF>{sort_num, ref};
+          });
+
+      for(const auto& pair : sortering)
+      {
+        // the pair.first should be unique, starting from 0
+        // .push_back() checks if container already contains a 'sorting'
+        sortertmedstyrke.push_back(pair.first, pair.second);
+      }
+
+      return sortertmedstyrke;
+    }
+
   } // namespace
 } // namespace

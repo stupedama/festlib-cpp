@@ -1,4 +1,4 @@
-#include <catch2/catch_all.hpp>
+#include <catch2/catch_test_macros.hpp>
 #include <string>
 #include "festlib.h"
 #include "produktinfo.h"
@@ -14,9 +14,8 @@ TEST_CASE("Create Class from xml string", "[ProduktInfo]")
 
   pugi::xml_node node = fest.get_node();
   node = node.child("KatLegemiddelMerkevare").child("OppfLegemiddelMerkevare").child("LegemiddelMerkevare");
-  festlib::xml::ProduktInfo info = festlib::test_get_produktinfo(node);
+  festlib::xml::ProduktInfo info = festlib::xml::get_produktinfo(node);
 
   REQUIRE(info.vaksinestandard().has_value() == false);
   REQUIRE(info.produsent().value().compare("Orifarm Healthcare") == 0);
-
 }

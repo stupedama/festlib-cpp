@@ -2,10 +2,14 @@
 #define REFUSJON_H_
 
 #include <optional>
+#include <string>
 #include <string_view>
+#include <pugixml.hpp>
 #include "check_empty.h"
 #include "container.h"
 #include "date.h"
+#include "get_value.h"
+#include "get_container.h"
 #include "idref.h"
 
 namespace festlib
@@ -37,6 +41,19 @@ namespace festlib
         // Date for how long it can be handed over
         Date m_utleverestildato{};
     };
+
+    // non-member functions
+
+    // Refusjon = Refund. Contains reference to refundgroup and periode the refund is valid
+    // Example:
+    //
+    // Festlib fest{};
+    // bool load = fest.load_file(filename);
+    // auto node = node.get_node();
+    //
+    // node = node.child("KatLegemiddelpakning").child("OppfLegemiddelpakning").child("Legemiddelpakning");
+    // Refusjon refusjon = get_refusjon(node);
+    xml::Refusjon get_refusjon(const pugi::xml_node& node);
 
   } // namespace
 } // namespace

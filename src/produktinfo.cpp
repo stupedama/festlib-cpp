@@ -35,5 +35,25 @@ namespace festlib
       return check_empty(m_produsent);
     }
 
+    // non-member functions
+
+    xml::ProduktInfo get_produktinfo(const pugi::xml_node& node)
+    {
+      const pugi::xml_node produktinfo_node{node.child("ProduktInfo")};
+
+      // TODO: use the pugi:: to return .bool()
+      bool varseltrekant{false};
+      const std::string varseltrekant_string{get_value(produktinfo_node, "Varseltrekant")};
+
+      if(varseltrekant_string.compare("true") == 0)
+        varseltrekant = true;
+
+      const std::string referanseprodukt{get_value(produktinfo_node, "Referanseprodukt")};
+      const xml::Cv vaksinestandard{get_cv(produktinfo_node, "Vaksinestandard")};
+      const std::string produsent{get_value(produktinfo_node, "Produsent")};
+
+      return xml::ProduktInfo{varseltrekant, referanseprodukt, vaksinestandard, produsent};
+    }
+
   } // namespace
 } // namespace

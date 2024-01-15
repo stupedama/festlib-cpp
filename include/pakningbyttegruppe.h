@@ -2,9 +2,11 @@
 #define PAKNINGBYTTEGRUPPE_H_
 
 #include <optional>
+#include <pugixml.hpp>
 #include "check_empty.h"
 #include "date.h"
 #include "idref.h"
+#include "get_value.h"
 
 namespace festlib
 {
@@ -29,6 +31,12 @@ namespace festlib
         // group is available to date
         Date m_gyldigtildato{};
     };
+
+    // non-member functions
+
+    // PakningByttegruppe identifies what generic group it is.
+    // RefByttegruppe ID is a link to other generics
+    xml::PakningByttegruppe get_pakningbyttegruppe(const pugi::xml_node& node);
 
   } // namespace
 } // namespace

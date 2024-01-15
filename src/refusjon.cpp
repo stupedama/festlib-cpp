@@ -37,5 +37,24 @@ namespace festlib
       return check_empty(m_utleverestildato);
     }
 
+    // non-member functions
+
+    xml::Refusjon get_refusjon(const pugi::xml_node& node)
+    {
+      const pugi::xml_node refusjon_node{node.child("Refusjon")};
+
+      const Container<xml::IDREF> refrefusjonsgruppe{get_container<xml::IDREF>(refusjon_node, "RefRefusjonsgruppe", [](const pugi::xml_node& n)
+      {
+        xml::IDREF ref{get_value(n)};
+        return ref;
+      })};
+
+      const Date gyldigfradato{get_value(refusjon_node, "GyldigFraDato")};
+      const Date forskrivestildato{get_value(refusjon_node, "ForskrivesTilDato")};
+      const Date utleverestildato{get_value(refusjon_node, "UtleveresTilDato")};
+
+      return xml::Refusjon{refrefusjonsgruppe, gyldigfradato, forskrivestildato, utleverestildato};
+    }
+
   } // namespace
 } // namespace
