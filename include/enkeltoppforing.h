@@ -15,7 +15,8 @@ namespace festlib
     class Enkeltoppforing
     {
       public:
-        Enkeltoppforing(std::string_view id, std::string_view date, bool status);
+        Enkeltoppforing() = default;
+        explicit Enkeltoppforing(std::string_view id, std::string_view date, bool status);
         ~Enkeltoppforing() = default;
         std::string id() const;
         std::string date() const;
