@@ -329,6 +329,7 @@ namespace festlib {
 
     return xml::LegemiddelMerkevare{enkeltoppforing, varenavn, legemiddelformlang, smak, administreringlegemiddel, legemiddel, preparatomtaleavsnitt, produktinfo, reseptgyldighet, sortervirkestoffmedstyrke, sortertvirkestoffutenstyrke};
     }
+    
 
   } // namespace
 
@@ -339,7 +340,6 @@ namespace festlib {
     pugi::xml_node node{fest.get_node()};
     return get_value(node, "HentetDato");
   }
-
 
 // give access to inline functions for testing purposes
 #ifdef ENABLE_TESTING
@@ -408,6 +408,11 @@ namespace festlib {
   {
     return get_legemiddelmerkevare(node);
   }
+  
+ // Container<xml::LegemiddelMerkevare> test_get_category(const pugi::xml_node& node, std::string category)
+ // {
+ //   return get_category(node, category);
+ // }
 
 #endif
 

@@ -84,7 +84,6 @@ namespace festlib {
     Value get_value(const pugi::xml_node& node, std::string_view attribute = "");
 
     // Iterates over a attribute that contains one or more values
-    // template<typename T>
     template<typename T>
     Container<T> get_container(const pugi::xml_node& node, std::string_view attribute, std::function<T(const pugi::xml_node& node)> func)
     {
@@ -99,6 +98,31 @@ namespace festlib {
       }
 
       return node_container;
+    }
+
+    // Categories of the fest file, like <KatLegemiddelMerkevare>, <KatLegemiddelpakning>.
+    // <FEST>
+    //  <KatLegemiddelMerkevare>
+    //    <OppfLegemiddelMerkevare></OppfLeggmiedelMerkevare>
+    //  </KateLegemiddelMerkevare>
+    // </FEST>
+    template<typename T>
+    Container<T> get_category(const pugi::xml_node& node, std::string_view category, std::function<T(const pugi::xml_node& node)> func)
+    {
+      pugi::xml_node category_node{node.child(category.data())};
+
+      // categories contains alot of data
+      // reserve space
+      constexpr int container_reserve{100};
+      Container<T> container = Container<T>{};
+      container.reserve(container_reserve);
+
+      for(const auto& data : category_node)
+      {
+        container.push_back(func(data));
+      }
+
+      return container;
     }
 
     // Enkeltoppforing = Entry.
@@ -133,7 +157,6 @@ namespace festlib {
     // node = node.child("KatLegemiddelpakning").child("OppfLegemiddelpakning").child("Legemiddelpakning");
     // Refusjon refusjon = get_refusjon(node);
     xml::Refusjon get_refusjon(const pugi::xml_node& node);
-
 
     // Contains SPC and url to SPC.
     // Example:
@@ -201,6 +224,12 @@ namespace festlib {
   xml::SortertVirkestoff test_get_sorteringvirkestoffmedstyrke(const pugi::xml_node& node);
   xml::SortertVirkestoff test_get_sorteringvirkestoffutenstyrke(const pugi::xml_node& node);
   xml::LegemiddelMerkevare test_get_legemiddelmerkevare(const pugi::xml_node& node);
+
+  template<typename T>
+  Container<T> test_get_category(const pugi::xml_node& node, std::string_view category, std::function<T(const pugi::xml_node& node)> func)
+  {
+    return get_category(node, category, func);
+  }
 
   template<typename T>
   Container<T> test_get_container(const pugi::xml_node& node, std::string_view attribute, std::function<T(const pugi::xml_node& n)> func)
