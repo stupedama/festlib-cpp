@@ -14,7 +14,6 @@ project(
     DESCRIPTION "Library for reading FEST xml file from Legemiddelverket"
     LANGUAGES CXX)
 
-include(CTest)
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
 find_package(pugixml CONFIG REQUIRED)
