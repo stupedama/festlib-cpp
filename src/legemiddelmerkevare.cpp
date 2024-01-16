@@ -15,8 +15,7 @@ namespace festlib
         const Preparatomtaleavsnitt& preparatomtaleavsnitt,
         const ProduktInfo& produktinfo,
         const Reseptgyldighet& reseptgyldighet,
-        const SortertVirkestoff& sortertvirkestoffmedstyrke,
-        const SortertVirkestoff& sortertvirkestoffutenstyrke)
+        const SortertVirkestoff& sortertvirkestoffmedstyrke)
       :
       m_enkeltoppforing{enkeltoppforing},
       m_varenavn{varenavn},
@@ -27,8 +26,7 @@ namespace festlib
       m_preparatomtaleavsnitt{preparatomtaleavsnitt},
       m_produktinfo{produktinfo},
       m_reseptgyldighet{reseptgyldighet},
-      m_sortertvirkestoffmedstyrke{sortertvirkestoffmedstyrke},
-      m_sortertvirkestoffutenstyrke{sortertvirkestoffutenstyrke}
+      m_sortertvirkestoffmedstyrke{sortertvirkestoffmedstyrke}
     {
     }
 
@@ -67,9 +65,8 @@ namespace festlib
       const xml::ProduktInfo produktinfo{get_produktinfo(merkevare_node)};
       const xml::Reseptgyldighet reseptgyldighet{get_reseptgyldighet(merkevare_node)};
       const xml::SortertVirkestoff sortervirkestoffmedstyrke{get_sorteringvirkestoffmedstyrke(merkevare_node)};
-      const xml::SortertVirkestoff sortertvirkestoffutenstyrke{get_sorteringvirkestoffutenstyrke(merkevare_node)};
 
-    return xml::LegemiddelMerkevare{enkeltoppforing, varenavn, legemiddelformlang, smak, administreringlegemiddel, legemiddel, preparatomtaleavsnitt, produktinfo, reseptgyldighet, sortervirkestoffmedstyrke, sortertvirkestoffutenstyrke};
+    return xml::LegemiddelMerkevare{enkeltoppforing, varenavn, legemiddelformlang, smak, administreringlegemiddel, legemiddel, preparatomtaleavsnitt, produktinfo, reseptgyldighet, sortervirkestoffmedstyrke};
     }
 
   } // namespace

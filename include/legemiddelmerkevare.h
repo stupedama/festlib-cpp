@@ -18,6 +18,8 @@ namespace festlib
   namespace xml
   {
 
+    // LegemiddelMerkevare is a entry for drugs without
+    // package size.
     // is the entry class <OppfLegemiddelMerkevare>
     // in the <KatLegemiddelMerkevare>
     // is one of many main categories for the fest file
@@ -35,33 +37,30 @@ namespace festlib
             const Preparatomtaleavsnitt& preparatomtaleavsnitt,
             const ProduktInfo& produktinfo,
             const Reseptgyldighet& reseptgyldighet,
-            const SortertVirkestoff& sortertvirkestoffmedstyrke,
-            const SortertVirkestoff& sortertvirkestoffutenstyrke);
+            const SortertVirkestoff& sortertvirkestoffmedstyrke);
         Enkeltoppforing enkeltoppforing() const;
         std::string varenavn() const;
         std::string legemiddelformlang() const;
       private:
-        Enkeltoppforing m_enkeltoppforing{};
-        // name of product/drug
-        std::string m_varenavn{};
-        // long name of formulation, for example:
-        // Tablett, filmdrasjert
-        std::string m_legemiddelformlang{};
-        // Taste
-        Cs m_smak{};
+        Enkeltoppforing m_enkeltoppforing{}; // id and status
+        std::string m_varenavn{}; // Trade name
+        std::string m_legemiddelformlang{}; // Long name of formulation
+        Cs m_smak{}; // Taste
         AdministreringLegemiddel m_administreringlegemiddel{};
-        Legemiddel m_legemiddel{};
+        Legemiddel m_legemiddel{}; // drug information
         Preparatomtaleavsnitt m_preparatomtaleavsnitt{};
-        ProduktInfo m_produktinfo{};
-        Reseptgyldighet m_reseptgyldighet{};
-        SortertVirkestoff m_sortertvirkestoffmedstyrke{};
-        SortertVirkestoff m_sortertvirkestoffutenstyrke{};
+        ProduktInfo m_produktinfo{}; // productinfo
+        Reseptgyldighet m_reseptgyldighet{}; // prescription duration
+        SortertVirkestoff m_sortertvirkestoffmedstyrke{}; // sorting from 0 of
+                                                          // active ingridient
+                                                          // contains reference
     };
 
     // non-member functions
 
     // LegemiddelMerkevare is a top entry of the category KatLegemiddelMerkevare.
     // contains information about name of product, taste, formulation etc.
+    // does not contain the package size.
     xml::LegemiddelMerkevare get_legemiddelmerkevare(const pugi::xml_node& node);
 
   } // namespace
