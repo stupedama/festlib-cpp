@@ -9,15 +9,17 @@ namespace festlib {
 
   pugi::xml_parse_result Festlib::load_file(std::string_view filename)
   {
-    // TODO: return pugi::result codes
-    m_parse_result = m_doc.load_file(filename.data(), pugi::encoding_utf8);
+    // if xml_document is already loaded, the xml_tree will be
+    // reset and populated again.
+    m_parse_result = m_doc.load_file(filename.data(), pugi::encoding_auto);
     return m_parse_result;
   }
 
   pugi::xml_parse_result Festlib::load_string(std::string_view xml_string)
   {
-    // TODO: return pugi::result codes
-    m_parse_result = m_doc.load_string(xml_string.data(), pugi::encoding_utf8);
+    // if xml_document is already loaded, the xml_tree will be
+    // reset and populated again.
+    m_parse_result = m_doc.load_string(xml_string.data(), pugi::encoding_auto);
     return m_parse_result;
   }
 
