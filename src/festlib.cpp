@@ -7,18 +7,18 @@ namespace festlib {
   {
   }
 
-  bool Festlib::load_file(std::string_view filename)
+  pugi::xml_parse_result Festlib::load_file(std::string_view filename)
   {
     // TODO: return pugi::result codes
     m_parse_result = m_doc.load_file(filename.data(), pugi::encoding_utf8);
-    return (m_parse_result == 0) ? true : false;
+    return m_parse_result;
   }
 
-  bool Festlib::load_string(std::string_view xml_string)
+  pugi::xml_parse_result Festlib::load_string(std::string_view xml_string)
   {
     // TODO: return pugi::result codes
     m_parse_result = m_doc.load_string(xml_string.data(), pugi::encoding_utf8);
-    return (m_parse_result == 0) ? true : false;
+    return m_parse_result;
   }
 
   // return the root of the Fest XML
