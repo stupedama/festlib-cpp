@@ -39,8 +39,21 @@ namespace festlib {
   // from the FEST xml file.
   Date created_date(const Festlib& fest)
   {
-    pugi::xml_node node{fest.get_node()};
+    const pugi::xml_node node{fest.get_node()};
     return xml::get_value(node, "HentetDato");
+  }
+  
+  Container<xml::LegemiddelMerkevare> catalog_legemiddelmerkevare(const Festlib& fest)
+  {
+    const pugi::xml_node node = fest.get_node();
+
+    const auto container = festlib::xml::get_category<festlib::xml::LegemiddelMerkevare>(node, "KatLegemiddelMerkevare", [](const pugi::xml_node& n)
+      {
+        festlib::xml::LegemiddelMerkevare val{festlib::xml::get_legemiddelmerkevare(n)};
+        return val;
+      });
+
+    return container;
   }
 
 } // namespace

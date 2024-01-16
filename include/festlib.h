@@ -12,7 +12,10 @@
 
 #include <string_view>
 #include <pugixml.hpp>
+#include "container.h"
+#include "get_category.h"
 #include "get_value.h"
+#include "legemiddelmerkevare.h"
 #include "date.h"
 
 namespace festlib {
@@ -33,8 +36,11 @@ namespace festlib {
 
   // library interface
 
-  // Return the <FEST><HentetDato>Timestamp</HentetDato></FEST>
+  // return the <FEST><HentetDato>Timestamp</HentetDato></FEST>
   Date created_date(const Festlib& fest);
+
+  // return the catalog <KatLegemiddelMerkevare>
+  Container<xml::LegemiddelMerkevare> catalog_legemiddelmerkevare(const Festlib& fest);
 
 } // namespace
 
