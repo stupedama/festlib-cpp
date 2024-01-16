@@ -21,8 +21,8 @@ namespace festlib
         PakningByttegruppe() = default;
         explicit PakningByttegruppe(const IDREF& refbyttegruppe,
             const Date& gyldigfradato, const Date& gyldigtildato);
-        IDREF refbyttegruppe() const;
-        Date gyldigfradato() const;
+        const auto& refbyttegruppe() const { return m_refbyttegruppe; }
+        const auto& gyldigfradato() const { return m_gyldigfradato; }
         std::optional<Date> gyldigtildato() const;
       private:
         IDREF m_refbyttegruppe{};

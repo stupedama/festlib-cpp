@@ -18,8 +18,8 @@ namespace festlib
         explicit Cs(std::string_view V, std::string_view DN);
         ~Cs() = default;
         Cs operator=(const Cs& other);
-        const std::string& value() const;
-        const std::string& long_value() const;
+        const auto& value() const { return m_v; }
+        const auto& long_value() const { return m_dn; }
       private:
         std::string m_v{};
         std::string m_dn{};
@@ -27,8 +27,8 @@ namespace festlib
 
     // non-member functions
 
-    bool operator==(const Cs& lhs, const Cs& rhs);
-    bool operator==(const Cs& lhs, const char* str);
+    const bool operator==(const Cs& lhs, const Cs& rhs);
+    const bool operator==(const Cs& lhs, const char* str);
 
     // CS (Coded Simple Value)
     // Example:

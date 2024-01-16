@@ -3,6 +3,7 @@
 #include "festlib.h"
 #include "legemiddelmerkevare.h"
 #include "get_category.h"
+#include "enkeltoppforing.h"
 
 TEST_CASE("Create Class from xml string", "[LegemiddelMerkevare]")
 {
@@ -17,7 +18,8 @@ TEST_CASE("Create Class from xml string", "[LegemiddelMerkevare]")
   node = node.child("KatLegemiddelMerkevare").child("OppfLegemiddelMerkevare");
   festlib::xml::LegemiddelMerkevare merkevare = festlib::xml::get_legemiddelmerkevare(node);
 
-  std::string id = merkevare.enkeltoppforing().id();
+  auto enkeltoppforing = merkevare.enkeltoppforing();
+  auto id = enkeltoppforing.id();
   REQUIRE(id.compare("ID_DE995772-8BBC-4164-8A0C-044CFC522794") == 0);
 
   std::string varenavn = merkevare.varenavn();

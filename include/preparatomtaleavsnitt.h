@@ -17,8 +17,8 @@ namespace festlib
         Preparatomtaleavsnitt() = default;
         explicit Preparatomtaleavsnitt(const Cs& avsnittoverskrift,
             const Lenke& lenke);
-        Cs avsnittoverskrift() const;
-        Lenke lenke() const;
+        const auto& avsnittoverskrift() const { return m_avsnittoverskrift; }
+        const auto& lenke() const { return m_lenke; }
       private:
         Cs m_avsnittoverskrift{};
         Lenke m_lenke{};

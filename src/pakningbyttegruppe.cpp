@@ -10,15 +10,6 @@ namespace festlib
       m_gyldigtildato{gyldigtildato}
     {
     }
-    IDREF PakningByttegruppe::refbyttegruppe() const
-    {
-      return m_refbyttegruppe;
-    }
-
-    Date PakningByttegruppe::gyldigfradato() const
-    {
-      return m_gyldigfradato;
-    }
 
     std::optional<Date> PakningByttegruppe::gyldigtildato() const
     {
@@ -31,9 +22,9 @@ namespace festlib
     {
       const pugi::xml_node pakning_node{node.child("PakningByttegruppe")};
 
-      xml::IDREF refbyttegruppe{get_value(pakning_node, "RefByttegruppe")};
-      Date gyldigfradato{get_value(pakning_node, "GyldigFraDato")};
-      Date gyldigtildato{get_value(pakning_node, "GyldigTilDato")};
+      const xml::IDREF refbyttegruppe{get_value(pakning_node, "RefByttegruppe")};
+      const Date gyldigfradato{get_value(pakning_node, "GyldigFraDato")};
+      const Date gyldigtildato{get_value(pakning_node, "GyldigTilDato")};
 
       return xml::PakningByttegruppe{refbyttegruppe, gyldigfradato, gyldigtildato};
     }

@@ -38,9 +38,9 @@ namespace festlib
             const ProduktInfo& produktinfo,
             const Reseptgyldighet& reseptgyldighet,
             const SortertVirkestoff& sortertvirkestoffmedstyrke);
-        Enkeltoppforing enkeltoppforing() const;
-        std::string varenavn() const;
-        std::string legemiddelformlang() const;
+        const auto& enkeltoppforing() const { return m_enkeltoppforing; };
+        const auto& varenavn() const { return m_varenavn; };
+        const auto& legemiddelformlang() const { return m_legemiddelformlang; };
       private:
         Enkeltoppforing m_enkeltoppforing{}; // id and status
         std::string m_varenavn{}; // Trade name

@@ -17,16 +17,6 @@ namespace festlib
     {
     }
 
-    Container<IDREF> Refusjon::refrefusjonsgruppe() const
-    {
-      return m_refrefusjonsgruppe;
-    }
-
-    Date Refusjon::gyldigfradato() const
-    {
-      return m_gyldigfradato;
-    }
-
     std::optional<Date> Refusjon::forskrivestildato() const
     {
       return check_empty(m_forskrivestildato);
@@ -45,8 +35,7 @@ namespace festlib
 
       const Container<xml::IDREF> refrefusjonsgruppe{get_container<xml::IDREF>(refusjon_node, "RefRefusjonsgruppe", [](const pugi::xml_node& n)
       {
-        xml::IDREF ref{get_value(n)};
-        return ref;
+        return get_value(n);
       })};
 
       const Date gyldigfradato{get_value(refusjon_node, "GyldigFraDato")};

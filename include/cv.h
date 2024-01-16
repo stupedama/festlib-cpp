@@ -18,8 +18,8 @@ namespace festlib
         explicit Cv(std::string_view V, std::string_view S, std::string_view DN);
         ~Cv() = default;
         Cv operator=(const Cv& other);
-        const std::string& value() const;
-        const std::string& long_value() const;
+        const auto& value() const { return m_v; }
+        const auto& long_value() const { return m_dn; }
       private:
         std::string m_v{};
         std::string m_s{};
@@ -28,8 +28,8 @@ namespace festlib
 
     // non-member functions
 
-    bool operator==(const Cv& lhs, const Cv& rhs);
-    bool operator==(const Cv& lhs, const char* str);
+    const bool operator==(const Cv& lhs, const Cv& rhs);
+    const bool operator==(const Cv& lhs, const char* str);
 
     // CV (Coded Value) from node
     // Example:

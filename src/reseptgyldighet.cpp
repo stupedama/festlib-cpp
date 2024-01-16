@@ -14,11 +14,6 @@ namespace festlib
       return check_empty(m_kjonn);
     }
 
-    std::string Reseptgyldighet::varighet() const
-    {
-      return m_varighet;
-    }
-
     // non-member functions
 
     xml::Reseptgyldighet get_reseptgyldighet(const pugi::xml_node& node)

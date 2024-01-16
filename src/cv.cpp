@@ -13,16 +13,6 @@ namespace festlib
     {
     }
 
-    const std::string& Cv::value() const
-    {
-      return m_v;
-    }
-
-    const std::string& Cv::long_value() const
-    {
-      return m_dn;
-    }
-
     Cv Cv::operator=(const Cv& other)
     {
       if(this == &other)
@@ -38,30 +28,30 @@ namespace festlib
     // no--member functions
 
     // compare the V values
-    bool operator==(const Cv& lhs, const Cv& rhs)
+    const bool operator==(const Cv& lhs, const Cv& rhs)
     {
       return lhs.value() == rhs.value();
     }
 
     // compare V values
-    bool operator==(const Cv& lhs, const char* str)
+    const bool operator==(const Cv& lhs, const char* str)
     {
-      std::string compare_string{str};
+      const std::string compare_string{str};
       return compare_string.compare(lhs.value()) == 0;
     }
 
     xml::Cv get_cv(const pugi::xml_node& node, std::string_view attribute)
     {
-      pugi::xml_node child = node;
+      pugi::xml_node child{node};
 
       if(attribute.length() > 0)
       {
         child = node.child(attribute.data());
       }
 
-      std::string v{child.attribute("V").value()};
-      std::string s{child.attribute("S").value()};
-      std::string dn{child.attribute("DN").value()};
+      const std::string v{child.attribute("V").value()};
+      const std::string s{child.attribute("S").value()};
+      const std::string dn{child.attribute("DN").value()};
 
       return xml::Cv{v, s, dn};
     }

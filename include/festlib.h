@@ -31,7 +31,6 @@ namespace festlib {
     private:
       pugi::xml_document m_doc{};
       pugi::xml_parse_result m_parse_result{};
-      bool m_result{false};
   };
 
   // library interface

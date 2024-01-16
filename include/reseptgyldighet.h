@@ -21,7 +21,7 @@ namespace festlib
         Reseptgyldighet() = default;
         Reseptgyldighet(const Cs& kjonn, std::string_view varighet);
         std::optional<Cs> kjonn() const;
-        std::string varighet() const;
+        const auto& varighet() const { return m_varighet; }
       private:
         // gender defines the gender for the duration
         // <KodeVerk> 3101

@@ -3,28 +3,22 @@
 namespace festlib {
 
   Festlib::Festlib()
-    : m_doc{}, m_parse_result{}, m_result{false}
+    : m_doc{}, m_parse_result{}
   {
   }
 
   bool Festlib::load_file(std::string_view filename)
   {
+    // TODO: return pugi::result codes
     m_parse_result = m_doc.load_file(filename.data(), pugi::encoding_utf8);
-
-    if(m_parse_result == 0)
-      m_result = true;
-
-    return m_result;
+    return (m_parse_result == 0) ? true : false;
   }
 
   bool Festlib::load_string(std::string_view xml_string)
   {
+    // TODO: return pugi::result codes
     m_parse_result = m_doc.load_string(xml_string.data(), pugi::encoding_utf8);
-
-    if(m_parse_result == 0)
-      m_result = true;
-
-    return m_result;
+    return (m_parse_result == 0) ? true : false;
   }
 
   // return the root of the Fest XML
@@ -42,15 +36,14 @@ namespace festlib {
     const pugi::xml_node node{fest.get_node()};
     return xml::get_value(node, "HentetDato");
   }
-  
+
   Container<xml::LegemiddelMerkevare> catalog_legemiddelmerkevare(const Festlib& fest)
   {
     const pugi::xml_node node = fest.get_node();
 
     const auto container = festlib::xml::get_category<festlib::xml::LegemiddelMerkevare>(node, "KatLegemiddelMerkevare", [](const pugi::xml_node& n)
       {
-        festlib::xml::LegemiddelMerkevare val{festlib::xml::get_legemiddelmerkevare(n)};
-        return val;
+        return festlib::xml::get_legemiddelmerkevare(n);
       });
 
     return container;

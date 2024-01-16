@@ -1,5 +1,4 @@
 #include "sortertvirkestoff.h"
-#include <functional>
 
 namespace festlib
 {
@@ -9,11 +8,6 @@ namespace festlib
         int sortering, const IDREF& refvirkestoff)
     {
       m_sortering.push_back(std::pair{sortering, refvirkestoff});
-    }
-
-    Container<std::pair<int, IDREF>> SortertVirkestoff::sortering() const
-    {
-      return m_sortering;
     }
 
     bool SortertVirkestoff::push_back(int sortering, const IDREF& refvirkestoff)
@@ -46,7 +40,7 @@ namespace festlib
           [](const pugi::xml_node& n)
           {
             const std::string sort{get_value(n, "Sortering")};
-            int sort_num = std::stoi(sort);
+            const int sort_num = std::stoi(sort);
 
             const xml::IDREF ref{get_value(n, "RefVirkestoffMedStyrke")};
             return std::pair<int, xml::IDREF>{sort_num, ref};
@@ -71,7 +65,7 @@ namespace festlib
           [](const pugi::xml_node& n)
           {
             const std::string sort{get_value(n, "Sortering")};
-            int sort_num = std::stoi(sort);
+            const int sort_num = std::stoi(sort);
 
             const xml::IDREF ref{get_value(n, "RefVirkestoff")};
             return std::pair<int, xml::IDREF>{sort_num, ref};

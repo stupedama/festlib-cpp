@@ -39,15 +39,15 @@ namespace festlib
         ~Legemiddel() = default;
 
         // getters
-        Cv atc() const;
-        Name navnformstyrke() const;
-        Cs reseptgruppe() const;
-        Cv legemiddelformkort() const;
-        Reference refvilkar() const;
-        Cs preparattype() const;
-        Cs typesoknadslv() const;
+        const auto& atc() const { return m_atc; }
+        const auto& navnformstyrke() const { return m_navnformstyrke; }
+        const auto& reseptgruppe() const { return m_reseptgruppe; }
+        const auto& legemiddelformkort() const { return m_legemiddelformkort; }
+        const auto& refvilkar() const { return m_refvilkar; }
+        const auto& preparattype() const { return m_preparattype; }
+        const auto& typesoknadslv() const { return m_typesoknadslv; }
         bool opioidsoknad() const;
-        Cv svarttrekant() const;
+        const auto& svarttrekant() const { return m_svarttrekant; }
         std::optional<Refusjon> refusjon() const;
         std::optional<PakningByttegruppe> pakningbyttegruppe() const;
       private:

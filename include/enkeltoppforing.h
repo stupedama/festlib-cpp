@@ -20,8 +20,8 @@ namespace festlib
         Enkeltoppforing() = default;
         explicit Enkeltoppforing(std::string_view id, std::string_view date, bool status);
         ~Enkeltoppforing() = default;
-        std::string id() const;
-        std::string date() const;
+        const auto& id() const { return m_id; }
+        const auto& date() const { return m_date; }
         bool status() const;
       private:
         std::string m_id{};
@@ -31,8 +31,8 @@ namespace festlib
 
     // non-member functions
 
-    bool operator==(const Enkeltoppforing& lhs, const Enkeltoppforing& rhs);
-    bool operator==(const Enkeltoppforing& lhs, const char* str);
+    const bool operator==(const Enkeltoppforing& lhs, const Enkeltoppforing& rhs);
+    const bool operator==(const Enkeltoppforing& lhs, const char* str);
 
     // Enkeltoppforing = Entry.
     // Example:

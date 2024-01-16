@@ -12,8 +12,6 @@
 #include "get_value.h"
 #include "get_container.h"
 
-// TODO: add std::option for the class members who are optional.
-
 namespace festlib
 {
   namespace xml
@@ -39,7 +37,7 @@ namespace festlib
         ~AdministreringLegemiddel() = default;
         bool blandingsveske() const;
         std::optional<Container<IDREF>> refbladingsveske() const;
-        Container<Cv> administrasjonsvei() const;
+        const auto& administrasjonsvei() const { return m_administrasjonsvei; }
         std::optional<Cs> kanknuses() const;
         std::optional<Cs> kanapnes() const;
         std::optional<Cs> bolus() const;

@@ -1,6 +1,7 @@
 #ifndef SORTERTVIRKESTOFF_H_
 #define SORTERTVIRKESTOFF_H_
 
+#include <functional>
 #include <utility>
 #include <pugixml.hpp>
 #include "container.h"
@@ -21,7 +22,7 @@ namespace festlib
         SortertVirkestoff() = default;
         explicit SortertVirkestoff(int sortering,
             const IDREF& refvirkestoff);
-        Container<std::pair<int, IDREF>> sortering() const;
+        const auto& sortering() const { return m_sortering; };
         bool push_back(int sortering, const IDREF& refvirkestoff);
       private:
         // check if m_sortering already contains sortering value

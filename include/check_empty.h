@@ -9,7 +9,7 @@ namespace festlib
 {
 
   template<typename T>
-  std::optional<T> check_empty(const T& value)
+  constexpr std::optional<T> check_empty(const T& value)
   {
     if(value.long_value().empty())
       return {};
@@ -18,7 +18,7 @@ namespace festlib
   }
 
   template<typename T>
-  std::optional<Container<T>> check_empty(const Container<T>& value)
+  constexpr std::optional<Container<T>> check_empty(const Container<T>& value)
   {
     if(value.empty())
       return {};

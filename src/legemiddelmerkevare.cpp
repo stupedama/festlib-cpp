@@ -30,26 +30,11 @@ namespace festlib
     {
     }
 
-    Enkeltoppforing LegemiddelMerkevare::enkeltoppforing() const
-    {
-      return m_enkeltoppforing;
-    }
-
-    std::string LegemiddelMerkevare::varenavn() const
-    {
-      return m_varenavn;
-    }
-
-    std::string LegemiddelMerkevare::legemiddelformlang() const
-    {
-      return m_legemiddelformlang;
-    }
-
     // non-member functions
 
     xml::LegemiddelMerkevare get_legemiddelmerkevare(const pugi::xml_node& node)
     {
-      pugi::xml_node merkevare_node{node.child("LegemiddelMerkevare")};
+      const pugi::xml_node merkevare_node{node.child("LegemiddelMerkevare")};
 
       const xml::Enkeltoppforing enkeltoppforing{get_enkeltoppforing(node)};
 

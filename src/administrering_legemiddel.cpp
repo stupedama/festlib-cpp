@@ -41,11 +41,6 @@ namespace festlib
       return check_empty(m_refblandingsveske);
     }
 
-    Container<Cv> AdministreringLegemiddel::administrasjonsvei() const
-    {
-      return m_administrasjonsvei;
-    }
-
     std::optional<Cs> AdministreringLegemiddel::kanknuses() const
     {
       return check_empty(m_kanknuses);
@@ -90,9 +85,6 @@ namespace festlib
 
     xml::AdministreringLegemiddel get_administreringlegemiddel(const pugi::xml_node& node)
     {
-      using festlib::xml::Cv;
-      using festlib::xml::Cs;
-
       const pugi::xml_node admin_node{node.child("AdministreringLegemiddel")};
 
       // TODO: use the pugi:: to return .bool()
@@ -104,14 +96,12 @@ namespace festlib
 
       const Container<xml::IDREF> refbladingsveske{get_container<xml::IDREF>(admin_node, "RefBlandingsVeske", [](const pugi::xml_node& n)
       {
-        xml::IDREF ref{get_value(n)};
-        return ref;
+        return get_value(n);
       })};
 
       const Container<Cv> administrasjonsvei{get_container<Cv>(admin_node, "Administrasjonsvei", [](const pugi::xml_node& n)
       {
-        Cv vei{get_cv(n)};
-        return vei;
+        return get_cv(n);
       })};
 
       const Cs kanknuses{get_cs(node, "KanKnuses")};
@@ -122,20 +112,17 @@ namespace festlib
 
       const Container<Cv> enhetdosering{get_container<Cv>(admin_node, "EnhetDosering", [](const pugi::xml_node& n)
           {
-            Cv enhet{get_cv(n)};
-            return enhet;
+            return get_cv(n);
           })};
 
       const Container<Cv> kortdose{get_container<Cv>(admin_node, "Kortdose", [](const pugi::xml_node& n)
           {
-            Cv dose{get_cv(n)};
-            return dose;
+            return get_cv(n);
           })};
 
       const Container<Cv> forhandsregelinntak{get_container<Cv>(admin_node, "ForhandsregelInntak", [](const pugi::xml_node& n)
           {
-            Cv regel{get_cv(n)};
-            return regel;
+            return get_cv(n);
           })};
 
       return xml::AdministreringLegemiddel{

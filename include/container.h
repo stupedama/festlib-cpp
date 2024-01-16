@@ -5,7 +5,6 @@
 
 namespace festlib
 {
-
   // default container used
 
   template<typename T>
