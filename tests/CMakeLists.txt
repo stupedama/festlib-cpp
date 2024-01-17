@@ -6,6 +6,8 @@ add_executable(
     ${PROJECT_SOURCE_DIR}/tests/festlib.cpp
     cv.cpp
     cs.cpp
+    pq.cpp
+    pakningskomponent.cpp
     xml.cpp
     enkeltoppforing.cpp
     legemiddel.cpp

@@ -1,5 +1,5 @@
-#include <catch2/catch_all.hpp>
 #include "festlib.h"
+#include <catch2/catch_all.hpp>
 
 TEST_CASE("Load xml file", "[festlib]") {
   using festlib::Festlib;

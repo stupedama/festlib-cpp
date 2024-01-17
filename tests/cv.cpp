@@ -1,8 +1,7 @@
-#include <catch2/catch_test_macros.hpp>
 #include "cv.h"
+#include <catch2/catch_test_macros.hpp>
 
-TEST_CASE("Create Class", "[Cv]")
-{
+TEST_CASE("Create Class", "[Cv]") {
   using festlib::xml::Cv;
 
   Cv atc{"C07AA05", "2.16.578.1.12.4.1.1.7180", "Propranolol"};
@@ -13,8 +12,7 @@ TEST_CASE("Create Class", "[Cv]")
   REQUIRE(l.compare("Propranolol") == 0);
 }
 
-TEST_CASE("Create empty", "[Cv]")
-{
+TEST_CASE("Create empty", "[Cv]") {
   using festlib::xml::Cv;
 
   Cv cv{};
@@ -26,12 +24,12 @@ TEST_CASE("Create empty", "[Cv]")
   REQUIRE(dn.length() == 0);
 }
 
-TEST_CASE("Copy assignment operator", "[Cv]")
-{
+TEST_CASE("Copy assignment operator", "[Cv]") {
   using festlib::xml::Cv;
 
   Cv atc_a{"C07AA05", "2.16.578.1.12.4.1.1.7180", "Propranolol"};
-  Cv atc_b{"N02AJ07", "2.16.578.1.12.4.1.1.7180", "Kodein og acetylsalisylsyre"};
+  Cv atc_b{"N02AJ07", "2.16.578.1.12.4.1.1.7180",
+           "Kodein og acetylsalisylsyre"};
 
   std::string a_v{atc_a.value()};
   std::string a_dn{atc_a.long_value()};
@@ -54,8 +52,7 @@ TEST_CASE("Copy assignment operator", "[Cv]")
   REQUIRE(new_a_dn.compare("Kodein og acetylsalisylsyre") == 0);
 }
 
-TEST_CASE("Operator ==", "[Cv]")
-{
+TEST_CASE("Operator ==", "[Cv]") {
   using festlib::xml::Cv;
 
   Cv atc{"C07AA05", "2.16.578.1.12.4.1.1.7180", "Propranolol"};

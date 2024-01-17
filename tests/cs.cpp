@@ -1,9 +1,8 @@
+#include "cs.h"
 #include <catch2/catch_test_macros.hpp>
 #include <string>
-#include "cs.h"
 
-TEST_CASE("Create Class", "[Cs]")
-{
+TEST_CASE("Create Class", "[Cs]") {
   using festlib::xml::Cs;
 
   Cs reseptgruppe{"B", "Reseptgruppe B"};
@@ -14,8 +13,7 @@ TEST_CASE("Create Class", "[Cs]")
   REQUIRE(l.compare("Reseptgruppe B") == 0);
 }
 
-TEST_CASE("Create empty", "[Cs]")
-{
+TEST_CASE("Create empty", "[Cs]") {
   using festlib::xml::Cs;
 
   Cs cs{};
@@ -27,8 +25,7 @@ TEST_CASE("Create empty", "[Cs]")
   REQUIRE(dn.length() == 0);
 }
 
-TEST_CASE("Copy assignment operator", "[Cs]")
-{
+TEST_CASE("Copy assignment operator", "[Cs]") {
   using festlib::xml::Cs;
 
   Cs gruppe_a{"A", "Reseptgruppe A"};
@@ -55,8 +52,7 @@ TEST_CASE("Copy assignment operator", "[Cs]")
   REQUIRE(new_a_dn.compare("Reseptgruppe B") == 0);
 }
 
-TEST_CASE("Operator ==", "[Cs]")
-{
+TEST_CASE("Operator ==", "[Cs]") {
   using festlib::xml::Cs;
 
   Cs reseptgruppe{"B", "Reseptgruppe B"};
