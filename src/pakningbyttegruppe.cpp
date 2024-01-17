@@ -1,34 +1,28 @@
 #include "pakningbyttegruppe.h"
 
-namespace festlib
-{
-  namespace xml
-  {
-    PakningByttegruppe::PakningByttegruppe(const IDREF& refbyttegruppe,
-            const Date& gyldigfradato, const Date& gyldigtildato)
-      : m_refbyttegruppe{refbyttegruppe}, m_gyldigfradato{gyldigfradato},
-      m_gyldigtildato{gyldigtildato}
-    {
-    }
+namespace festlib {
+namespace xml {
+PakningByttegruppe::PakningByttegruppe(const IDREF &refbyttegruppe,
+                                       const Date &gyldigfradato,
+                                       const Date &gyldigtildato)
+    : m_refbyttegruppe{refbyttegruppe}, m_gyldigfradato{gyldigfradato},
+      m_gyldigtildato{gyldigtildato} {}
 
-    std::optional<Date> PakningByttegruppe::gyldigtildato() const
-    {
-      return check_empty(m_gyldigtildato);
-    }
+std::optional<Date> PakningByttegruppe::gyldigtildato() const {
+  return check_empty(m_gyldigtildato);
+}
 
-    // non-member functions
+// non-member functions
 
-    xml::PakningByttegruppe get_pakningbyttegruppe(const pugi::xml_node& node)
-    {
-      const pugi::xml_node pakning_node{node.child("PakningByttegruppe")};
+xml::PakningByttegruppe get_pakningbyttegruppe(const pugi::xml_node &node) {
+  const pugi::xml_node pakning_node{node.child("PakningByttegruppe")};
 
-      const xml::IDREF refbyttegruppe{get_value(pakning_node, "RefByttegruppe")};
-      const Date gyldigfradato{get_value(pakning_node, "GyldigFraDato")};
-      const Date gyldigtildato{get_value(pakning_node, "GyldigTilDato")};
+  const xml::IDREF refbyttegruppe{get_value(pakning_node, "RefByttegruppe")};
+  const Date gyldigfradato{get_value(pakning_node, "GyldigFraDato")};
+  const Date gyldigtildato{get_value(pakning_node, "GyldigTilDato")};
 
-      return xml::PakningByttegruppe{refbyttegruppe, gyldigfradato, gyldigtildato};
-    }
+  return xml::PakningByttegruppe{refbyttegruppe, gyldigfradato, gyldigtildato};
+}
 
-  } // namespace
-} // namespace
-
+} // namespace xml
+} // namespace festlib

@@ -13,5 +13,7 @@ add_library(${PROJECT_NAME} SHARED
     lenke.cpp
     produktinfo.cpp
     reseptgyldighet.cpp
+    pakningskomponent.cpp
+    pq.cpp
     get_value.cpp
     cs.cpp)

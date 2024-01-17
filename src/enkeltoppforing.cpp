@@ -1,48 +1,40 @@
 #include "enkeltoppforing.h"
 
-namespace festlib
-{
-  namespace xml
-  {
+namespace festlib {
+namespace xml {
 
-    Enkeltoppforing::Enkeltoppforing(std::string_view id, std::string_view date, bool status)
-      : m_id{id}, m_date{date}, m_status{status}
-    {
-    }
+Enkeltoppforing::Enkeltoppforing(std::string_view id, std::string_view date,
+                                 bool status)
+    : m_id{id}, m_date{date}, m_status{status} {}
 
-    bool Enkeltoppforing::status() const
-    {
-      return m_status;
-    }
+bool Enkeltoppforing::status() const { return m_status; }
 
-    // no--member functions
+// no--member functions
 
-    // Enkeltoppforing contains a unique ID.
-    const bool operator==(const Enkeltoppforing& lhs, const Enkeltoppforing& rhs)
-    {
-      return lhs.id() == rhs.id();
-    }
+// Enkeltoppforing contains a unique ID.
+const bool operator==(const Enkeltoppforing &lhs, const Enkeltoppforing &rhs) {
+  return lhs.id() == rhs.id();
+}
 
-    // Enkeltoppforing contains a unique ID.
-    const bool operator==(const Enkeltoppforing& lhs, const char* str)
-    {
-      const std::string compare_string{str};
-      return compare_string.compare(lhs.id()) == 0;
-    }
+// Enkeltoppforing contains a unique ID.
+const bool operator==(const Enkeltoppforing &lhs, const char *str) {
+  const std::string compare_string{str};
+  return compare_string.compare(lhs.id()) == 0;
+}
 
-    xml::Enkeltoppforing get_enkeltoppforing(const pugi::xml_node& node)
-    {
-      const std::string id{get_value(node, "Id")};
-      const std::string date{get_value(node, "Tidspunkt")}; // Tidspunkt = Entry date
-      const std::string status{node.child("Status").first_attribute().value()};
+xml::Enkeltoppforing get_enkeltoppforing(const pugi::xml_node &node) {
+  const std::string id{get_value(node, "Id")};
+  const std::string date{
+      get_value(node, "Tidspunkt")}; // Tidspunkt = Entry date
+  const std::string status{node.child("Status").first_attribute().value()};
 
-      bool oppforing_status{false};
+  bool oppforing_status{false};
 
-      if(status.compare("A") == 0)
-        oppforing_status = true;
+  if (status.compare("A") == 0)
+    oppforing_status = true;
 
-      return xml::Enkeltoppforing{id, date, oppforing_status};
-    }
+  return xml::Enkeltoppforing{id, date, oppforing_status};
+}
 
-  } // namespace
-} // namespace
+} // namespace xml
+} // namespace festlib

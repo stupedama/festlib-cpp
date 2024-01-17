@@ -3,14 +3,12 @@
 
 #include <string>
 
-namespace festlib
-{
-  namespace xml
-  {
+namespace festlib {
+namespace xml {
 
-    using IDREF = std::string;
+using IDREF = std::string;
 
-  } // namespace
-} // namespace
+} // namespace xml
+} // namespace festlib
 
 #endif

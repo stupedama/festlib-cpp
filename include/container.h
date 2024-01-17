@@ -3,13 +3,11 @@
 
 #include <vector>
 
-namespace festlib
-{
-  // default container used
+namespace festlib {
+// default container used
 
-  template<typename T>
-  using Container = std::vector<T>;
+template <typename T> using Container = std::vector<T>;
 
-} // namespace
+} // namespace festlib
 
 #endif
