@@ -23,10 +23,12 @@ jobs:
       run: sudo apt-get install -y libpugixml-dev
     - name: clone catch2
       run: mkdir catch2 ; cd catch2; git clone https://github.com/catchorg/Catch2
-    - name: make cmake file catch2
-      run: cd catch2; mkdir build; cd build; cmake ../
+    - name: configure cmake build catch2
+      run: cmake -B {{github.workspace}}/catch2/build
     - name: build catch2
-      run: cd catch2 ; cd build ; make ; sudo make install
+      run: cmake --build ${{github.workspace}}/catch2/build 
+    - name: install catch2
+      run: sudo cmake --install ${{github.workspace}}/catch2/build
 
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
