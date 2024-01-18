@@ -22,7 +22,7 @@ jobs:
     - name: install libpugixml-dev
       run: sudo apt-get install -y libpugixml-dev
     - name: clone catch2
-      run: mkdir catch2 ; cd catch2; git clone https://github.com/catchorg/Catch2
+      run: mkdir ${{github.workspace}}/catch2 ; cd ${{github.workspace}}/catch2; git clone https://github.com/catchorg/Catch2
     - name: configure cmake build catch2
       run: cmake -B {{github.workspace}}/catch2/build
     - name: build catch2
