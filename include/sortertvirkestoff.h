@@ -12,24 +12,27 @@
 namespace festlib {
 namespace xml {
 
+// TODO: sortering is actually a int
+
 // sorting of active ingredient.
 // sorts the order of the ingredient
 class SortertVirkestoff {
 public:
   SortertVirkestoff() = default;
-  explicit SortertVirkestoff(int sortering, const IDREF &refvirkestoff);
+  explicit SortertVirkestoff(const std::string &sortering,
+                             const IDREF &refvirkestoff);
   const auto &sortering() const { return m_sortering; };
-  bool push_back(int sortering, const IDREF &refvirkestoff);
+  bool push_back(const std::string &sortering, const IDREF &refvirkestoff);
 
 private:
   // check if m_sortering already contains sortering value
-  bool check_container(int sortering) const;
+  // bool check_container(int sortering) const;
 
 private:
   // the pair contains sorting number of active ingredient,
   // starting with 0. Sorting as they are named in <NavnFormStyrke>.
   // the IDREF identifies/reference what active ingredient with strenght
-  Container<std::pair<int, IDREF>> m_sortering{};
+  Container<std::pair<std::string, IDREF>> m_sortering{};
 };
 
 // non-member functions

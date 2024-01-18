@@ -2,8 +2,6 @@
 #include "festlib.h"
 #include <catch2/catch_test_macros.hpp>
 
-#include <iostream>
-
 TEST_CASE("Get the value of a pakningbyttegruppe", "[PakningByttegruppe]") {
   using festlib::Festlib;
   using festlib::xml::PakningByttegruppe;

@@ -15,6 +15,7 @@
 #include "get_category.h"
 #include "get_value.h"
 #include "legemiddelmerkevare.h"
+#include "legemiddelpakning.h"
 #include <pugixml.hpp>
 #include <string_view>
 
@@ -41,6 +42,10 @@ Date created_date(const Festlib &fest);
 // return the catalog <KatLegemiddelMerkevare>
 Container<xml::LegemiddelMerkevare>
 catalog_legemiddelmerkevare(const Festlib &fest);
+
+// return the catalog <KatLegemiddelpakning>
+Container<xml::Legemiddelpakning>
+catalog_legemiddelpakning(const Festlib &fest);
 
 } // namespace festlib
 

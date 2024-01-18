@@ -32,14 +32,26 @@ Date created_date(const Festlib &fest) {
 
 Container<xml::LegemiddelMerkevare>
 catalog_legemiddelmerkevare(const Festlib &fest) {
-  const pugi::xml_node node = fest.get_node();
+  const pugi::xml_node node{fest.get_node()};
 
-  const auto container =
+  const auto container{
       festlib::xml::get_category<festlib::xml::LegemiddelMerkevare>(
           node, "KatLegemiddelMerkevare", [](const pugi::xml_node &n) {
             return festlib::xml::get_legemiddelmerkevare(n);
-          });
+          })};
 
+  return container;
+}
+
+Container<xml::Legemiddelpakning>
+catalog_legemiddelpakning(const Festlib &fest) {
+  const pugi::xml_node node{fest.get_node()};
+
+  const auto container{
+      festlib::xml::get_category<festlib::xml::Legemiddelpakning>(
+          node, "KatLegemiddelpakning", [](const pugi::xml_node &n) {
+            return festlib::xml::get_legemiddelpakning(n);
+          })};
   return container;
 }
 

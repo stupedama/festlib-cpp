@@ -8,6 +8,7 @@
 #include "pq.h"
 #include <pugixml.hpp>
 #include <string>
+#include <string_view>
 
 namespace festlib {
 namespace xml {
@@ -20,8 +21,9 @@ class Pakningskomponent {
 public:
   Pakningskomponent() = default;
   explicit Pakningskomponent(const Cv &pakningstype, const Pq &mengde,
-                             int antall);
+                             std::string_view antall);
   ~Pakningskomponent() = default;
+  const auto &pakningstype() const { return m_pakningstype; }
 
 private:
   // same as attribute in packagetype
@@ -31,15 +33,8 @@ private:
   // <KodeVerk> 7452
   Pq m_mengde{};
   // same as attribute in PakningsInformasjon
-  int m_antall{1};
+  std::string m_antall{}; // TODO: actually a int.
 };
-
-namespace {
-
-// used in get_container().
-xml::Pakningskomponent get_one_pakningskomponent(const pugi::xml_node &node);
-
-} // namespace
 
 // non-member functions
 

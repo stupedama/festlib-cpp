@@ -17,11 +17,15 @@ add_executable(
     preparatomtaleavsnitt.cpp
     pakningbyttegruppe.cpp
     produktinfo.cpp
+    pakningsinfo.cpp
+    prisvare.cpp
+    markedsforingsinfo.cpp
     reseptgyldighet.cpp
     sortertvirkestoffmedstyrke.cpp
     sortertvirkestoffutenstyrke.cpp
     lenke.cpp
     legemiddelmerkevare.cpp
+    legemiddelpakning.cpp
 )
 
 target_link_libraries(festlib_unit_tests PRIVATE Catch2::Catch2WithMain festlib pugixml)

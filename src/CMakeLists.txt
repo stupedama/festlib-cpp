@@ -4,16 +4,20 @@ add_library(${PROJECT_NAME} SHARED
     legemiddel.cpp
     administrering_legemiddel.cpp
     legemiddelmerkevare.cpp
+    legemiddelpakning.cpp
     preparatomtaleavsnitt.cpp
     pakningbyttegruppe.cpp
+    markedsforingsinfo.cpp
     sortertvirkestoff.cpp
     refusjon.cpp
     produktinfo.cpp
     cv.cpp
     lenke.cpp
     produktinfo.cpp
+    prisvare.cpp
     reseptgyldighet.cpp
     pakningskomponent.cpp
+    pakningsinfo.cpp
     pq.cpp
     get_value.cpp
     cs.cpp)
