@@ -1,5 +1,14 @@
-find_package(Catch2 CONFIG REQUIRED)
 find_package(pugixml CONFIG REQUIRED)
+
+Include(FetchContent)
+
+FetchContent_Declare(
+  Catch2
+  GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+  GIT_TAG        v3.4.0 # or a later release
+)
+
+FetchContent_MakeAvailable(Catch2)
 
 add_executable(
     festlib_unit_tests
