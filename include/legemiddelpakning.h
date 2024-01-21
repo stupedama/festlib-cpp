@@ -47,6 +47,7 @@ public:
   std::optional<Container<std::string>> ean() const;
   std::optional<std::string> oppbevaring() const;
   const auto &varenavn() const { return m_legemiddel.navnformstyrke(); }
+  std::optional<PakningByttegruppe> pakningbyttegruppe() const;
 
 private:
   Enkeltoppforing m_enkeltoppforing{};

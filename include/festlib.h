@@ -14,6 +14,7 @@
 #include "date.h"
 #include "get_category.h"
 #include "get_value.h"
+#include "idref.h"
 #include "legemiddelmerkevare.h"
 #include "legemiddelpakning.h"
 #include <pugixml.hpp>
@@ -37,15 +38,41 @@ private:
 // library interface
 
 // return the <FEST><HentetDato>Timestamp</HentetDato></FEST>
+// Example:
+//
+// auto fest = festlib::Festlib{};
+// auto res = fest.load_file("fest251.xml");
+// if(res)
+//   auto date = created_date(fest);
 Date created_date(const Festlib &fest);
 
 // return the catalog <KatLegemiddelMerkevare>
+// Example:
+//
+// auto fest = festlib::Festlib{};
+// auto res = fest.load_file("fest251.xml");
+// if(res)
+//   auto container = catalog_legemiddelmerkevare(fest);
 Container<xml::LegemiddelMerkevare>
 catalog_legemiddelmerkevare(const Festlib &fest);
 
 // return the catalog <KatLegemiddelpakning>
+// Example:
+//
+// auto fest = festlib::Festlib{};
+// auto res = fest.load_file("fest251.xml");
+// if(res)
+//   auto container = catalog_legemiddelpakning(fest);
 Container<xml::Legemiddelpakning>
 catalog_legemiddelpakning(const Festlib &fest);
+
+Container<xml::Legemiddelpakning>
+generic_legemiddelpakning(const Container<xml::Legemiddelpakning> &container,
+                          const xml::Legemiddelpakning &legemiddelpakning);
+
+Container<xml::Legemiddelpakning>
+generic_legemiddelpakning(const Container<xml::Legemiddelpakning> &container,
+                          const xml::IDREF &id);
 
 } // namespace festlib
 

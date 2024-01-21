@@ -1,4 +1,6 @@
 #include "festlib.h"
+#include "legemiddelpakning.h"
+#include <algorithm>
 
 namespace festlib {
 
@@ -20,6 +22,25 @@ pugi::xml_parse_result Festlib::load_string(std::string_view xml_string) {
 
 // return the root of the Fest XML
 pugi::xml_node Festlib::get_node() const { return m_doc.child("FEST"); }
+
+// helper functions
+namespace {
+
+Container<xml::Legemiddelpakning>
+find_generic(const Container<xml::Legemiddelpakning> &container,
+             const xml::IDREF &reference) {
+
+  Container<xml::Legemiddelpakning> result{};
+
+  for (const auto &id : container) {
+    if (id.pakningbyttegruppe() == reference)
+      result.push_back(id);
+  }
+
+  return result;
+}
+
+} // namespace
 
 // no--member functions
 
@@ -53,6 +74,19 @@ catalog_legemiddelpakning(const Festlib &fest) {
             return festlib::xml::get_legemiddelpakning(n);
           })};
   return container;
+}
+
+Container<xml::Legemiddelpakning>
+generic_legemiddelpakning(const Container<xml::Legemiddelpakning> &container,
+                          const xml::IDREF &reference) {
+  return find_generic(container, reference);
+}
+
+Container<xml::Legemiddelpakning>
+generic_legemiddelpakning(const Container<xml::Legemiddelpakning> &container,
+                          const xml::Legemiddelpakning &legemiddelpakning) {
+  return find_generic(container,
+                      legemiddelpakning.pakningbyttegruppe()->refbyttegruppe());
 }
 
 } // namespace festlib

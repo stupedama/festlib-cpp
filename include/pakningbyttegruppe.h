@@ -33,6 +33,15 @@ private:
 
 // non-member functions
 
+const bool operator==(const PakningByttegruppe &lhs,
+                      const PakningByttegruppe &rhs);
+const bool operator==(const PakningByttegruppe &lhs,
+                      std::string_view reference);
+const bool operator!=(const PakningByttegruppe &lhs,
+                      const PakningByttegruppe &rhs);
+const bool operator!=(const PakningByttegruppe &lhs,
+                      std::string_view reference);
+
 // PakningByttegruppe identifies what generic group it is.
 // RefByttegruppe ID is a link to other generics
 xml::PakningByttegruppe get_pakningbyttegruppe(const pugi::xml_node &node);

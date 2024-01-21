@@ -13,6 +13,35 @@ std::optional<Date> PakningByttegruppe::gyldigtildato() const {
 }
 
 // non-member functions
+//
+
+namespace {
+
+constexpr bool compare(std::string_view lhs, std::string_view rhs) {
+  return (lhs.compare(rhs) == 0) ? true : false;
+}
+
+} // namespace
+
+const bool operator==(const PakningByttegruppe &lhs,
+                      const PakningByttegruppe &rhs) {
+  return compare(lhs.refbyttegruppe(), rhs.refbyttegruppe());
+}
+
+const bool operator==(const PakningByttegruppe &lhs,
+                      std::string_view reference) {
+  return compare(lhs.refbyttegruppe(), reference);
+}
+
+const bool operator!=(const PakningByttegruppe &lhs,
+                      const PakningByttegruppe &rhs) {
+  return compare(lhs.refbyttegruppe(), rhs.refbyttegruppe()) ? false : true;
+}
+
+const bool operator!=(const PakningByttegruppe &lhs,
+                      std::string_view reference) {
+  return compare(lhs.refbyttegruppe(), reference) ? false : true;
+}
 
 xml::PakningByttegruppe get_pakningbyttegruppe(const pugi::xml_node &node) {
   const pugi::xml_node pakning_node{node.child("PakningByttegruppe")};

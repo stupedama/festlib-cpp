@@ -30,6 +30,10 @@ std::optional<std::string> Legemiddelpakning::oppbevaring() const {
 
   return m_oppbevaring.v;
 }
+std::optional<PakningByttegruppe>
+Legemiddelpakning::pakningbyttegruppe() const {
+  return m_legemiddel.pakningbyttegruppe();
+}
 
 // non-member functions
 xml::Legemiddelpakning get_legemiddelpakning(const pugi::xml_node &node) {
