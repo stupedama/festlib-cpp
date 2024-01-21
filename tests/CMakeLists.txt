@@ -1,5 +1,6 @@
 find_package(pugixml CONFIG REQUIRED)
 
+if(ENABLE_TESTING)
 Include(FetchContent)
 
 FetchContent_Declare(
@@ -9,6 +10,7 @@ FetchContent_Declare(
 )
 
 FetchContent_MakeAvailable(Catch2)
+endif()
 
 add_executable(
     festlib_unit_tests
@@ -46,3 +48,4 @@ add_test(NAME festlib-unit-tests COMMAND $<TARGET_FILE:festlib_unit_tests>)
 include(CTest)
 include(Catch)
 catch_discover_tests(festlib_unit_tests)
+
