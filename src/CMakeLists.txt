@@ -10,6 +10,7 @@ add_library(${PROJECT_NAME} SHARED
     markedsforingsinfo.cpp
     sortertvirkestoff.cpp
     refusjon.cpp
+    get_container.cpp
     produktinfo.cpp
     cv.cpp
     lenke.cpp

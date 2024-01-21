@@ -33,6 +33,23 @@ Container<T> get_category(const pugi::xml_node &node, std::string_view category,
   return container;
 }
 
+// use Set insted of Container
+template <typename T>
+Set<std::string, T>
+get_category_set(const pugi::xml_node &node, std::string_view category,
+                 std::function<T(const pugi::xml_node &node)> func) {
+  pugi::xml_node category_node{node.child(category.data())};
+
+  Set<std::string, T> container = Set<std::string, T>{};
+
+  for (const auto &data : category_node) {
+    const auto result = func(data);
+    container.try_emplace(result.key(), result);
+  }
+
+  return container;
+}
+
 } // namespace xml
 } // namespace festlib
 

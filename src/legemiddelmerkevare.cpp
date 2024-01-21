@@ -4,14 +4,14 @@ namespace festlib {
 namespace xml {
 
 LegemiddelMerkevare::LegemiddelMerkevare(
-    const Enkeltoppforing &enkeltoppforing, std::string_view varenavn,
-    std::string_view legemiddelformlang, const Cs &smak,
-    const AdministreringLegemiddel &administreringlegemiddel,
+    const Enkeltoppforing &enkeltoppforing, const IDREF &id,
+    std::string_view varenavn, std::string_view legemiddelformlang,
+    const Cs &smak, const AdministreringLegemiddel &administreringlegemiddel,
     const Legemiddel &legemiddel,
     const Preparatomtaleavsnitt &preparatomtaleavsnitt,
     const ProduktInfo &produktinfo, const Reseptgyldighet &reseptgyldighet,
     const SortertVirkestoff &sortertvirkestoffmedstyrke)
-    : m_enkeltoppforing{enkeltoppforing}, m_varenavn{varenavn},
+    : m_enkeltoppforing{enkeltoppforing}, m_id{id}, m_varenavn{varenavn},
       m_legemiddelformlang{legemiddelformlang}, m_smak{smak},
       m_administreringlegemiddel{administreringlegemiddel},
       m_legemiddel{legemiddel}, m_preparatomtaleavsnitt{preparatomtaleavsnitt},
@@ -26,6 +26,7 @@ xml::LegemiddelMerkevare get_legemiddelmerkevare(const pugi::xml_node &node) {
   const xml::Enkeltoppforing enkeltoppforing{get_enkeltoppforing(node)};
 
   // get the parts what is unique to LegemiddelMerkevare
+  const std::string id{get_value(merkevare_node, "Id")};
   const std::string varenavn{get_value(merkevare_node, "Varenavn")};
   const std::string legemiddelformlang{
       get_value(merkevare_node, "LegemiddelformLang")};
@@ -43,12 +44,17 @@ xml::LegemiddelMerkevare get_legemiddelmerkevare(const pugi::xml_node &node) {
   const xml::SortertVirkestoff sortervirkestoffmedstyrke{
       get_sorteringvirkestoffmedstyrke(merkevare_node)};
 
-  return xml::LegemiddelMerkevare{
-      enkeltoppforing,          varenavn,
-      legemiddelformlang,       smak,
-      administreringlegemiddel, legemiddel,
-      preparatomtaleavsnitt,    produktinfo,
-      reseptgyldighet,          sortervirkestoffmedstyrke};
+  return xml::LegemiddelMerkevare{enkeltoppforing,
+                                  id,
+                                  varenavn,
+                                  legemiddelformlang,
+                                  smak,
+                                  administreringlegemiddel,
+                                  legemiddel,
+                                  preparatomtaleavsnitt,
+                                  produktinfo,
+                                  reseptgyldighet,
+                                  sortervirkestoffmedstyrke};
 }
 
 } // namespace xml

@@ -59,6 +59,24 @@ TEST_CASE("Get catalog", "[Legemiddelpakning]") {
   REQUIRE(catalog.size() == 1);
 }
 
+TEST_CASE("Get catalog as a set", "[Legemiddelpakning]") {
+  using festlib::Festlib;
+
+  Festlib fest{};
+  fest.load_string(xml_string);
+
+  pugi::xml_node node = fest.get_node();
+  node = node.child("KatLegemiddelpakning")
+             .child("OppfLegemiddelpakning")
+             .child("Legemiddelpakning");
+
+  auto catalog = festlib::set_catalog_legemiddelpakning(fest);
+  REQUIRE(catalog.size() == 1);
+
+  auto item = catalog["526181"];
+  REQUIRE(item.varenr() == "526181");
+}
+
 TEST_CASE("Get one entry", "[Legemiddelpakning]") {
   using festlib::Festlib;
 

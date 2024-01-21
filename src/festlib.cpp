@@ -64,14 +64,37 @@ catalog_legemiddelmerkevare(const Festlib &fest) {
   return container;
 }
 
+Set<std::string, xml::LegemiddelMerkevare>
+set_catalog_legemiddelmerkevare(const Festlib &fest) {
+  const pugi::xml_node node{fest.get_node()};
+
+  const Set<std::string, xml::LegemiddelMerkevare> container{
+      xml::get_category_set<xml::LegemiddelMerkevare>(
+          node, "KatLegemiddelMerkevare", [](const pugi::xml_node &n) {
+            return xml::get_legemiddelmerkevare(n);
+          })};
+  return container;
+}
+
 Container<xml::Legemiddelpakning>
 catalog_legemiddelpakning(const Festlib &fest) {
   const pugi::xml_node node{fest.get_node()};
 
-  const auto container{
-      festlib::xml::get_category<festlib::xml::Legemiddelpakning>(
+  const auto container{xml::get_category<xml::Legemiddelpakning>(
+      node, "KatLegemiddelpakning", [](const pugi::xml_node &n) {
+        return festlib::xml::get_legemiddelpakning(n);
+      })};
+  return container;
+}
+
+Set<std::string, xml::Legemiddelpakning>
+set_catalog_legemiddelpakning(const Festlib &fest) {
+  const pugi::xml_node node{fest.get_node()};
+
+  const Set<std::string, xml::Legemiddelpakning> container{
+      xml::get_category_set<xml::Legemiddelpakning>(
           node, "KatLegemiddelpakning", [](const pugi::xml_node &n) {
-            return festlib::xml::get_legemiddelpakning(n);
+            return xml::get_legemiddelpakning(n);
           })};
   return container;
 }

@@ -56,6 +56,19 @@ Date created_date(const Festlib &fest);
 Container<xml::LegemiddelMerkevare>
 catalog_legemiddelmerkevare(const Festlib &fest);
 
+// return the catalog <KatLegemiddelMerkevare> as a Set.
+// (unoredered map). Stores id/refLegemiddelMerkevare as key as a
+// std::string.
+//
+// Example:
+// auto fest = festlib::Festlib{};
+// auto res = fest.load_file("fest251.xml");
+// if(res)
+//   auto container = set_catalog_legemiddelmerkevare(fest);
+//   auto item = container["ID_000A27B8-3930-4264-80F9-CDB14C895662"];
+Set<std::string, xml::LegemiddelMerkevare>
+set_catalog_legemiddelmerkevare(const Festlib &fest);
+
 // return the catalog <KatLegemiddelpakning>
 // Example:
 //
@@ -65,6 +78,19 @@ catalog_legemiddelmerkevare(const Festlib &fest);
 //   auto container = catalog_legemiddelpakning(fest);
 Container<xml::Legemiddelpakning>
 catalog_legemiddelpakning(const Festlib &fest);
+
+// return the catalog <KatLegemiddelpakning> as a Set.
+// (unoredered map). Stores varenr/itemnum as key as a
+// std::string.
+//
+// Example:
+// auto fest = festlib::Festlib{};
+// auto res = fest.load_file("fest251.xml");
+// if(res)
+//   auto container = set_catalog_legemiddelpakning(fest);
+//   auto item = container["116772"];
+Set<std::string, xml::Legemiddelpakning>
+set_catalog_legemiddelpakning(const Festlib &fest);
 
 Container<xml::Legemiddelpakning>
 generic_legemiddelpakning(const Container<xml::Legemiddelpakning> &container,

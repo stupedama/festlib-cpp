@@ -25,9 +25,9 @@ class LegemiddelMerkevare {
 public:
   LegemiddelMerkevare() = default;
   explicit LegemiddelMerkevare(
-      const Enkeltoppforing &enkeltoppforing, std::string_view varenavn,
-      std::string_view legemiddelformlang, const Cs &smak,
-      const AdministreringLegemiddel &administreringlegemiddel,
+      const Enkeltoppforing &enkeltoppforing, const IDREF &id,
+      std::string_view varenavn, std::string_view legemiddelformlang,
+      const Cs &smak, const AdministreringLegemiddel &administreringlegemiddel,
       const Legemiddel &legemiddel,
       const Preparatomtaleavsnitt &preparatomtaleavsnitt,
       const ProduktInfo &produktinfo, const Reseptgyldighet &reseptgyldighet,
@@ -35,9 +35,12 @@ public:
   const auto &enkeltoppforing() const { return m_enkeltoppforing; };
   const auto &varenavn() const { return m_varenavn; };
   const auto &legemiddelformlang() const { return m_legemiddelformlang; };
+  const auto &id() const { return m_id; }
+  const auto &key() const { return id(); }
 
 private:
   Enkeltoppforing m_enkeltoppforing{}; // id and status
+  IDREF m_id{};                        // reference to this/stable id
   std::string m_varenavn{};            // Trade name
   std::string m_legemiddelformlang{};  // Long name of formulation
   Cs m_smak{};                         // Taste

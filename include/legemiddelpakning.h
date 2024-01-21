@@ -48,6 +48,8 @@ public:
   std::optional<std::string> oppbevaring() const;
   const auto &varenavn() const { return m_legemiddel.navnformstyrke(); }
   std::optional<PakningByttegruppe> pakningbyttegruppe() const;
+  // used in std::set
+  const auto &key() const { return varenr(); }
 
 private:
   Enkeltoppforing m_enkeltoppforing{};

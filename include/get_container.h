@@ -9,6 +9,10 @@
 namespace festlib {
 namespace xml {
 
+// compare node.name and attribute
+bool compare_value(std::string_view attribute,
+                   const pugi::xml_node &child_node);
+
 // Iterates over a attribute that contains one or more values
 template <typename T>
 Container<T> get_container(const pugi::xml_node &node,
@@ -17,13 +21,31 @@ Container<T> get_container(const pugi::xml_node &node,
   Container<T> node_container = Container<T>{};
 
   for (const auto &child_node : node) {
-    if (attribute.compare(child_node.name()) == 0) {
+    if (compare_value(attribute, child_node))
       node_container.push_back(func(child_node));
-    }
   }
 
   return node_container;
 }
+
+// Iterate over a attribute that contains one or more values
+// the type must contain the method .key().
+// template <typename T>
+// Set<std::string, T> get_set(const pugi::xml_node &node,
+//                            std::string_view attribute,
+//                            std::function<T(const pugi::xml_node &node)> func)
+//                            {
+//  Set<std::string, T> node_set = Set<std::string, T>{};
+//
+//  for (const auto &child_node : node) {
+//    if (compare_value(attribute, child_node)) {
+//      const T value = func(child_node);
+//      node_set.insert(value.key(), value);
+//    }
+//  }
+//
+//  return node_set;
+//}
 
 } // namespace xml
 } // namespace festlib
