@@ -38,7 +38,8 @@ int main()
   if(res)
   {
     const auto container{catalog_legemiddelpakning(fest)};
-    const auto generics{generic_legemiddelpakning(catalog_legemiddelpakning, "ID_E73943DE-753C-4A44-9959-2203FDAD4E53")};
+    const auto generics{generic_legemiddelpakning(catalog_legemiddelpakning, 
+    "ID_E73943DE-753C-4A44-9959-2203FDAD4E53")};
 
      for (const auto& res : generic) 
      {
