@@ -44,7 +44,7 @@ const char xml_string[] =
     "Markedsforingsdato></Markedsforingsinfo></Legemiddelpakning></"
     "OppfLegemiddelpakning></FEST>";
 
-TEST_CASE("Get catalog", "[Legemiddelpakning]") {
+TEST_CASE("Get catalog from node", "[Legemiddelpakning]") {
   using festlib::Festlib;
 
   Festlib fest{};
@@ -59,7 +59,7 @@ TEST_CASE("Get catalog", "[Legemiddelpakning]") {
   REQUIRE(catalog.size() == 1);
 }
 
-TEST_CASE("Get catalog as a set", "[Legemiddelpakning]") {
+TEST_CASE("Get catalog as a set from node", "[Legemiddelpakning]") {
   using festlib::Festlib;
 
   Festlib fest{};
@@ -77,7 +77,7 @@ TEST_CASE("Get catalog as a set", "[Legemiddelpakning]") {
   REQUIRE(item.varenr() == "526181");
 }
 
-TEST_CASE("Get one entry", "[Legemiddelpakning]") {
+TEST_CASE("Get one entry from node", "[Legemiddelpakning]") {
   using festlib::Festlib;
 
   Festlib fest{};

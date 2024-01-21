@@ -47,7 +47,8 @@ const char xml_string[] =
     "Varighet></Reseptgyldighet></LegemiddelMerkevare></"
     "OppfLegemiddelMerkevare></KatLegemiddelMerkevare></FEST>";
 
-TEST_CASE("Create Class from xml string", "[LegemiddelMerkevare]") {
+TEST_CASE("Create class LegemiddelMerkevare from node",
+          "[LegemiddelMerkevare]") {
   using festlib::Festlib;
 
   Festlib fest{};

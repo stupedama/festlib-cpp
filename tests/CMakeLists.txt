@@ -19,7 +19,6 @@ add_executable(
     cs.cpp
     pq.cpp
     pakningskomponent.cpp
-    xml.cpp
     enkeltoppforing.cpp
     legemiddel.cpp
     refusjon.cpp
