@@ -21,3 +21,7 @@ add_library(${PROJECT_NAME} SHARED
     pq.cpp
     get_value.cpp
     cs.cpp)
+
+set_target_properties(festlib PROPERTIES
+                              VERSION ${PROJECT_VERSION}
+                            SOVERSION ${PROJECT_VERSION_MAJOR})

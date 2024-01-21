@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16...3.26)
+cmake_minimum_required(VERSION 3.16)
 
 # Use C++17
 set(CMAKE_CXX_STANDARD 17)
@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wpedantic -pedantic-errors -fexceptions")
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O2 -Wall -Wpedantic -pedantic-errors -fexceptions")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O2 -Wall -Wpedantic -Werror -Wshadow -pedantic-errors -fexceptions")
 
 project(
     festlib
@@ -26,3 +26,11 @@ if(ENABLE_TESTING)
   add_subdirectory(tests)
   target_compile_definitions(festlib PUBLIC ENABLE_TESTING)
 endif()
+
+## Install library
+install(TARGETS ${PROJECT_NAME} DESTINATION lib)
+
+## Install library headers
+file(GLOB HEADERS include/*.h)
+install(FILES ${HEADERS} DESTINATION include/${PROJECT_NAME})
+
