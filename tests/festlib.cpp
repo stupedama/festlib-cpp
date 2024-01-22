@@ -65,7 +65,7 @@ TEST_CASE("Get created date from node", "[Festlib]") {
 
   Festlib fest{};
 
-  bool res = fest.load_string(xml_string);
+  fest.load_string(xml_string);
   auto date = created_date(fest);
 
   REQUIRE(date.compare("2023-09-08T03:11:43") == 0);
