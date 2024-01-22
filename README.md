@@ -1,4 +1,5 @@
-[![Default build](https://github.com/stupedama/festlib/actions/workflows/cmake-single-platform.yml/badge.svg)](https://github.com/stupedama/festlib/actions/workflows/cmake-single-platform.yml)
+Festlib [![Default build](https://github.com/stupedama/festlib/actions/workflows/cmake-single-platform.yml/badge.svg)](https://github.com/stupedama/festlib/actions/workflows/cmake-single-platform.yml)
+=======
 
 ## What is Festlib?
 
