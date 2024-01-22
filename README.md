@@ -1,4 +1,4 @@
-Festlib [![Default build](https://github.com/stupedama/festlib/actions/workflows/cmake-single-platform.yml/badge.svg)](https://github.com/stupedama/festlib/actions/workflows/cmake-single-platform.yml)
+Festlib [![Github Releases](https://img.shields.io/github/release/stupedama/festlib.svg)](https://github.com/stupedama/festlib/releases/)[![Default build](https://github.com/stupedama/festlib/actions/workflows/cmake-single-platform.yml/badge.svg)](https://github.com/stupedama/festlib/actions/workflows/cmake-single-platform.yml)
 =======
 
 Festlib is a C++17 library for reading the Forskrivnings- og ekspedisjonsstøtte (FEST) xml file 
