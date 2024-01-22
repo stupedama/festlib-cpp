@@ -13,14 +13,16 @@ namespace xml {
 // Marketting information
 class Markedsforingsinfo {
 public:
-  Markedsforingsinfo() = default;
+  constexpr Markedsforingsinfo() = default;
   explicit Markedsforingsinfo(std::string_view varenrutgaende,
                               const Date &markedsforingsdato,
                               const Date &avregdato, const Date &midlutgattdato,
                               std::string_view ompakkeravendose);
   ~Markedsforingsinfo() = default;
-  const auto &varenrutgaende() const { return m_varenrutgaende; }
-  const auto &markedsforingsdato() const { return m_markedsforingsdato; }
+  constexpr const auto &varenrutgaende() const { return m_varenrutgaende; }
+  constexpr const auto &markedsforingsdato() const {
+    return m_markedsforingsdato;
+  }
 
 private:
   // used when when theres a change

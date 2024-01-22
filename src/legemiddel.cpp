@@ -16,8 +16,6 @@ Legemiddel::Legemiddel(const Cv &atc, const Name &navnformstyrke,
       m_svarttrekant{svarttrekant}, m_refusjon{refusjon},
       m_pakningbyttegruppe{pakningbyttegruppe} {}
 
-bool Legemiddel::opioidsoknad() const { return m_opioidsoknad; }
-
 std::optional<Refusjon> Legemiddel::refusjon() const {
   if (m_refusjon.refrefusjonsgruppe().empty())
     return {};

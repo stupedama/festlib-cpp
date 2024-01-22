@@ -23,7 +23,7 @@ namespace xml {
 // is one of many main categories for the fest file
 class LegemiddelMerkevare {
 public:
-  LegemiddelMerkevare() = default;
+  constexpr LegemiddelMerkevare() = default;
   explicit LegemiddelMerkevare(
       const Enkeltoppforing &enkeltoppforing, const IDREF &id,
       std::string_view varenavn, std::string_view legemiddelformlang,
@@ -32,11 +32,13 @@ public:
       const Preparatomtaleavsnitt &preparatomtaleavsnitt,
       const ProduktInfo &produktinfo, const Reseptgyldighet &reseptgyldighet,
       const SortertVirkestoff &sortertvirkestoffmedstyrke);
-  const auto &enkeltoppforing() const { return m_enkeltoppforing; };
-  const auto &varenavn() const { return m_varenavn; };
-  const auto &legemiddelformlang() const { return m_legemiddelformlang; };
-  const auto &id() const { return m_id; }
-  const auto &key() const { return id(); }
+  constexpr const auto &enkeltoppforing() const { return m_enkeltoppforing; };
+  constexpr const auto &varenavn() const { return m_varenavn; };
+  constexpr const auto &legemiddelformlang() const {
+    return m_legemiddelformlang;
+  };
+  constexpr const auto &id() const { return m_id; }
+  constexpr const auto &key() const { return id(); }
 
 private:
   Enkeltoppforing m_enkeltoppforing{}; // id and status

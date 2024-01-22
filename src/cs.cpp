@@ -21,13 +21,13 @@ Cs Cs::operator=(const Cs &other) {
 // no--member functions
 
 // compare the V attributes
-const bool operator==(const Cs &lhs, const Cs &rhs) {
+bool operator==(const Cs &lhs, const Cs &rhs) {
   return lhs.value() == rhs.value();
 }
 
 // compare the V attributes
-const bool operator==(const Cs &lhs, const char *str) {
-  const std::string compare_string{str};
+bool operator==(const Cs &lhs, const char *str) {
+  const std::string_view compare_string{str};
   return compare_string.compare(lhs.value()) == 0;
 }
 

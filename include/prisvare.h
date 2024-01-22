@@ -14,11 +14,11 @@ namespace xml {
 
 class PrisVare {
 public:
-  PrisVare() = default;
+  constexpr PrisVare() = default;
   explicit PrisVare(const Cv &type, const Pq &pris, const Date &gyldigfradato,
                     const Date &gyldigtildato);
   ~PrisVare() = default;
-  const auto &pris() const { return m_pris.v; }
+  constexpr const auto &pris() const { return m_pris.v; }
 
 private:
   // two different types of prices, one for

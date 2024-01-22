@@ -19,11 +19,11 @@ namespace xml {
 // example: liquid and powder
 class Pakningskomponent {
 public:
-  Pakningskomponent() = default;
+  constexpr Pakningskomponent() = default;
   explicit Pakningskomponent(const Cv &pakningstype, const Pq &mengde,
                              std::string_view antall);
   ~Pakningskomponent() = default;
-  const auto &pakningstype() const { return m_pakningstype; }
+  constexpr const auto &pakningstype() const { return m_pakningstype; }
 
 private:
   // same as attribute in packagetype

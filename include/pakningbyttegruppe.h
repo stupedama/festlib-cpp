@@ -15,12 +15,12 @@ namespace xml {
 // IDREF m_refbyttegruppe identifies which generics group it is part of.
 class PakningByttegruppe {
 public:
-  PakningByttegruppe() = default;
+  constexpr PakningByttegruppe() = default;
   explicit PakningByttegruppe(const IDREF &refbyttegruppe,
                               const Date &gyldigfradato,
                               const Date &gyldigtildato);
-  const auto &refbyttegruppe() const { return m_refbyttegruppe; }
-  const auto &gyldigfradato() const { return m_gyldigfradato; }
+  constexpr const auto &refbyttegruppe() const { return m_refbyttegruppe; }
+  constexpr const auto &gyldigfradato() const { return m_gyldigfradato; }
   std::optional<Date> gyldigtildato() const;
 
 private:

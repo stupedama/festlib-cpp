@@ -18,10 +18,10 @@ namespace xml {
 // sorts the order of the ingredient
 class SortertVirkestoff {
 public:
-  SortertVirkestoff() = default;
+  constexpr SortertVirkestoff() = default;
   explicit SortertVirkestoff(const std::string &sortering,
                              const IDREF &refvirkestoff);
-  const auto &sortering() const { return m_sortering; };
+  constexpr const auto &sortering() const { return m_sortering; };
   bool push_back(const std::string &sortering, const IDREF &refvirkestoff);
 
 private:

@@ -11,11 +11,13 @@ namespace xml {
 // contains data about SPC and link to SPC
 class Preparatomtaleavsnitt {
 public:
-  Preparatomtaleavsnitt() = default;
+  constexpr Preparatomtaleavsnitt() = default;
   explicit Preparatomtaleavsnitt(const Cs &avsnittoverskrift,
                                  const Lenke &lenke);
-  const auto &avsnittoverskrift() const { return m_avsnittoverskrift; }
-  const auto &lenke() const { return m_lenke; }
+  constexpr const auto &avsnittoverskrift() const {
+    return m_avsnittoverskrift;
+  }
+  constexpr const auto &lenke() const { return m_lenke; }
 
 private:
   Cs m_avsnittoverskrift{};

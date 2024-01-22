@@ -17,15 +17,17 @@ namespace xml {
 
 class Refusjon {
 public:
-  Refusjon() = default;
+  constexpr Refusjon() = default;
   explicit Refusjon(const Container<IDREF> &refrefusjonsgruppe,
                     std::string_view gyldigfradato,
                     std::string_view forskrivestildato,
                     std::string_view utleverestildato);
   ~Refusjon() = default;
 
-  const auto &refrefusjonsgruppe() const { return m_refrefusjonsgruppe; }
-  const auto &gyldigfradato() const { return m_gyldigfradato; }
+  constexpr const auto &refrefusjonsgruppe() const {
+    return m_refrefusjonsgruppe;
+  }
+  constexpr const auto &gyldigfradato() const { return m_gyldigfradato; }
   std::optional<Date> forskrivestildato() const;
   std::optional<Date> utleverestildato() const;
 

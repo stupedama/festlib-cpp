@@ -16,7 +16,7 @@ namespace xml {
 // Packageinformation
 class Pakningsinfo {
 public:
-  Pakningsinfo() = default;
+  constexpr Pakningsinfo() = default;
   explicit Pakningsinfo(const IDREF &reflegemiddelmerkevare,
                         std::string_view pakningsstr, const Cv &enhetpakning,
                         const Cv &pakningstype, std::string_view multippel,
@@ -25,7 +25,7 @@ public:
                         std::string_view statistikkfaktor,
                         const Container<Pakningskomponent> &pakningskomponent);
   ~Pakningsinfo() = default;
-  const auto &reflegemiddelmerkevare() const {
+  constexpr const auto &reflegemiddelmerkevare() const {
     return m_reflegemiddelmerkevare;
   }
   // int pakningsstr() const {

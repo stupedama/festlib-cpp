@@ -15,10 +15,6 @@ AdministreringLegemiddel::AdministreringLegemiddel(
       m_enhetdosering{enhetdosering}, m_kortdose{kortdose},
       m_forhandsregelinntak{forhandsregelinntak} {}
 
-bool AdministreringLegemiddel::blandingsveske() const {
-  return m_blandingsveske;
-}
-
 std::optional<Container<IDREF>>
 AdministreringLegemiddel::refbladingsveske() const {
   return check_empty(m_refblandingsveske);

@@ -18,7 +18,7 @@ namespace xml {
 template <typename T>
 Container<T> get_category(const pugi::xml_node &node, std::string_view category,
                           std::function<T(const pugi::xml_node &node)> func) {
-  pugi::xml_node category_node{node.child(category.data())};
+  const pugi::xml_node category_node{node.child(category.data())};
 
   // categories contains alot of data
   // reserve space
@@ -38,7 +38,7 @@ template <typename T>
 Set<std::string, T>
 get_category_set(const pugi::xml_node &node, std::string_view category,
                  std::function<T(const pugi::xml_node &node)> func) {
-  pugi::xml_node category_node{node.child(category.data())};
+  const pugi::xml_node category_node{node.child(category.data())};
 
   Set<std::string, T> container = Set<std::string, T>{};
 

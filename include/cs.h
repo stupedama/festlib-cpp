@@ -11,12 +11,12 @@ namespace xml {
 // V and DN is manidatory values in the Fest xml file
 class Cs {
 public:
-  Cs() = default;
+  constexpr Cs() = default;
   explicit Cs(std::string_view V, std::string_view DN);
   ~Cs() = default;
   Cs operator=(const Cs &other);
-  const auto &value() const { return m_v; }
-  const auto &long_value() const { return m_dn; }
+  constexpr const auto &value() const { return m_v; }
+  constexpr const auto &long_value() const { return m_dn; }
 
 private:
   std::string m_v{};
@@ -25,8 +25,8 @@ private:
 
 // non-member functions
 
-const bool operator==(const Cs &lhs, const Cs &rhs);
-const bool operator==(const Cs &lhs, const char *str);
+bool operator==(const Cs &lhs, const Cs &rhs);
+bool operator==(const Cs &lhs, const char *str);
 
 // CS (Coded Simple Value)
 // Example:

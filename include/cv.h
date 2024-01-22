@@ -11,12 +11,12 @@ namespace xml {
 // V, S and DN is manidatory values in the Xml fest file
 class Cv {
 public:
-  Cv() = default;
+  constexpr Cv() = default;
   explicit Cv(std::string_view V, std::string_view S, std::string_view DN);
   ~Cv() = default;
   Cv operator=(const Cv &other);
-  const auto &value() const { return m_v; }
-  const auto &long_value() const { return m_dn; }
+  constexpr const auto &value() const { return m_v; }
+  constexpr const auto &long_value() const { return m_dn; }
 
 private:
   std::string m_v{};
@@ -26,8 +26,8 @@ private:
 
 // non-member functions
 
-const bool operator==(const Cv &lhs, const Cv &rhs);
-const bool operator==(const Cv &lhs, const char *str);
+bool operator==(const Cv &lhs, const Cv &rhs);
+bool operator==(const Cv &lhs, const char *str);
 
 // CV (Coded Value) from node
 // Example:

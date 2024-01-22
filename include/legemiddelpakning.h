@@ -32,7 +32,7 @@ namespace xml {
 // auto legemiddelpakning = catalog_legemiddelpakning(fest);
 class Legemiddelpakning {
 public:
-  Legemiddelpakning() = default;
+  constexpr Legemiddelpakning() = default;
   explicit Legemiddelpakning(
       const Enkeltoppforing &enkeltoppforing, const IDREF &id,
       std::string_view varenr, const Container<std::string> &ean,
@@ -42,14 +42,16 @@ public:
       const AdministreringLegemiddel &administreringlegemiddel,
       const Container<Preparatomtaleavsnitt> &preparatomtaleavsnitt);
   ~Legemiddelpakning() = default;
-  const auto &varenr() const { return m_varenr; }
-  const auto &id() const { return m_id; }
+  constexpr const auto &varenr() const { return m_varenr; }
+  constexpr const auto &id() const { return m_id; }
   std::optional<Container<std::string>> ean() const;
   std::optional<std::string> oppbevaring() const;
-  const auto &varenavn() const { return m_legemiddel.navnformstyrke(); }
+  constexpr const auto &varenavn() const {
+    return m_legemiddel.navnformstyrke();
+  }
   std::optional<PakningByttegruppe> pakningbyttegruppe() const;
   // used in std::set
-  const auto &key() const { return varenr(); }
+  constexpr const auto &key() const { return varenr(); }
 
 private:
   Enkeltoppforing m_enkeltoppforing{};

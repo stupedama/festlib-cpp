@@ -18,7 +18,7 @@ namespace xml {
 // Used only by class LegemiddelMerkevare and LegemiddelVirkestoff.
 class AdministreringLegemiddel {
 public:
-  AdministreringLegemiddel() = default;
+  constexpr AdministreringLegemiddel() = default;
   explicit AdministreringLegemiddel(
       bool blandingsveske, const Container<IDREF> &refbladingsveske,
       const Container<Cv> &administrasjonsvei, const Cs &kanknuses,
@@ -26,9 +26,11 @@ public:
       const Cs &deling, const Container<Cv> &enhetdosering,
       const Container<Cv> &kortdose, const Container<Cv> &forhandsregelinntak);
   ~AdministreringLegemiddel() = default;
-  bool blandingsveske() const;
+  constexpr bool blandingsveske() const { return m_blandingsveske; };
   std::optional<Container<IDREF>> refbladingsveske() const;
-  const auto &administrasjonsvei() const { return m_administrasjonsvei; }
+  constexpr const auto &administrasjonsvei() const {
+    return m_administrasjonsvei;
+  }
   std::optional<Cs> kanknuses() const;
   std::optional<Cs> kanapnes() const;
   std::optional<Cs> bolus() const;

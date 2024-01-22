@@ -2,6 +2,7 @@
 
 namespace festlib {
 namespace xml {
+
 Reseptgyldighet::Reseptgyldighet(const Cs &kjonn, std::string_view varighet)
     : m_kjonn{kjonn}, m_varighet{varighet} {}
 

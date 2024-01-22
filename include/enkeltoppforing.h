@@ -14,13 +14,13 @@ namespace xml {
 // Shows information if the entry is active, entry date and unique ID.
 class Enkeltoppforing {
 public:
-  Enkeltoppforing() = default;
+  constexpr Enkeltoppforing() = default;
   explicit Enkeltoppforing(std::string_view id, std::string_view date,
                            bool status);
   ~Enkeltoppforing() = default;
-  const auto &id() const { return m_id; }
-  const auto &date() const { return m_date; }
-  bool status() const;
+  constexpr const auto &id() const { return m_id; }
+  constexpr const auto &date() const { return m_date; }
+  constexpr bool status() const { return m_status; };
 
 private:
   std::string m_id{};
@@ -30,8 +30,8 @@ private:
 
 // non-member functions
 
-const bool operator==(const Enkeltoppforing &lhs, const Enkeltoppforing &rhs);
-const bool operator==(const Enkeltoppforing &lhs, const char *str);
+bool operator==(const Enkeltoppforing &lhs, const Enkeltoppforing &rhs);
+bool operator==(const Enkeltoppforing &lhs, const char *str);
 
 // Enkeltoppforing = Entry.
 // Example:

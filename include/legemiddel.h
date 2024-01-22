@@ -26,7 +26,7 @@ using Reference = std::string;
 class Legemiddel {
 
 public:
-  Legemiddel() = default;
+  constexpr Legemiddel() = default;
   explicit Legemiddel(const Cv &atc, const Name &navnformstyrke,
                       const Cs &reseptgruppe, const Cv &legemiddelformkort,
                       const Reference &refvilkar, const Cs &preparattype,
@@ -36,15 +36,17 @@ public:
   ~Legemiddel() = default;
 
   // getters
-  const auto &atc() const { return m_atc; }
-  const auto &navnformstyrke() const { return m_navnformstyrke; }
-  const auto &reseptgruppe() const { return m_reseptgruppe; }
-  const auto &legemiddelformkort() const { return m_legemiddelformkort; }
-  const auto &refvilkar() const { return m_refvilkar; }
-  const auto &preparattype() const { return m_preparattype; }
-  const auto &typesoknadslv() const { return m_typesoknadslv; }
-  bool opioidsoknad() const;
-  const auto &svarttrekant() const { return m_svarttrekant; }
+  constexpr const auto &atc() const { return m_atc; }
+  constexpr const auto &navnformstyrke() const { return m_navnformstyrke; }
+  constexpr const auto &reseptgruppe() const { return m_reseptgruppe; }
+  constexpr const auto &legemiddelformkort() const {
+    return m_legemiddelformkort;
+  }
+  constexpr const auto &refvilkar() const { return m_refvilkar; }
+  constexpr const auto &preparattype() const { return m_preparattype; }
+  constexpr const auto &typesoknadslv() const { return m_typesoknadslv; }
+  constexpr bool opioidsoknad() const { return m_opioidsoknad; }
+  constexpr const auto &svarttrekant() const { return m_svarttrekant; }
   std::optional<Refusjon> refusjon() const;
   std::optional<PakningByttegruppe> pakningbyttegruppe() const;
 

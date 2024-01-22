@@ -23,12 +23,12 @@ Cv Cv::operator=(const Cv &other) {
 // no--member functions
 
 // compare the V values
-const bool operator==(const Cv &lhs, const Cv &rhs) {
+bool operator==(const Cv &lhs, const Cv &rhs) {
   return lhs.value() == rhs.value();
 }
 
 // compare V values
-const bool operator==(const Cv &lhs, const char *str) {
+bool operator==(const Cv &lhs, const char *str) {
   const std::string compare_string{str};
   return compare_string.compare(lhs.value()) == 0;
 }
