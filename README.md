@@ -1,8 +1,6 @@
 Festlib [![Default build](https://github.com/stupedama/festlib/actions/workflows/cmake-single-platform.yml/badge.svg)](https://github.com/stupedama/festlib/actions/workflows/cmake-single-platform.yml)
 =======
 
-## What is Festlib?
-
 Festlib is a C++17 library for reading the Forskrivnings- og ekspedisjonsstøtte (FEST) xml file 
 from The Norwegian Medical Products Agency (NOMA) (old Legemiddelverket/Norwegian Medicines Agency).
 
