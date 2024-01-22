@@ -70,6 +70,8 @@ Set<std::string, xml::LegemiddelMerkevare>
 set_catalog_legemiddelmerkevare(const Festlib &fest);
 
 // return the catalog <KatLegemiddelpakning>
+// used in for example to find generic drugs,
+// for use in function generic_legemiddelpakning().
 // Example:
 //
 // auto fest = festlib::Festlib{};
@@ -92,10 +94,12 @@ catalog_legemiddelpakning(const Festlib &fest);
 Set<std::string, xml::Legemiddelpakning>
 set_catalog_legemiddelpakning(const Festlib &fest);
 
+// Uses catalog_legemiddelpakning() to find a generic drug
 Container<xml::Legemiddelpakning>
 generic_legemiddelpakning(const Container<xml::Legemiddelpakning> &container,
                           const xml::Legemiddelpakning &legemiddelpakning);
 
+// Uses catalog_legemiddelpakning() to find a generic drug
 Container<xml::Legemiddelpakning>
 generic_legemiddelpakning(const Container<xml::Legemiddelpakning> &container,
                           const xml::IDREF &id);
