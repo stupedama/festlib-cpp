@@ -1,7 +1,15 @@
-#include "cv.h"
+//              Copyright Festlib Authors
+// Distributed under the GNU GENERAL PUBLIC LICENSE, Version 3.
+//   (See accompanying file LICENSE.txt or copy at
+//        https://www.gnu.org/licenses/gpl-3.0.txt)
+
+//  SPDX-FileCopyrightText: 2024 Fredrik Fjeldvær <fredrik@ffj.no>
+//  SPDX-License-Identifier: GPL-3.0-or-later
 
 // Coded Value
 // V, S and DN is manidatory values in the Xml fest file
+
+#include "cv.h"
 
 namespace festlib {
 namespace xml {

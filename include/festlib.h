@@ -1,5 +1,10 @@
-#ifndef FESTLIB_H_
-#define FESTLIB_H_
+//              Copyright Festlib Authors
+// Distributed under the GNU GENERAL PUBLIC LICENSE, Version 3.
+//   (See accompanying file LICENSE.txt or copy at
+//        https://www.gnu.org/licenses/gpl-3.0.txt)
+
+//  SPDX-FileCopyrightText: 2024 Fredrik Fjeldvær <fredrik@ffj.no>
+//  SPDX-License-Identifier: GPL-3.0-or-later
 
 // Main class that handles the reading of the XML file or string.
 // after loading the source, it contains a pugi::xml_node and the
@@ -9,6 +14,9 @@
 // Festlib fest{};
 // bool load = fest.load_file(filename);
 // auto date = fest.created_date(fest);
+
+#ifndef FESTLIB_H_
+#define FESTLIB_H_
 
 #include "container.h"
 #include "date.h"
