@@ -33,18 +33,17 @@ make && sudo cmake --install .
 int main()
 {
   festlib::Festlib fest{};
-  auto res = fest.load_file("fest251.xml");
+  const auto res{fest.load_file("fest251.xml")};
 
-  if(res)
-  {
-    const auto container{catalog_legemiddelpakning(fest)};
-    const auto generics{generic_legemiddelpakning(catalog_legemiddelpakning, 
-    "ID_E73943DE-753C-4A44-9959-2203FDAD4E53")};
+  if(res) {
+    const auto container{festlib::catalog_legemiddelpakning(fest)};
+    const auto generic{festlib::generic_legemiddelpakning(container,
+      "ID_E73943DE-753C-4A44-9959-2203FDAD4E53")};
 
-     for (const auto& res : generic) 
-     {
-       std::cout << res.varenr() << " " << res.varenavn() << '\n';
-     }                                            
+    for (const auto& result : generic)
+    {
+      std::cout << result.varenr() << " " << result.varenavn() << '\n';
+    }
   }
 
   return 0;
