@@ -36,19 +36,19 @@ int main()
 
 ## Build and install
 
-1. clone the repo
+1. Clone the repo
 ```sh
 git clone git@github.com:stupedama/festlib.git
 ```
-2. create build dir
+2. Create build dir
 ```sh
 cd festlib && mkdir build && cd build
 ```
-3. build the project
+3. Build the project
 ```sh
 cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
 ```
-4. install
+4. Install
 ```sh
 make && sudo cmake --install .
 ```
