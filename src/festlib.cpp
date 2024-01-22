@@ -7,8 +7,6 @@
 //  SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "festlib.h"
-#include "legemiddelpakning.h"
-#include <algorithm>
 
 namespace festlib {
 
@@ -72,12 +70,12 @@ catalog_legemiddelmerkevare(const Festlib &fest) {
   return container;
 }
 
-Set<std::string, xml::LegemiddelMerkevare>
-set_catalog_legemiddelmerkevare(const Festlib &fest) {
+Map<std::string, xml::LegemiddelMerkevare>
+map_catalog_legemiddelmerkevare(const Festlib &fest) {
   const pugi::xml_node node{fest.get_node()};
 
-  const Set<std::string, xml::LegemiddelMerkevare> container{
-      xml::get_category_set<xml::LegemiddelMerkevare>(
+  const Map<std::string, xml::LegemiddelMerkevare> container{
+      xml::get_category_map<xml::LegemiddelMerkevare>(
           node, "KatLegemiddelMerkevare", [](const pugi::xml_node &n) {
             return xml::get_legemiddelmerkevare(n);
           })};
@@ -95,12 +93,12 @@ catalog_legemiddelpakning(const Festlib &fest) {
   return container;
 }
 
-Set<std::string, xml::Legemiddelpakning>
-set_catalog_legemiddelpakning(const Festlib &fest) {
+Map<std::string, xml::Legemiddelpakning>
+map_catalog_legemiddelpakning(const Festlib &fest) {
   const pugi::xml_node node{fest.get_node()};
 
-  const Set<std::string, xml::Legemiddelpakning> container{
-      xml::get_category_set<xml::Legemiddelpakning>(
+  const Map<std::string, xml::Legemiddelpakning> container{
+      xml::get_category_map<xml::Legemiddelpakning>(
           node, "KatLegemiddelpakning", [](const pugi::xml_node &n) {
             return xml::get_legemiddelpakning(n);
           })};

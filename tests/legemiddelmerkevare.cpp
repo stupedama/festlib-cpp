@@ -77,7 +77,7 @@ TEST_CASE("Create Set from LegemiddelMerkevare category",
   Festlib fest{};
   fest.load_string(xml_string);
 
-  auto container = festlib::set_catalog_legemiddelmerkevare(fest);
+  auto container = festlib::map_catalog_legemiddelmerkevare(fest);
   REQUIRE(container.size() == 1);
 }
 

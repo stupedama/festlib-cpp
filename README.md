@@ -41,7 +41,7 @@ int main() {
   const auto res{fest.load_file("fest251.xml")};
 
   const auto container{festlib::catalog_legemiddelpakning(fest)};
-  auto product_container{festlib::set_catalog_legemiddelpakning(fest)};
+  auto product_container{festlib::map_catalog_legemiddelpakning(fest)};
 
   // find generic for itemnum 116772 Triatec Tab 10 mg 98 tablets
   const auto generic{festlib::generic_legemiddelpakning(

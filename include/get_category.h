@@ -43,12 +43,12 @@ Container<T> get_category(const pugi::xml_node &node, std::string_view category,
 
 // use Set insted of Container
 template <typename T>
-Set<std::string, T>
-get_category_set(const pugi::xml_node &node, std::string_view category,
+Map<std::string, T>
+get_category_map(const pugi::xml_node &node, std::string_view category,
                  std::function<T(const pugi::xml_node &node)> func) {
   const pugi::xml_node category_node{node.child(category.data())};
 
-  Set<std::string, T> container = Set<std::string, T>{};
+  Map<std::string, T> container = Map<std::string, T>{};
 
   for (const auto &data : category_node) {
     const auto result = func(data);

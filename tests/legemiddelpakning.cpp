@@ -70,7 +70,7 @@ TEST_CASE("Get catalog as a set from node", "[Legemiddelpakning]") {
              .child("OppfLegemiddelpakning")
              .child("Legemiddelpakning");
 
-  auto catalog = festlib::set_catalog_legemiddelpakning(fest);
+  auto catalog = festlib::map_catalog_legemiddelpakning(fest);
   REQUIRE(catalog.size() == 1);
 
   auto item = catalog["526181"];
