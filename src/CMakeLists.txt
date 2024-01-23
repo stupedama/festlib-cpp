@@ -12,6 +12,7 @@ add_library(${PROJECT_NAME} SHARED
     refusjon.cpp
     get_container.cpp
     produktinfo.cpp
+    get_bool.cpp
     cv.cpp
     lenke.cpp
     produktinfo.cpp

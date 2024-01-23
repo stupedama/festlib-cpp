@@ -67,13 +67,7 @@ xml::AdministreringLegemiddel
 get_administreringlegemiddel(const pugi::xml_node &node) {
   const pugi::xml_node admin_node{node.child("AdministreringLegemiddel")};
 
-  // TODO: use the pugi:: to return .bool()
-  bool blandingsveske{false};
-  const std::string blandingsveske_string{
-      get_value(admin_node, "Blandingsveske")};
-
-  if (blandingsveske_string.compare("true") == 0)
-    blandingsveske = true;
+  const bool blandingsveske{get_bool(admin_node, "Blandingsveske")};
 
   const Container<xml::IDREF> refbladingsveske{get_container<xml::IDREF>(
       admin_node, "RefBlandingsVeske",

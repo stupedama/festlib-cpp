@@ -13,6 +13,7 @@
 #include "container.h"
 #include "cs.h"
 #include "cv.h"
+#include "get_bool.h"
 #include "get_container.h"
 #include "get_value.h"
 #include "idref.h"

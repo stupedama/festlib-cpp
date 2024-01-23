@@ -12,6 +12,7 @@
 #include "check_empty.h"
 #include "cs.h"
 #include "cv.h"
+#include "get_bool.h"
 #include "pakningbyttegruppe.h"
 #include "refusjon.h"
 #include <optional>

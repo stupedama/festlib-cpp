@@ -17,6 +17,18 @@ Enkeltoppforing::Enkeltoppforing(std::string_view id, std::string_view date,
 
 // no--member functions
 
+namespace {
+
+// A == Active
+bool get_status(const pugi::xml_node &node) {
+  std::string_view compare_string{
+      node.child("Status").first_attribute().value()};
+
+  return compare_string.compare("A") == 0 ? true : false;
+}
+
+} // namespace
+
 // Enkeltoppforing contains a unique ID.
 bool operator==(const Enkeltoppforing &lhs, const Enkeltoppforing &rhs) {
   return lhs.id() == rhs.id();
@@ -34,10 +46,7 @@ xml::Enkeltoppforing get_enkeltoppforing(const pugi::xml_node &node) {
       get_value(node, "Tidspunkt")}; // Tidspunkt = Entry date
   const std::string status{node.child("Status").first_attribute().value()};
 
-  bool oppforing_status{false};
-
-  if (status.compare("A") == 0)
-    oppforing_status = true;
+  const bool oppforing_status{get_status(node)};
 
   return xml::Enkeltoppforing{id, date, oppforing_status};
 }

@@ -40,12 +40,7 @@ xml::ProduktInfo get_produktinfo(const pugi::xml_node &node) {
   const pugi::xml_node produktinfo_node{node.child("ProduktInfo")};
 
   // TODO: use the pugi:: to return .bool()
-  bool varseltrekant{false};
-  const std::string varseltrekant_string{
-      get_value(produktinfo_node, "Varseltrekant")};
-
-  if (varseltrekant_string.compare("true") == 0)
-    varseltrekant = true;
+  const bool varseltrekant{get_bool(produktinfo_node, "Varseltrekant")};
 
   const std::string referanseprodukt{
       get_value(produktinfo_node, "Referanseprodukt")};

@@ -11,6 +11,7 @@
 
 #include "check_empty.h"
 #include "cv.h"
+#include "get_bool.h"
 #include "get_value.h"
 #include <optional>
 #include <pugixml.hpp>
