@@ -22,10 +22,17 @@ namespace xml {
 class Markedsforingsinfo {
 public:
   constexpr Markedsforingsinfo() = default;
+  template <typename S>
   explicit Markedsforingsinfo(std::string_view varenrutgaende,
-                              const Date &markedsforingsdato,
-                              const Date &avregdato, const Date &midlutgattdato,
-                              std::string_view ompakkeravendose);
+                              S &&markedsforingsdato, S &&avregdato,
+                              S &&midlutgattdato,
+                              std::string_view ompakkeravendose)
+      : m_varenrutgaende{varenrutgaende},
+        m_markedsforingsdato{std::forward<S>(markedsforingsdato)},
+        m_avregdato{std::forward<S>(avregdato)},
+        m_midlutgattdato{std::forward<S>(midlutgattdato)},
+        m_ompakkeravendose{ompakkeravendose} {}
+
   ~Markedsforingsinfo() = default;
   constexpr const auto &varenrutgaende() const { return m_varenrutgaende; }
   constexpr const auto &markedsforingsdato() const {

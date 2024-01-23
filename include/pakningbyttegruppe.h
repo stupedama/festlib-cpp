@@ -24,9 +24,12 @@ namespace xml {
 class PakningByttegruppe {
 public:
   constexpr PakningByttegruppe() = default;
-  explicit PakningByttegruppe(const IDREF &refbyttegruppe,
-                              const Date &gyldigfradato,
-                              const Date &gyldigtildato);
+  template <typename T>
+  explicit PakningByttegruppe(T &&refbyttegruppe, T &&gyldigfradato,
+                              T &&gyldigtildato)
+      : m_refbyttegruppe{std::forward<T>(refbyttegruppe)},
+        m_gyldigfradato{std::forward<T>(gyldigfradato)},
+        m_gyldigtildato{std::forward<T>(gyldigtildato)} {}
   ~PakningByttegruppe() = default;
   constexpr const auto &refbyttegruppe() const { return m_refbyttegruppe; }
   constexpr const auto &gyldigfradato() const { return m_gyldigfradato; }

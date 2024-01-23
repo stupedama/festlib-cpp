@@ -33,15 +33,24 @@ using Reference = std::string;
 // - Legemiddelmerkevare
 // - Legemiddelpakningmerkevare
 class Legemiddel {
-
 public:
   constexpr Legemiddel() = default;
-  explicit Legemiddel(const Cv &atc, const Name &navnformstyrke,
-                      const Cs &reseptgruppe, const Cv &legemiddelformkort,
-                      const Reference &refvilkar, const Cs &preparattype,
-                      const Cs &typesoknadslv, bool opioidsoknad,
-                      const Cv &svarttrekant, const Refusjon &refusjon,
-                      const PakningByttegruppe &pakningbyttegruppe);
+  template <typename T, typename U, typename S, typename R, typename P>
+  explicit Legemiddel(T &&atc, S &&navnformstyrke, U &&reseptgruppe,
+                      T &&legemiddelformkort, S &&refvilkar, U &&preparattype,
+                      U &&typesoknadslv, bool opioidsoknad, T &&svarttrekant,
+                      R &&refusjon, P &&pakningbyttegruppe)
+      : m_atc{std::forward<T>(atc)},
+        m_navnformstyrke{std::forward<S>(navnformstyrke)},
+        m_reseptgruppe{std::forward<U>(reseptgruppe)},
+        m_legemiddelformkort{std::forward<T>(legemiddelformkort)},
+        m_refvilkar{std::forward<S>(refvilkar)},
+        m_preparattype{std::forward<U>(preparattype)},
+        m_typesoknadslv{std::forward<U>(typesoknadslv)},
+        m_opioidsoknad{opioidsoknad},
+        m_svarttrekant{std::forward<T>(svarttrekant)},
+        m_refusjon{std::forward<R>(refusjon)},
+        m_pakningbyttegruppe{std::forward<P>(pakningbyttegruppe)} {}
   ~Legemiddel() = default;
 
   // getters

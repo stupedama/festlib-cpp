@@ -10,10 +10,6 @@
 
 namespace festlib {
 namespace xml {
-ProduktInfo::ProduktInfo(bool varseltrekant, std::string_view referanseprodukt,
-                         const Cv &vaksinestandard, std::string_view produsent)
-    : m_varseltrekant{varseltrekant}, m_referanseprodukt{referanseprodukt},
-      m_vaksinestandard{vaksinestandard}, m_produsent{produsent} {}
 
 std::optional<bool> ProduktInfo::varseltrekant() const {
   if (!m_varseltrekant)

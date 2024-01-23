@@ -11,10 +11,6 @@
 namespace festlib {
 namespace xml {
 
-Pakningskomponent::Pakningskomponent(const Cv &pakningstype, const Pq &mengde,
-                                     std::string_view antall)
-    : m_pakningstype{pakningstype}, m_mengde{mengde}, m_antall{antall} {}
-
 // non-member functions
 namespace {
 

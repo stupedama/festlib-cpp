@@ -28,12 +28,23 @@ namespace xml {
 class AdministreringLegemiddel {
 public:
   constexpr AdministreringLegemiddel() = default;
-  explicit AdministreringLegemiddel(
-      bool blandingsveske, const Container<IDREF> &refbladingsveske,
-      const Container<Cv> &administrasjonsvei, const Cs &kanknuses,
-      const Cs &kanapnes, const Cs &bolus, const Cs &injeksjonshastighetbolus,
-      const Cs &deling, const Container<Cv> &enhetdosering,
-      const Container<Cv> &kortdose, const Container<Cv> &forhandsregelinntak);
+  template <typename S, typename A, typename C, typename V>
+  explicit AdministreringLegemiddel(bool blandingsveske, S &&refbladingsveske,
+                                    A &&administrasjonsvei, C &&kanknuses,
+                                    C &&kanapnes, C &&bolus,
+                                    C &&injeksjonshastighetbolus, C &&deling,
+                                    V &&enhetdosering, V &&kortdose,
+                                    V &&forhandsregelinntak)
+      : m_blandingsveske{blandingsveske},
+        m_refblandingsveske{std::forward<S>(refbladingsveske)},
+        m_administrasjonsvei{std::forward<A>(administrasjonsvei)},
+        m_kanknuses{std::forward<C>(kanknuses)},
+        m_kanapnes{std::forward<C>(kanapnes)}, m_bolus{std::forward<C>(bolus)},
+        m_injeksjonshastighetbolus{std::forward<C>(injeksjonshastighetbolus)},
+        m_deling{std::forward<C>(deling)},
+        m_enhetdosering{std::forward<V>(enhetdosering)},
+        m_kortdose{std::forward<V>(kortdose)},
+        m_forhandsregelinntak{std::forward<V>(forhandsregelinntak)} {}
   ~AdministreringLegemiddel() = default;
   constexpr bool blandingsveske() const { return m_blandingsveske; };
   std::optional<Container<IDREF>> refbladingsveske() const;

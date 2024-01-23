@@ -20,8 +20,10 @@ namespace xml {
 class Preparatomtaleavsnitt {
 public:
   constexpr Preparatomtaleavsnitt() = default;
-  explicit Preparatomtaleavsnitt(const Cs &avsnittoverskrift,
-                                 const Lenke &lenke);
+  template <typename C, typename S>
+  explicit Preparatomtaleavsnitt(C &&avsnittoverskrift, S &&lenke)
+      : m_avsnittoverskrift{std::forward<C>(avsnittoverskrift)},
+        m_lenke{std::forward<S>(lenke)} {}
   ~Preparatomtaleavsnitt() = default;
   constexpr const auto &avsnittoverskrift() const {
     return m_avsnittoverskrift;

@@ -24,7 +24,9 @@ namespace xml {
 class Reseptgyldighet {
 public:
   constexpr Reseptgyldighet() = default;
-  Reseptgyldighet(const Cs &kjonn, std::string_view varighet);
+  template <typename T>
+  explicit Reseptgyldighet(T &&kjonn, std::string_view varighet)
+      : m_kjonn{std::forward<T>(kjonn)}, m_varighet{varighet} {}
   ~Reseptgyldighet() = default;
   std::optional<Cs> kjonn() const;
   constexpr const auto &varighet() const { return m_varighet; }

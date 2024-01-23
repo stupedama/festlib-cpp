@@ -16,6 +16,10 @@ namespace xml {
 
 Cv::Cv(std::string_view V, std::string_view S, std::string_view DN)
     : m_v{V}, m_s{S}, m_dn{DN} {}
+Cv::Cv(Cv &&other)
+    : m_v{std::move(other.m_v)}, m_s{std::move(other.m_s)},
+      m_dn{std::move(other.m_dn)} {}
+Cv::Cv(const Cv &other) : m_v{other.m_v}, m_s{other.m_s}, m_dn{other.m_dn} {}
 
 // no--member functions
 

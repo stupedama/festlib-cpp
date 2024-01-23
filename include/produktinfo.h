@@ -23,8 +23,12 @@ namespace xml {
 class ProduktInfo {
 public:
   ProduktInfo() = default;
+  template <typename C>
   explicit ProduktInfo(bool varseltrekant, std::string_view referanseprodukt,
-                       const Cv &vaksinestandard, std::string_view produsent);
+                       C &&vaksinestandard, std::string_view produsent)
+      : m_varseltrekant{varseltrekant}, m_referanseprodukt{referanseprodukt},
+        m_vaksinestandard{std::forward<C>(vaksinestandard)},
+        m_produsent{produsent} {}
   ~ProduktInfo() = default;
   std::optional<bool> varseltrekant() const;
   std::optional<std::string> referanseprodukt() const;

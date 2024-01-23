@@ -15,6 +15,8 @@ namespace festlib {
 namespace xml {
 
 Cs::Cs(std::string_view V, std::string_view DN) : m_v{V}, m_dn{DN} {}
+Cs::Cs(Cs &&other) : m_v{std::move(other.m_v)}, m_dn{std::move(other.m_dn)} {}
+Cs::Cs(const Cs &other) : m_v{other.m_v}, m_dn{other.m_dn} {}
 
 // no--member functions
 

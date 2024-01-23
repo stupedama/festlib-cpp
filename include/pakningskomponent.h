@@ -28,8 +28,11 @@ namespace xml {
 class Pakningskomponent {
 public:
   constexpr Pakningskomponent() = default;
-  explicit Pakningskomponent(const Cv &pakningstype, const Pq &mengde,
-                             std::string_view antall);
+  template <typename C, typename P>
+  explicit Pakningskomponent(C &&pakningstype, P &&mengde,
+                             std::string_view antall)
+      : m_pakningstype{std::forward<C>(pakningstype)},
+        m_mengde{std::forward<P>(mengde)}, m_antall{antall} {}
   ~Pakningskomponent() = default;
   constexpr const auto &pakningstype() const { return m_pakningstype; }
 

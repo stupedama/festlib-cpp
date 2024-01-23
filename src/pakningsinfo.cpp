@@ -11,20 +11,6 @@
 namespace festlib {
 namespace xml {
 
-Pakningsinfo::Pakningsinfo(
-    const IDREF &reflegemiddelmerkevare, std::string_view pakningsstr,
-    const Cv &enhetpakning, const Cv &pakningstype, std::string_view multippel,
-    std::string_view antall, std::string_view mengde,
-    std::string_view sortering, const Pq &ddd,
-    std::string_view statistikkfaktor,
-    const Container<Pakningskomponent> &pakningskomponent)
-    : m_reflegemiddelmerkevare{reflegemiddelmerkevare},
-      m_pakningsstr{pakningsstr}, m_enhetpakning{enhetpakning},
-      m_pakningstype{pakningstype}, m_multippel{multippel}, m_antall{antall},
-      m_mengde{mengde}, m_sortering{sortering}, m_ddd{ddd},
-      m_statistikkfaktor{statistikkfaktor},
-      m_pakningskomponent{pakningskomponent} {}
-
 // non-member functions
 
 namespace {

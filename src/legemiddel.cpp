@@ -11,19 +11,6 @@
 namespace festlib {
 namespace xml {
 
-Legemiddel::Legemiddel(const Cv &atc, const Name &navnformstyrke,
-                       const Cs &reseptgruppe, const Cv &legemiddelformkort,
-                       const Reference &refvilkar, const Cs &preparattype,
-                       const Cs &typesoknadslv, bool opioidsoknad,
-                       const Cv &svarttrekant, const Refusjon &refusjon,
-                       const PakningByttegruppe &pakningbyttegruppe)
-    : m_atc{atc}, m_navnformstyrke{navnformstyrke},
-      m_reseptgruppe{reseptgruppe}, m_legemiddelformkort{legemiddelformkort},
-      m_refvilkar{refvilkar}, m_preparattype{preparattype},
-      m_typesoknadslv{typesoknadslv}, m_opioidsoknad{opioidsoknad},
-      m_svarttrekant{svarttrekant}, m_refusjon{refusjon},
-      m_pakningbyttegruppe{pakningbyttegruppe} {}
-
 std::optional<Refusjon> Legemiddel::refusjon() const {
   if (m_refusjon.refrefusjonsgruppe().empty())
     return {};

@@ -11,15 +11,6 @@
 namespace festlib {
 namespace xml {
 
-Markedsforingsinfo::Markedsforingsinfo(std::string_view varenrutgaende,
-                                       const Date &markedsforingsdato,
-                                       const Date &avregdato,
-                                       const Date &midlutgattdato,
-                                       std::string_view ompakkeravendose)
-    : m_varenrutgaende{varenrutgaende},
-      m_markedsforingsdato{markedsforingsdato}, m_avregdato{avregdato},
-      m_midlutgattdato{midlutgattdato}, m_ompakkeravendose{ompakkeravendose} {}
-
 // non-member functions
 
 xml::Markedsforingsinfo get_markedsforingsinfo(const pugi::xml_node &node) {

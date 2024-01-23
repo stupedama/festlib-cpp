@@ -41,14 +41,21 @@ namespace xml {
 class Legemiddelpakning {
 public:
   constexpr Legemiddelpakning() = default;
-  explicit Legemiddelpakning(
-      const Enkeltoppforing &enkeltoppforing, const IDREF &id,
-      std::string_view varenr, const Container<std::string> &ean,
-      const Legemiddel &legemiddel, const Container<Pakningsinfo> &pakningsinfo,
-      const Markedsforingsinfo &markedsforingsinfo,
-      const Container<PrisVare> &prisvare,
-      const AdministreringLegemiddel &administreringlegemiddel,
-      const Container<Preparatomtaleavsnitt> &preparatomtaleavsnitt);
+  template <typename E, typename S, typename C, typename L, typename I,
+            typename M, typename P, typename A, typename O>
+  explicit Legemiddelpakning(E &&enkeltoppforing, S &&id,
+                             std::string_view varenr, C &&ean, L &&legemiddel,
+                             I &&pakningsinfo, M &&markedsforingsinfo,
+                             P &&prisvare, A &&administreringlegemiddel,
+                             O &&preparatomtaleavsnitt)
+      : m_enkeltoppforing{std::forward<E>(enkeltoppforing)},
+        m_id{std::forward<S>(id)}, m_varenr{varenr},
+        m_ean{std::forward<C>(ean)}, m_legemiddel{std::forward<L>(legemiddel)},
+        m_pakningsinfo{std::forward<I>(pakningsinfo)},
+        m_markedsforingsinfo{std::forward<M>(markedsforingsinfo)},
+        m_prisvare{std::forward<P>(prisvare)},
+        m_administreringlegemiddel{std::forward<A>(administreringlegemiddel)},
+        m_preparatomtaleavsnitt{std::forward<O>(preparatomtaleavsnitt)} {}
   ~Legemiddelpakning() = default;
   constexpr const auto &varenr() const { return m_varenr; }
   constexpr const auto &id() const { return m_id; }

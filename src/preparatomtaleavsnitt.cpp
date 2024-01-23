@@ -11,10 +11,6 @@
 namespace festlib {
 namespace xml {
 
-Preparatomtaleavsnitt::Preparatomtaleavsnitt(const Cs &avsnittoverskrift,
-                                             const Lenke &lenke)
-    : m_avsnittoverskrift{avsnittoverskrift}, m_lenke{lenke} {}
-
 // non-member functions
 
 xml::Preparatomtaleavsnitt

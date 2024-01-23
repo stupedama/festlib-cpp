@@ -11,11 +11,6 @@
 namespace festlib {
 namespace xml {
 
-PrisVare::PrisVare(const Cv &type, const Pq &pris, const Date &gyldigfradato,
-                   const Date &gyldigtildato)
-    : m_type{type}, m_pris{pris}, m_gyldigfradato{gyldigfradato},
-      m_gyldigtildato{gyldigtildato} {}
-
 // non-member functions
 
 namespace {

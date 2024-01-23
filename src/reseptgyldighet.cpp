@@ -11,9 +11,6 @@
 namespace festlib {
 namespace xml {
 
-Reseptgyldighet::Reseptgyldighet(const Cs &kjonn, std::string_view varighet)
-    : m_kjonn{kjonn}, m_varighet{varighet} {}
-
 std::optional<Cs> Reseptgyldighet::kjonn() const {
   return check_empty(m_kjonn);
 }

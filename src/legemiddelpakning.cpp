@@ -11,20 +11,6 @@
 namespace festlib {
 namespace xml {
 
-Legemiddelpakning::Legemiddelpakning(
-    const Enkeltoppforing &enkeltoppforing, const IDREF &id,
-    std::string_view varenr, const Container<std::string> &ean,
-    const Legemiddel &legemiddel, const Container<Pakningsinfo> &pakningsinfo,
-    const Markedsforingsinfo &markedsforingsinfo,
-    const Container<PrisVare> &prisvare,
-    const AdministreringLegemiddel &administreringlegemiddel,
-    const Container<Preparatomtaleavsnitt> &preparatomtaleavsnitt)
-    : m_enkeltoppforing{enkeltoppforing}, m_id{id}, m_varenr{varenr},
-      m_ean{ean}, m_legemiddel{legemiddel}, m_pakningsinfo{pakningsinfo},
-      m_markedsforingsinfo{markedsforingsinfo}, m_prisvare{prisvare},
-      m_administreringlegemiddel{administreringlegemiddel},
-      m_preparatomtaleavsnitt{preparatomtaleavsnitt} {}
-
 std::optional<Container<std::string>> Legemiddelpakning::ean() const {
   if (m_ean.empty())
     return {};

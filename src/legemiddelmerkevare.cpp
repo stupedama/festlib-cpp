@@ -11,21 +11,6 @@
 namespace festlib {
 namespace xml {
 
-LegemiddelMerkevare::LegemiddelMerkevare(
-    const Enkeltoppforing &enkeltoppforing, const IDREF &id,
-    std::string_view varenavn, std::string_view legemiddelformlang,
-    const Cs &smak, const AdministreringLegemiddel &administreringlegemiddel,
-    const Legemiddel &legemiddel,
-    const Preparatomtaleavsnitt &preparatomtaleavsnitt,
-    const ProduktInfo &produktinfo, const Reseptgyldighet &reseptgyldighet,
-    const SortertVirkestoff &sortertvirkestoffmedstyrke)
-    : m_enkeltoppforing{enkeltoppforing}, m_id{id}, m_varenavn{varenavn},
-      m_legemiddelformlang{legemiddelformlang}, m_smak{smak},
-      m_administreringlegemiddel{administreringlegemiddel},
-      m_legemiddel{legemiddel}, m_preparatomtaleavsnitt{preparatomtaleavsnitt},
-      m_produktinfo{produktinfo}, m_reseptgyldighet{reseptgyldighet},
-      m_sortertvirkestoffmedstyrke{sortertvirkestoffmedstyrke} {}
-
 // non-member functions
 
 xml::LegemiddelMerkevare get_legemiddelmerkevare(const pugi::xml_node &node) {

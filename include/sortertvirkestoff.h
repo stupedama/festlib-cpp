@@ -27,8 +27,11 @@ namespace xml {
 class SortertVirkestoff {
 public:
   constexpr SortertVirkestoff() = default;
-  explicit SortertVirkestoff(const std::string &sortering,
-                             const IDREF &refvirkestoff);
+  template <typename S>
+  explicit SortertVirkestoff(S &&sortering, S &&refvirkestoff) {
+    m_sortering.push_back(
+        std::pair{std::forward<S>(sortering), std::forward<S>(refvirkestoff)});
+  }
   ~SortertVirkestoff() = default;
   constexpr const auto &sortering() const { return m_sortering; };
   bool push_back(const std::string &sortering, const IDREF &refvirkestoff);

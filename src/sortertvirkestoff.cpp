@@ -10,10 +10,6 @@
 
 namespace festlib {
 namespace xml {
-SortertVirkestoff::SortertVirkestoff(const std::string &sortering,
-                                     const IDREF &refvirkestoff) {
-  m_sortering.push_back(std::pair{sortering, refvirkestoff});
-}
 
 bool SortertVirkestoff::push_back(const std::string &sortering,
                                   const IDREF &refvirkestoff) {
