@@ -31,23 +31,19 @@ constexpr bool compare(std::string_view lhs, std::string_view rhs) {
 
 } // namespace
 
-const bool operator==(const PakningByttegruppe &lhs,
-                      const PakningByttegruppe &rhs) {
+bool operator==(const PakningByttegruppe &lhs, const PakningByttegruppe &rhs) {
   return compare(lhs.refbyttegruppe(), rhs.refbyttegruppe());
 }
 
-const bool operator==(const PakningByttegruppe &lhs,
-                      std::string_view reference) {
+bool operator==(const PakningByttegruppe &lhs, std::string_view reference) {
   return compare(lhs.refbyttegruppe(), reference);
 }
 
-const bool operator!=(const PakningByttegruppe &lhs,
-                      const PakningByttegruppe &rhs) {
+bool operator!=(const PakningByttegruppe &lhs, const PakningByttegruppe &rhs) {
   return compare(lhs.refbyttegruppe(), rhs.refbyttegruppe()) ? false : true;
 }
 
-const bool operator!=(const PakningByttegruppe &lhs,
-                      std::string_view reference) {
+bool operator!=(const PakningByttegruppe &lhs, std::string_view reference) {
   return compare(lhs.refbyttegruppe(), reference) ? false : true;
 }
 
