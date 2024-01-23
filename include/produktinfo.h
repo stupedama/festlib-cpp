@@ -25,6 +25,7 @@ public:
   ProduktInfo() = default;
   explicit ProduktInfo(bool varseltrekant, std::string_view referanseprodukt,
                        const Cv &vaksinestandard, std::string_view produsent);
+  ~ProduktInfo() = default;
   std::optional<bool> varseltrekant() const;
   std::optional<std::string> referanseprodukt() const;
   std::optional<Cv> vaksinestandard() const;

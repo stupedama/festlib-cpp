@@ -27,6 +27,7 @@ public:
   explicit PakningByttegruppe(const IDREF &refbyttegruppe,
                               const Date &gyldigfradato,
                               const Date &gyldigtildato);
+  ~PakningByttegruppe() = default;
   constexpr const auto &refbyttegruppe() const { return m_refbyttegruppe; }
   constexpr const auto &gyldigfradato() const { return m_gyldigfradato; }
   std::optional<Date> gyldigtildato() const;

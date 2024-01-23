@@ -40,6 +40,7 @@ public:
       const Preparatomtaleavsnitt &preparatomtaleavsnitt,
       const ProduktInfo &produktinfo, const Reseptgyldighet &reseptgyldighet,
       const SortertVirkestoff &sortertvirkestoffmedstyrke);
+  ~LegemiddelMerkevare() = default;
   constexpr const auto &enkeltoppforing() const { return m_enkeltoppforing; };
   constexpr const auto &varenavn() const { return m_varenavn; };
   constexpr const auto &legemiddelformlang() const {

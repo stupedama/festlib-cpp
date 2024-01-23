@@ -22,6 +22,7 @@ public:
   constexpr Preparatomtaleavsnitt() = default;
   explicit Preparatomtaleavsnitt(const Cs &avsnittoverskrift,
                                  const Lenke &lenke);
+  ~Preparatomtaleavsnitt() = default;
   constexpr const auto &avsnittoverskrift() const {
     return m_avsnittoverskrift;
   }

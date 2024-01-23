@@ -25,6 +25,7 @@ class Reseptgyldighet {
 public:
   constexpr Reseptgyldighet() = default;
   Reseptgyldighet(const Cs &kjonn, std::string_view varighet);
+  ~Reseptgyldighet() = default;
   std::optional<Cs> kjonn() const;
   constexpr const auto &varighet() const { return m_varighet; }
 

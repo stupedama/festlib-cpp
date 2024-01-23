@@ -29,6 +29,7 @@ public:
   constexpr SortertVirkestoff() = default;
   explicit SortertVirkestoff(const std::string &sortering,
                              const IDREF &refvirkestoff);
+  ~SortertVirkestoff() = default;
   constexpr const auto &sortering() const { return m_sortering; };
   bool push_back(const std::string &sortering, const IDREF &refvirkestoff);
 
