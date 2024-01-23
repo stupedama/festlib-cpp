@@ -105,6 +105,18 @@ map_catalog_legemiddelpakning(const Festlib &fest) {
   return container;
 }
 
+Map<std::string, xml::Legemiddelpakning> map_catalog_legemiddelpakning(
+    const Container<xml::Legemiddelpakning> &container) {
+
+  Map<std::string, xml::Legemiddelpakning> map_container{};
+
+  for (const auto &value : container) {
+    map_container.emplace(value.key(), value);
+  }
+
+  return map_container;
+}
+
 Container<xml::Legemiddelpakning>
 generic_legemiddelpakning(const Container<xml::Legemiddelpakning> &container,
                           const xml::IDREF &reference) {

@@ -102,6 +102,15 @@ catalog_legemiddelpakning(const Festlib &fest);
 Map<std::string, xml::Legemiddelpakning>
 map_catalog_legemiddelpakning(const Festlib &fest);
 
+// Create Map container from Container, insted of
+// reading the xml file again
+//
+// Example:
+// auto container = catalog_legemiddelpakning(fest);
+// auto map_container = map_container_legemiddelpakning(container);
+Map<std::string, xml::Legemiddelpakning> map_catalog_legemiddelpakning(
+    const Container<xml::Legemiddelpakning> &container);
+
 // Uses catalog_legemiddelpakning() to find a generic drug
 Container<xml::Legemiddelpakning>
 generic_legemiddelpakning(const Container<xml::Legemiddelpakning> &container,

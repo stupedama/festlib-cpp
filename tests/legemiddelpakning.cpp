@@ -112,6 +112,24 @@ TEST_CASE("Search generic by comparing legemiddelpakning",
   REQUIRE(generic.size() == 1);
 }
 
+TEST_CASE("Create Map container from Container", "[Legemiddelpakning]") {
+  using festlib::Festlib;
+
+  Festlib fest{};
+  fest.load_string(xml_string);
+
+  pugi::xml_node node = fest.get_node();
+  node = node.child("KatLegemiddelpakning")
+             .child("OppfLegemiddelpakning")
+             .child("Legemiddelpakning");
+
+  auto catalog = festlib::catalog_legemiddelpakning(fest);
+  REQUIRE(catalog.size() == 1);
+
+  auto map_catalog = festlib::map_catalog_legemiddelpakning(catalog);
+  REQUIRE(map_catalog.size() == catalog.size());
+}
+
 TEST_CASE("Search generic by idref string", "[Legemiddelpakning]") {
   using festlib::Festlib;
 
