@@ -36,7 +36,7 @@ Container<T> get_category(const pugi::xml_node &node, std::string_view category,
     container.push_back(func(data));
   }
 
-  return std::move(container);
+  return container;
 }
 
 // use Set insted of Container
@@ -53,7 +53,7 @@ get_category_map(const pugi::xml_node &node, std::string_view category,
     container.try_emplace(result.key(), result);
   }
 
-  return std::move(container);
+  return container;
 }
 
 } // namespace xml
