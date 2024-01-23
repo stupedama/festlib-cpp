@@ -41,16 +41,18 @@ bool operator==(const Cv &lhs, const char *str) {
   return compare_string.compare(lhs.value()) == 0;
 }
 
+xml::Cv get_cv(const pugi::xml_node &node) {
+  const std::string v{node.attribute("V").value()};
+  const std::string s{node.attribute("S").value()};
+  const std::string dn{node.attribute("DN").value()};
+
+  return xml::Cv{v, s, dn};
+}
+
 xml::Cv get_cv(const pugi::xml_node &node, std::string_view attribute) {
-  pugi::xml_node child{node};
-
-  if (attribute.length() > 0) {
-    child = node.child(attribute.data());
-  }
-
-  const std::string v{child.attribute("V").value()};
-  const std::string s{child.attribute("S").value()};
-  const std::string dn{child.attribute("DN").value()};
+  const std::string v{node.child(attribute.data()).attribute("V").value()};
+  const std::string s{node.child(attribute.data()).attribute("S").value()};
+  const std::string dn{node.child(attribute.data()).attribute("DN").value()};
 
   return xml::Cv{v, s, dn};
 }

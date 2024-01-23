@@ -12,13 +12,15 @@ namespace festlib {
 namespace xml {
 
 xml::Pq get_pq(const pugi::xml_node &node, std::string_view attribute) {
-  pugi::xml_node child{node};
+  const std::string v{node.child(attribute.data()).attribute("V").value()};
+  const std::string u{node.child(attribute.data()).attribute("U").value()};
 
-  if (attribute.length() > 0)
-    child = node.child(attribute.data());
+  return Pq{v, u};
+}
 
-  const std::string v{child.attribute("V").value()};
-  const std::string u{child.attribute("U").value()};
+xml::Pq get_pq(const pugi::xml_node &node) {
+  const std::string v{node.attribute("V").value()};
+  const std::string u{node.attribute("U").value()};
 
   return Pq{v, u};
 }

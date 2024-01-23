@@ -46,7 +46,8 @@ bool operator==(const Cs &lhs, const char *str);
 // node =
 // node.child("KatLegemiddelMerkevare").child("OppfLegemiddelMerkevare").child("LegemiddelMerkevare");
 // Cs preparattype = get_cs(node, "Preparattype");
-xml::Cs get_cs(const pugi::xml_node &node, std::string_view attribute = "");
+xml::Cs get_cs(const pugi::xml_node &node, std::string_view attribute);
+xml::Cs get_cs(const pugi::xml_node &node);
 
 } // namespace xml
 } // namespace festlib

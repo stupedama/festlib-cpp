@@ -40,14 +40,15 @@ bool operator==(const Cs &lhs, const char *str) {
 }
 
 xml::Cs get_cs(const pugi::xml_node &node, std::string_view attribute) {
-  pugi::xml_node child{node};
+  const std::string v{node.child(attribute.data()).attribute("V").value()};
+  const std::string dn{node.child(attribute.data()).attribute("DN").value()};
 
-  if (attribute.length() > 0) {
-    child = node.child(attribute.data());
-  }
+  return xml::Cs{v, dn};
+}
 
-  const std::string v{child.attribute("V").value()};
-  const std::string dn{child.attribute("DN").value()};
+xml::Cs get_cs(const pugi::xml_node &node) {
+  const std::string v{node.attribute("V").value()};
+  const std::string dn{node.attribute("DN").value()};
 
   return xml::Cs{v, dn};
 }

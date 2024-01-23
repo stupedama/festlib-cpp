@@ -23,7 +23,8 @@ struct Pq {
   std::string u{};
 };
 
-xml::Pq get_pq(const pugi::xml_node &node, std::string_view attribute = "");
+xml::Pq get_pq(const pugi::xml_node &node, std::string_view attribute);
+xml::Pq get_pq(const pugi::xml_node &node);
 
 } // namespace xml
 } // namespace festlib

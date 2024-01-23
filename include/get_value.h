@@ -26,7 +26,8 @@ using Value = std::string;
 // auto node = node.get_node(); // gets the root.
 //
 // Value date = get_value(node, "HentetDato");
-Value get_value(const pugi::xml_node &node, std::string_view attribute = "");
+Value get_value(const pugi::xml_node &node, std::string_view attribute);
+Value get_value(const pugi::xml_node &node);
 
 } // namespace xml
 } // namespace festlib

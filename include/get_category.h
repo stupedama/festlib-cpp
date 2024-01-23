@@ -26,15 +26,13 @@ namespace xml {
 template <typename T>
 Container<T> get_category(const pugi::xml_node &node, std::string_view category,
                           std::function<T(const pugi::xml_node &node)> func) {
-  const pugi::xml_node category_node{node.child(category.data())};
-
   // categories contains alot of data
   // reserve space
   constexpr int container_reserve{12000};
   Container<T> container = Container<T>{};
   container.reserve(container_reserve);
 
-  for (const auto &data : category_node) {
+  for (const auto &data : node.child(category.data())) {
     container.push_back(func(data));
   }
 

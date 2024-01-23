@@ -47,7 +47,8 @@ bool operator==(const Cv &lhs, const char *str);
 // node =
 // node.child("KatLegemiddelMerkevare").child("OppfLegemiddelMerkevare").child("LegemiddelMerkevare");
 // Cv atc = get_cv(node, "Atc");
-xml::Cv get_cv(const pugi::xml_node &node, std::string_view attribute = "");
+xml::Cv get_cv(const pugi::xml_node &node, std::string_view attribute);
+xml::Cv get_cv(const pugi::xml_node &node);
 
 } // namespace xml
 } // namespace festlib
