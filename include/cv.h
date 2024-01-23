@@ -22,7 +22,6 @@ public:
   constexpr Cv() = default;
   explicit Cv(std::string_view V, std::string_view S, std::string_view DN);
   ~Cv() = default;
-  Cv operator=(const Cv &other);
   constexpr const auto &value() const { return m_v; }
   constexpr const auto &long_value() const { return m_dn; }
 

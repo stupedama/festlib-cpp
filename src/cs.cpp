@@ -16,16 +16,6 @@ namespace xml {
 
 Cs::Cs(std::string_view V, std::string_view DN) : m_v{V}, m_dn{DN} {}
 
-Cs Cs::operator=(const Cs &other) {
-  if (this == &other)
-    return *this;
-
-  m_dn = other.m_dn;
-  m_v = other.m_v;
-
-  return *this;
-}
-
 // no--member functions
 
 // compare the V attributes
