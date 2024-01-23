@@ -33,7 +33,7 @@ Container<T> get_container(const pugi::xml_node &node,
       node_container.push_back(func(child_node));
   }
 
-  return node_container;
+  return std::move(node_container);
 }
 
 // Iterate over a attribute that contains one or more values
