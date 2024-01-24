@@ -12,7 +12,11 @@
 //
 // Example: get the HentetDato (Fest XML update date):
 // Festlib fest{};
-// bool load = fest.load_file(filename);
+// try {
+//  bool load = fest.load_file(filename);
+// } catch (const festlib::exceptions::FileNotFound& e) {
+//   std::cerr << e.what();
+// }
 // auto date = fest.created_date(fest);
 
 #ifndef FESTLIB_H_
@@ -20,6 +24,7 @@
 
 #include "container.h"
 #include "date.h"
+#include "exceptions.h"
 #include "get_category.h"
 #include "get_value.h"
 #include "idref.h"
@@ -34,13 +39,19 @@ class Festlib {
 public:
   Festlib();
   ~Festlib() = default;
-  pugi::xml_parse_result load_file(std::string_view filename);
-  pugi::xml_parse_result load_string(std::string_view xml_string);
+  void load_file(std::string_view filename);
+  void load_string(std::string_view xml_string);
   pugi::xml_node get_node() const;
 
 private:
+  // check the pugi::xml_parse_result and throw exception if
+  // some sort of error
+  void check_result(const pugi::xml_parse_result &result) const;
+  // validate the FEST file
+  void validate_file() const;
+
+private:
   pugi::xml_document m_doc{};
-  pugi::xml_parse_result m_parse_result{};
 };
 
 // library interface
@@ -49,18 +60,16 @@ private:
 // Example:
 //
 // auto fest = festlib::Festlib{};
-// auto res = fest.load_file("fest251.xml");
-// if(res)
-//   auto date = created_date(fest);
+// fest.load_file("fest251.xml");
+// auto date = created_date(fest);
 Date created_date(const Festlib &fest);
 
 // return the catalog <KatLegemiddelMerkevare>
 // Example:
 //
 // auto fest = festlib::Festlib{};
-// auto res = fest.load_file("fest251.xml");
-// if(res)
-//   auto container = catalog_legemiddelmerkevare(fest);
+// fest.load_file("fest251.xml");
+// auto container = catalog_legemiddelmerkevare(fest);
 Container<xml::LegemiddelMerkevare>
 catalog_legemiddelmerkevare(const Festlib &fest);
 
@@ -70,10 +79,9 @@ catalog_legemiddelmerkevare(const Festlib &fest);
 //
 // Example:
 // auto fest = festlib::Festlib{};
-// auto res = fest.load_file("fest251.xml");
-// if(res)
-//   auto container = map_catalog_legemiddelmerkevare(fest);
-//   auto item = container["ID_000A27B8-3930-4264-80F9-CDB14C895662"];
+// fest.load_file("fest251.xml");
+// auto container = map_catalog_legemiddelmerkevare(fest);
+// auto item = container["ID_000A27B8-3930-4264-80F9-CDB14C895662"];
 Map<std::string, xml::LegemiddelMerkevare>
 map_catalog_legemiddelmerkevare(const Festlib &fest);
 
@@ -83,9 +91,8 @@ map_catalog_legemiddelmerkevare(const Festlib &fest);
 // Example:
 //
 // auto fest = festlib::Festlib{};
-// auto res = fest.load_file("fest251.xml");
-// if(res)
-//   auto container = catalog_legemiddelpakning(fest);
+// fest.load_file("fest251.xml");
+// auto container = catalog_legemiddelpakning(fest);
 Container<xml::Legemiddelpakning>
 catalog_legemiddelpakning(const Festlib &fest);
 
@@ -95,8 +102,7 @@ catalog_legemiddelpakning(const Festlib &fest);
 //
 // Example:
 // auto fest = festlib::Festlib{};
-// auto res = fest.load_file("fest251.xml");
-// if(res)
+// fest.load_file("fest251.xml");
 //   auto container = map_catalog_legemiddelpakning(fest);
 //   auto item = container["116772"];
 Map<std::string, xml::Legemiddelpakning>

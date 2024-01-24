@@ -40,7 +40,7 @@ const char xml_string[] =
     "/><GyldigFraDato>2023-01-01</GyldigFraDato></"
     "PrisVare><Markedsforingsinfo><Markedsforingsdato>2023-01-01</"
     "Markedsforingsdato></Markedsforingsinfo></Legemiddelpakning></"
-    "OppfLegemiddelpakning></FEST>";
+    "OppfLegemiddelpakning></KatLegemiddelpakning></FEST>";
 
 TEST_CASE("Create class Pakningsinfo from node", "[Pakningsinfo]") {
   using festlib::Festlib;

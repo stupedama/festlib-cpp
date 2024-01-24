@@ -10,24 +10,67 @@
 
 namespace festlib {
 
-Festlib::Festlib() : m_doc{}, m_parse_result{} {}
+Festlib::Festlib() : m_doc{} {}
 
-pugi::xml_parse_result Festlib::load_file(std::string_view filename) {
+void Festlib::load_file(std::string_view filename) {
   // if xml_document is already loaded, the xml_tree will be
   // reset and populated again.
-  m_parse_result = m_doc.load_file(filename.data(), pugi::encoding_auto);
-  return m_parse_result;
+  const auto result = m_doc.load_file(filename.data(), pugi::encoding_auto);
+
+  // throw exception if bad things
+  check_result(result);
+  validate_file();
 }
 
-pugi::xml_parse_result Festlib::load_string(std::string_view xml_string) {
+void Festlib::load_string(std::string_view xml_string) {
   // if xml_document is already loaded, the xml_tree will be
   // reset and populated again.
-  m_parse_result = m_doc.load_string(xml_string.data(), pugi::encoding_auto);
-  return m_parse_result;
+  const auto result = m_doc.load_string(xml_string.data(), pugi::encoding_auto);
+
+  // throw exception if bad things
+  check_result(result);
+  validate_file();
 }
 
 // return the root of the Fest XML
 pugi::xml_node Festlib::get_node() const { return m_doc.child("FEST"); }
+
+// private functions
+void Festlib::check_result(const pugi::xml_parse_result &result) const {
+  switch (result.status) {
+  case pugi::status_ok:
+    break;
+  case pugi::status_file_not_found:
+    throw exceptions::FileNotFound(result.description());
+  case pugi::status_io_error:
+    throw exceptions::IoError(result.description());
+  case pugi::status_out_of_memory:
+    throw exceptions::OutOfMemory(result.description());
+  case pugi::status_no_document_element:
+    throw exceptions::NoDocument(result.description());
+
+  // this is intended
+  case pugi::status_bad_end_element:
+  case pugi::status_bad_start_element:
+  case pugi::status_bad_attribute:
+  case pugi::status_bad_pi:
+  case pugi::status_end_element_mismatch:
+  case pugi::status_bad_doctype:
+  case pugi::status_bad_pcdata:
+  case pugi::status_bad_comment:
+    throw exceptions::BadDocument(result.description());
+  default:
+    throw std::runtime_error("Unkown xml error");
+  }
+}
+
+void Festlib::validate_file() const {
+  const auto node = get_node();
+  std::string_view node_name{node.name()};
+
+  if (node_name.compare("FEST") != 0)
+    throw exceptions::BadFestFormat("root is not named FEST");
+}
 
 // helper functions
 namespace {

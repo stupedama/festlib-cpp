@@ -47,16 +47,15 @@ TEST_CASE("Load xml file", "[Festlib]") {
   using festlib::Festlib;
 
   Festlib fest{};
-  [[maybe_unused]] auto res = fest.load_file("fest251.xml");
-
-  REQUIRE_NOTHROW(fest);
+  REQUIRE_THROWS_AS(fest.load_file("nofile.xml"),
+                    festlib::exceptions::FileNotFound);
 }
 
 TEST_CASE("Load xml string", "[Festlib]") {
   using festlib::Festlib;
 
   Festlib fest{};
-  [[maybe_unused]] auto res = fest.load_string(xml_string);
+  fest.load_string(xml_string);
   REQUIRE_NOTHROW(fest);
 }
 

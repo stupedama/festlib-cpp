@@ -12,7 +12,12 @@ from The Norwegian Medical Products Agency (NOMA) (old Legemiddelverket/Norwegia
 int main()
 {
   festlib::Festlib fest{};
-  const auto res{fest.load_file("fest251.xml")};
+
+  try {
+    fest.load_file("fest251.xml");
+  } catch (const festlib::exceptions::FileNotFound& e) {
+    std::cout << "error:" << e.what() << '\n';
+  }
 
   const auto container{festlib::catalog_legemiddelpakning(fest)};
 
@@ -38,7 +43,12 @@ int main()
 
 int main() {
   festlib::Festlib fest{};
-  const auto res{fest.load_file("fest251.xml")};
+
+  try {
+    fest.load_file("fest251.xml");
+  } catch (const festlib::exceptions::FileNotFound& e) {
+    std::cout << "error:" << e.what() << '\n';
+  }
 
   const auto container{festlib::catalog_legemiddelpakning(fest)};
   auto product_container{festlib::map_catalog_legemiddelpakning(container)};

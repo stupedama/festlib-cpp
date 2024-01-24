@@ -82,7 +82,7 @@ const char xml_pakning[] =
     "/><GyldigFraDato>2023-01-01</GyldigFraDato></"
     "PrisVare><Markedsforingsinfo><Markedsforingsdato>2023-01-01</"
     "Markedsforingsdato></Markedsforingsinfo></Legemiddelpakning></"
-    "OppfLegemiddelpakning></FEST>";
+    "OppfLegemiddelpakning></KatLegemiddelpakning></FEST>";
 
 TEST_CASE("Create Class from xml string", "[Legemiddel]") {
   using festlib::Festlib;

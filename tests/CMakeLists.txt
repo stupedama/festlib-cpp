@@ -36,6 +36,7 @@ add_executable(
     lenke.cpp
     legemiddelmerkevare.cpp
     legemiddelpakning.cpp
+    xml.cpp
 )
 
 target_link_libraries(festlib_unit_tests PRIVATE Catch2::Catch2WithMain festlib pugixml)

@@ -49,8 +49,7 @@ TEST_CASE("Create AdministreringLegemidel from node",
   using festlib::Festlib;
 
   Festlib fest{};
-  auto res = fest.load_string(xml_string);
-  REQUIRE(res == true);
+  fest.load_string(xml_string);
 
   pugi::xml_node node = fest.get_node();
   node = node.child("KatLegemiddelMerkevare")
