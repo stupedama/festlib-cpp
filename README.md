@@ -96,4 +96,4 @@ make && sudo cmake --install .
 
 ## More
 * Issues and bugs can be raised on the [Issue tracker on Github](https://github.com/stupedama/festlib/issues)
-* contact me [Fredrik Fjeldvær (fredrik@ffj.no)](mailto:fredrik@ffj.no).
+* contact me [Fredrik (fredrik@ffj.no)](mailto:fredrik@ffj.no).
