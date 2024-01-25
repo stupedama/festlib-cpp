@@ -16,38 +16,37 @@ namespace xml {
 xml::LegemiddelMerkevare get_legemiddelmerkevare(const pugi::xml_node &node) {
   const pugi::xml_node merkevare_node{node.child("LegemiddelMerkevare")};
 
-  const xml::Enkeltoppforing enkeltoppforing{get_enkeltoppforing(node)};
+  xml::Enkeltoppforing enkeltoppforing{get_enkeltoppforing(node)};
 
   // get the parts what is unique to LegemiddelMerkevare
-  const std::string id{get_value(merkevare_node, "Id")};
-  const std::string varenavn{get_value(merkevare_node, "Varenavn")};
-  const std::string legemiddelformlang{
+  std::string id{get_value(merkevare_node, "Id")};
+  std::string varenavn{get_value(merkevare_node, "Varenavn")};
+  std::string legemiddelformlang{
       get_value(merkevare_node, "LegemiddelformLang")};
-  const xml::Cs smak{get_cs(merkevare_node, "Smak")};
+  xml::Cs smak{get_cs(merkevare_node, "Smak")};
 
   // shared parts
-  const xml::AdministreringLegemiddel administreringlegemiddel{
+  xml::AdministreringLegemiddel administreringlegemiddel{
       get_administreringlegemiddel(merkevare_node)};
-  const xml::Legemiddel legemiddel{get_legemiddel(merkevare_node)};
-  const xml::Preparatomtaleavsnitt preparatomtaleavsnitt{
+  xml::Legemiddel legemiddel{get_legemiddel(merkevare_node)};
+  xml::Preparatomtaleavsnitt preparatomtaleavsnitt{
       get_preparatomtaleavsnitt(merkevare_node)};
-  const xml::ProduktInfo produktinfo{get_produktinfo(merkevare_node)};
-  const xml::Reseptgyldighet reseptgyldighet{
-      get_reseptgyldighet(merkevare_node)};
-  const xml::SortertVirkestoff sortervirkestoffmedstyrke{
+  xml::ProduktInfo produktinfo{get_produktinfo(merkevare_node)};
+  xml::Reseptgyldighet reseptgyldighet{get_reseptgyldighet(merkevare_node)};
+  xml::SortertVirkestoff sortervirkestoffmedstyrke{
       get_sorteringvirkestoffmedstyrke(merkevare_node)};
 
-  return xml::LegemiddelMerkevare{enkeltoppforing,
-                                  id,
-                                  varenavn,
-                                  legemiddelformlang,
-                                  smak,
-                                  administreringlegemiddel,
-                                  legemiddel,
-                                  preparatomtaleavsnitt,
-                                  produktinfo,
-                                  reseptgyldighet,
-                                  sortervirkestoffmedstyrke};
+  return xml::LegemiddelMerkevare{std::move(enkeltoppforing),
+                                  std::move(id),
+                                  std::move(varenavn),
+                                  std::move(legemiddelformlang),
+                                  std::move(smak),
+                                  std::move(administreringlegemiddel),
+                                  std::move(legemiddel),
+                                  std::move(preparatomtaleavsnitt),
+                                  std::move(produktinfo),
+                                  std::move(reseptgyldighet),
+                                  std::move(sortervirkestoffmedstyrke)};
 }
 
 } // namespace xml

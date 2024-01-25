@@ -24,16 +24,17 @@ std::optional<Date> Refusjon::utleverestildato() const {
 xml::Refusjon get_refusjon(const pugi::xml_node &node) {
   const pugi::xml_node refusjon_node{node.child("Refusjon")};
 
-  const Container<xml::IDREF> refrefusjonsgruppe{get_container<xml::IDREF>(
+  Container<xml::IDREF> refrefusjonsgruppe{get_container<xml::IDREF>(
       refusjon_node, "RefRefusjonsgruppe",
       [](const pugi::xml_node &n) { return get_value(n); })};
 
-  const Date gyldigfradato{get_value(refusjon_node, "GyldigFraDato")};
-  const Date forskrivestildato{get_value(refusjon_node, "ForskrivesTilDato")};
-  const Date utleverestildato{get_value(refusjon_node, "UtleveresTilDato")};
+  Date gyldigfradato{get_value(refusjon_node, "GyldigFraDato")};
+  Date forskrivestildato{get_value(refusjon_node, "ForskrivesTilDato")};
+  Date utleverestildato{get_value(refusjon_node, "UtleveresTilDato")};
 
-  return xml::Refusjon{refrefusjonsgruppe, gyldigfradato, forskrivestildato,
-                       utleverestildato};
+  return xml::Refusjon{std::move(refrefusjonsgruppe), std::move(gyldigfradato),
+                       std::move(forskrivestildato),
+                       std::move(utleverestildato)};
 }
 
 } // namespace xml

@@ -16,14 +16,16 @@ namespace xml {
 xml::Markedsforingsinfo get_markedsforingsinfo(const pugi::xml_node &node) {
   const pugi::xml_node child{node.child("Markedsforingsinfo")};
 
-  const std::string varenrutgaende{get_value(child, "VarenrUtgaende")};
-  const Date markedsforingsdato{get_value(child, "Markedsforingsdato")};
-  const Date avregdato{get_value(child, "AvregDato")};
-  const Date midlutgattdato{get_value(child, "MidlUtgattDato")};
-  const std::string ompakkeravendose{get_value(child, "OmpakkerAvEndose")};
+  std::string varenrutgaende{get_value(child, "VarenrUtgaende")};
+  Date markedsforingsdato{get_value(child, "Markedsforingsdato")};
+  Date avregdato{get_value(child, "AvregDato")};
+  Date midlutgattdato{get_value(child, "MidlUtgattDato")};
+  std::string ompakkeravendose{get_value(child, "OmpakkerAvEndose")};
 
-  return xml::Markedsforingsinfo{varenrutgaende, markedsforingsdato, avregdato,
-                                 midlutgattdato, ompakkeravendose};
+  return xml::Markedsforingsinfo{
+      std::move(varenrutgaende), std::move(markedsforingsdato),
+      std::move(avregdato), std::move(midlutgattdato),
+      std::move(ompakkeravendose)};
 }
 
 } // namespace xml

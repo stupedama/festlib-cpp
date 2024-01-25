@@ -36,7 +36,7 @@ get_sorteringvirkestoffmedstyrke(const pugi::xml_node &node) {
   xml::SortertVirkestoff sortertmedstyrke{};
 
   // get the sortering and reference
-  const Container<std::pair<std::string, xml::IDREF>> sortering =
+  Container<std::pair<std::string, xml::IDREF>> sortering =
       get_container<std::pair<std::string, xml::IDREF>>(
           node, "SortertVirkestoffMedStyrke", [](const pugi::xml_node &n) {
             const std::string sort{get_value(n, "Sortering")};
@@ -60,7 +60,7 @@ get_sorteringvirkestoffutenstyrke(const pugi::xml_node &node) {
   xml::SortertVirkestoff sortertmedstyrke{};
 
   // get the sortering and reference
-  const Container<std::pair<std::string, xml::IDREF>> sortering =
+  Container<std::pair<std::string, xml::IDREF>> sortering =
       get_container<std::pair<std::string, xml::IDREF>>(
           node, "SortertVirkestoffUtenStyrke", [](const pugi::xml_node &n) {
             const std::string sort{get_value(n, "Sortering")};

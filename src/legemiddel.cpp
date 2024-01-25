@@ -28,25 +28,28 @@ std::optional<PakningByttegruppe> Legemiddel::pakningbyttegruppe() const {
 // non-member functions
 
 xml::Legemiddel get_legemiddel(const pugi::xml_node &node) {
-  const Cv atc{xml::get_cv(node, "Atc")};
-  const std::string navnformstyrke{get_value(node, "NavnFormStyrke")};
-  const Cs reseptgruppe{get_cs(node, "Reseptgruppe")};
-  const Cv legemiddelformkort{get_cv(node, "LegemiddelformKort")};
-  const std::string refvilkar{get_value(node, "RefVilkar")};
-  const Cs preparattype{get_cs(node, "Preparattype")};
-  const Cs typesoknadslv{get_cs(node, "TypeSoknadSlv")};
+  Cv atc{xml::get_cv(node, "Atc")};
+  std::string navnformstyrke{get_value(node, "NavnFormStyrke")};
+  Cs reseptgruppe{get_cs(node, "Reseptgruppe")};
+  Cv legemiddelformkort{get_cv(node, "LegemiddelformKort")};
+  std::string refvilkar{get_value(node, "RefVilkar")};
+  Cs preparattype{get_cs(node, "Preparattype")};
+  Cs typesoknadslv{get_cs(node, "TypeSoknadSlv")};
 
   const bool opioid{get_bool(node, "Opioidsoknad")};
 
-  const Cv svarttrekant{get_cv(node, "SvartTrekant")};
+  Cv svarttrekant{get_cv(node, "SvartTrekant")};
 
-  const xml::Refusjon refusjon{get_refusjon(node)};
-  const xml::PakningByttegruppe byttegruppe{get_pakningbyttegruppe(node)};
+  xml::Refusjon refusjon{get_refusjon(node)};
+  xml::PakningByttegruppe byttegruppe{get_pakningbyttegruppe(node)};
 
   return xml::Legemiddel{
-      atc,          navnformstyrke, reseptgruppe,  legemiddelformkort,
-      refvilkar,    preparattype,   typesoknadslv, opioid,
-      svarttrekant, refusjon,       byttegruppe};
+      std::move(atc),           std::move(navnformstyrke),
+      std::move(reseptgruppe),  std::move(legemiddelformkort),
+      std::move(refvilkar),     std::move(preparattype),
+      std::move(typesoknadslv), opioid,
+      std::move(svarttrekant),  std::move(refusjon),
+      std::move(byttegruppe)};
 }
 
 } // namespace xml

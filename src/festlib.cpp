@@ -104,48 +104,38 @@ Container<xml::LegemiddelMerkevare>
 catalog_legemiddelmerkevare(const Festlib &fest) {
   const pugi::xml_node node{fest.get_node()};
 
-  const auto container{
-      festlib::xml::get_category<festlib::xml::LegemiddelMerkevare>(
-          node, "KatLegemiddelMerkevare", [](const pugi::xml_node &n) {
-            return festlib::xml::get_legemiddelmerkevare(n);
-          })};
-
-  return container;
+  return festlib::xml::get_category<festlib::xml::LegemiddelMerkevare>(
+      node, "KatLegemiddelMerkevare", [](const pugi::xml_node &n) {
+        return festlib::xml::get_legemiddelmerkevare(n);
+      });
 }
 
 Map<std::string, xml::LegemiddelMerkevare>
 map_catalog_legemiddelmerkevare(const Festlib &fest) {
   const pugi::xml_node node{fest.get_node()};
 
-  const Map<std::string, xml::LegemiddelMerkevare> container{
-      xml::get_category_map<xml::LegemiddelMerkevare>(
-          node, "KatLegemiddelMerkevare", [](const pugi::xml_node &n) {
-            return xml::get_legemiddelmerkevare(n);
-          })};
-  return container;
+  return xml::get_category_map<xml::LegemiddelMerkevare>(
+      node, "KatLegemiddelMerkevare",
+      [](const pugi::xml_node &n) { return xml::get_legemiddelmerkevare(n); });
 }
 
 Container<xml::Legemiddelpakning>
 catalog_legemiddelpakning(const Festlib &fest) {
   const pugi::xml_node node{fest.get_node()};
 
-  const auto container{xml::get_category<xml::Legemiddelpakning>(
+  return {xml::get_category<xml::Legemiddelpakning>(
       node, "KatLegemiddelpakning", [](const pugi::xml_node &n) {
         return festlib::xml::get_legemiddelpakning(n);
       })};
-  return container;
 }
 
 Map<std::string, xml::Legemiddelpakning>
 map_catalog_legemiddelpakning(const Festlib &fest) {
   const pugi::xml_node node{fest.get_node()};
 
-  const Map<std::string, xml::Legemiddelpakning> container{
-      xml::get_category_map<xml::Legemiddelpakning>(
-          node, "KatLegemiddelpakning", [](const pugi::xml_node &n) {
-            return xml::get_legemiddelpakning(n);
-          })};
-  return container;
+  return xml::get_category_map<xml::Legemiddelpakning>(
+      node, "KatLegemiddelpakning",
+      [](const pugi::xml_node &n) { return xml::get_legemiddelpakning(n); });
 }
 
 Map<std::string, xml::Legemiddelpakning> map_catalog_legemiddelpakning(

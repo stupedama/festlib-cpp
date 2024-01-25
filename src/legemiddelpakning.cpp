@@ -32,37 +32,36 @@ Legemiddelpakning::pakningbyttegruppe() const {
 // non-member functions
 xml::Legemiddelpakning get_legemiddelpakning(const pugi::xml_node &node) {
 
-  const xml::Enkeltoppforing enkeltoppforing{get_enkeltoppforing(node)};
+  xml::Enkeltoppforing enkeltoppforing{get_enkeltoppforing(node)};
 
   // move node
   const pugi::xml_node pakning_node{node.child("Legemiddelpakning")};
 
   // parts unique to legemiddelpakning
-  const std::string id{get_value(pakning_node, "Id")};
-  const std::string varenr{get_value(pakning_node, "Varenr")};
-  const Container<std::string> ean{get_container<std::string>(
+  std::string id{get_value(pakning_node, "Id")};
+  std::string varenr{get_value(pakning_node, "Varenr")};
+  Container<std::string> ean{get_container<std::string>(
       pakning_node, "Ean",
       [](const pugi::xml_node &n) { return get_value(n); })};
-  const Legemiddel legemiddel{get_legemiddel(pakning_node)};
-  const Container<Pakningsinfo> pakningsinfo{get_pakningsinfo(pakning_node)};
-  const Markedsforingsinfo markedsforingsinfo{
-      get_markedsforingsinfo(pakning_node)};
-  const Container<PrisVare> prisvare{get_prisvare(pakning_node)};
-  const AdministreringLegemiddel administreringlegemiddel{
+  Legemiddel legemiddel{get_legemiddel(pakning_node)};
+  Container<Pakningsinfo> pakningsinfo{get_pakningsinfo(pakning_node)};
+  Markedsforingsinfo markedsforingsinfo{get_markedsforingsinfo(pakning_node)};
+  Container<PrisVare> prisvare{get_prisvare(pakning_node)};
+  AdministreringLegemiddel administreringlegemiddel{
       get_administreringlegemiddel(pakning_node)};
-  const Container<Preparatomtaleavsnitt> preparatomtaleavsnitt{
+  Container<Preparatomtaleavsnitt> preparatomtaleavsnitt{
       get_preparatomtaleavsnitt(pakning_node)};
 
-  return xml::Legemiddelpakning{enkeltoppforing,
-                                id,
-                                varenr,
-                                ean,
-                                legemiddel,
-                                pakningsinfo,
-                                markedsforingsinfo,
-                                prisvare,
-                                administreringlegemiddel,
-                                preparatomtaleavsnitt};
+  return xml::Legemiddelpakning{std::move(enkeltoppforing),
+                                std::move(id),
+                                std::move(varenr),
+                                std::move(ean),
+                                std::move(legemiddel),
+                                std::move(pakningsinfo),
+                                std::move(markedsforingsinfo),
+                                std::move(prisvare),
+                                std::move(administreringlegemiddel),
+                                std::move(preparatomtaleavsnitt)};
 }
 
 } // namespace xml

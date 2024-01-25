@@ -57,43 +57,43 @@ get_administreringlegemiddel(const pugi::xml_node &node) {
 
   const bool blandingsveske{get_bool(admin_node, "Blandingsveske")};
 
-  const Container<xml::IDREF> refbladingsveske{get_container<xml::IDREF>(
+  Container<xml::IDREF> refbladingsveske{get_container<xml::IDREF>(
       admin_node, "RefBlandingsVeske",
       [](const pugi::xml_node &n) { return get_value(n); })};
 
-  const Container<Cv> administrasjonsvei{
+  Container<Cv> administrasjonsvei{
       get_container<Cv>(admin_node, "Administrasjonsvei",
                         [](const pugi::xml_node &n) { return get_cv(n); })};
 
-  const Cs kanknuses{get_cs(node, "KanKnuses")};
-  const Cs kanapnes{get_cs(node, "KanApnes")};
-  const Cs bolus{get_cs(node, "Bolus")};
-  const Cs injeksjonshastighetbolus{get_cs(node, "InjeksjonshastighetBolus")};
-  const Cs deling{get_cs(node, "Deling")};
+  Cs kanknuses{get_cs(node, "KanKnuses")};
+  Cs kanapnes{get_cs(node, "KanApnes")};
+  Cs bolus{get_cs(node, "Bolus")};
+  Cs injeksjonshastighetbolus{get_cs(node, "InjeksjonshastighetBolus")};
+  Cs deling{get_cs(node, "Deling")};
 
-  const Container<Cv> enhetdosering{
+  Container<Cv> enhetdosering{
       get_container<Cv>(admin_node, "EnhetDosering",
                         [](const pugi::xml_node &n) { return get_cv(n); })};
 
-  const Container<Cv> kortdose{
+  Container<Cv> kortdose{
       get_container<Cv>(admin_node, "Kortdose",
                         [](const pugi::xml_node &n) { return get_cv(n); })};
 
-  const Container<Cv> forhandsregelinntak{
+  Container<Cv> forhandsregelinntak{
       get_container<Cv>(admin_node, "ForhandsregelInntak",
                         [](const pugi::xml_node &n) { return get_cv(n); })};
 
   return xml::AdministreringLegemiddel{blandingsveske,
-                                       refbladingsveske,
-                                       administrasjonsvei,
-                                       kanknuses,
-                                       kanapnes,
-                                       bolus,
-                                       injeksjonshastighetbolus,
-                                       deling,
-                                       enhetdosering,
-                                       kortdose,
-                                       forhandsregelinntak};
+                                       std::move(refbladingsveske),
+                                       std::move(administrasjonsvei),
+                                       std::move(kanknuses),
+                                       std::move(kanapnes),
+                                       std::move(bolus),
+                                       std::move(injeksjonshastighetbolus),
+                                       std::move(deling),
+                                       std::move(enhetdosering),
+                                       std::move(kortdose),
+                                       std::move(forhandsregelinntak)};
 }
 
 } // namespace xml

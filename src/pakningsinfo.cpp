@@ -21,34 +21,32 @@ xml::Pakningsinfo get_one_pakningsinfo(const pugi::xml_node &node) {
   // TODO: use pugi::xml to_int()?
 
   // try {
-  const IDREF reflegemiddelmerkevare{get_value(node, "RefLegemiddelMerkevare")};
-  const std::string pakningsstr{get_value(node, "Pakningsstr")};
-  const Cv enhetpakning{get_cv(node, "EnhetPakning")};
-  const Cv pakningstype{get_cv(node, "Pakningstype")};
-  const std::string multippel{
-      get_value(node, "Multippel")};                   // TODO: should be int
-  const std::string antall{get_value(node, "Antall")}; // TODO: should be int
-  const std::string mengde{get_value(node, "Mengde")}; // TODO: should be int
-  const std::string sortering{
-      get_value(node, "Sortering")}; // TODO: should be int
-  const Pq ddd{get_pq(node, "DDD")};
-  const std::string statistikkfaktor{get_value(node, "Statistikkfaktor")};
-  const Container<xml::Pakningskomponent> pakningskomponent{
+  IDREF reflegemiddelmerkevare{get_value(node, "RefLegemiddelMerkevare")};
+  std::string pakningsstr{get_value(node, "Pakningsstr")};
+  Cv enhetpakning{get_cv(node, "EnhetPakning")};
+  Cv pakningstype{get_cv(node, "Pakningstype")};
+  std::string multippel{get_value(node, "Multippel")}; // TODO: should be int
+  std::string antall{get_value(node, "Antall")};       // TODO: should be int
+  std::string mengde{get_value(node, "Mengde")};       // TODO: should be int
+  std::string sortering{get_value(node, "Sortering")}; // TODO: should be int
+  Pq ddd{get_pq(node, "DDD")};
+  std::string statistikkfaktor{get_value(node, "Statistikkfaktor")};
+  Container<xml::Pakningskomponent> pakningskomponent{
       get_pakningskomponent(node)};
 
   //} catch (const std::invalid_argument &) {
 
-  return xml::Pakningsinfo{reflegemiddelmerkevare,
-                           pakningsstr,
-                           enhetpakning,
-                           pakningstype,
-                           multippel,
-                           antall,
-                           mengde,
-                           sortering,
-                           ddd,
-                           statistikkfaktor,
-                           pakningskomponent};
+  return xml::Pakningsinfo{std::move(reflegemiddelmerkevare),
+                           std::move(pakningsstr),
+                           std::move(enhetpakning),
+                           std::move(pakningstype),
+                           std::move(multippel),
+                           std::move(antall),
+                           std::move(mengde),
+                           std::move(sortering),
+                           std::move(ddd),
+                           std::move(statistikkfaktor),
+                           std::move(pakningskomponent)};
 }
 
 } // namespace

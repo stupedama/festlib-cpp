@@ -14,8 +14,8 @@
 namespace festlib {
 namespace xml {
 
-Cv::Cv(std::string_view V, std::string_view S, std::string_view DN)
-    : m_v{V}, m_s{S}, m_dn{DN} {}
+Cv::Cv(std::string v, std::string s, std::string dn)
+    : m_v{std::move(v)}, m_s{std::move(s)}, m_dn{std::move(dn)} {}
 
 // no--member functions
 
@@ -31,19 +31,19 @@ bool operator==(const Cv &lhs, const char *str) {
 }
 
 xml::Cv get_cv(const pugi::xml_node &node) {
-  const std::string v{node.attribute("V").value()};
-  const std::string s{node.attribute("S").value()};
-  const std::string dn{node.attribute("DN").value()};
+  std::string v{node.attribute("V").value()};
+  std::string s{node.attribute("S").value()};
+  std::string dn{node.attribute("DN").value()};
 
-  return xml::Cv{v, s, dn};
+  return xml::Cv{std::move(v), std::move(s), std::move(dn)};
 }
 
 xml::Cv get_cv(const pugi::xml_node &node, std::string_view attribute) {
-  const std::string v{node.child(attribute.data()).attribute("V").value()};
-  const std::string s{node.child(attribute.data()).attribute("S").value()};
-  const std::string dn{node.child(attribute.data()).attribute("DN").value()};
+  std::string v{node.child(attribute.data()).attribute("V").value()};
+  std::string s{node.child(attribute.data()).attribute("S").value()};
+  std::string dn{node.child(attribute.data()).attribute("DN").value()};
 
-  return xml::Cv{v, s, dn};
+  return xml::Cv{std::move(v), std::move(s), std::move(dn)};
 }
 
 } // namespace xml

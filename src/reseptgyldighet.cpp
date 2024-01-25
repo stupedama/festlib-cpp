@@ -20,10 +20,10 @@ std::optional<Cs> Reseptgyldighet::kjonn() const {
 xml::Reseptgyldighet get_reseptgyldighet(const pugi::xml_node &node) {
   const pugi::xml_node gyldighet_node{node.child("Reseptgyldighet")};
 
-  const xml::Cs kjonn{get_cs(gyldighet_node, "Kjonn")};
-  const std::string varighet{get_value(gyldighet_node, "Varighet")};
+  xml::Cs kjonn{get_cs(gyldighet_node, "Kjonn")};
+  std::string varighet{get_value(gyldighet_node, "Varighet")};
 
-  return xml::Reseptgyldighet{kjonn, varighet};
+  return xml::Reseptgyldighet{std::move(kjonn), std::move(varighet)};
 }
 
 } // namespace xml

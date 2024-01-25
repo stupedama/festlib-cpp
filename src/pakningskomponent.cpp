@@ -15,13 +15,14 @@ namespace xml {
 namespace {
 
 xml::Pakningskomponent get_one_pakningskomponent(const pugi::xml_node &node) {
-  const Cv pakningstype{get_cv(node, "Pakningstype")};
-  const Pq mengde{get_pq(node, "Mengde")};
+  Cv pakningstype{get_cv(node, "Pakningstype")};
+  Pq mengde{get_pq(node, "Mengde")};
 
-  const std::string antall{get_value(node, "Mengde")};
+  std::string antall{get_value(node, "Mengde")};
   // const int antall{std::stoi(antall_str)};
 
-  return xml::Pakningskomponent{pakningstype, mengde, antall};
+  return xml::Pakningskomponent{std::move(pakningstype), std::move(mengde),
+                                std::move(antall)};
 }
 } // namespace
 

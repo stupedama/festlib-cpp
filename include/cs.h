@@ -11,7 +11,6 @@
 
 #include <pugixml.hpp>
 #include <string>
-#include <string_view>
 
 namespace festlib {
 namespace xml {
@@ -20,7 +19,7 @@ namespace xml {
 class Cs {
 public:
   constexpr Cs() = default;
-  explicit Cs(std::string_view V, std::string_view DN);
+  explicit Cs(std::string v, std::string dn);
   ~Cs() = default;
   constexpr const auto &value() const { return m_v; }
   constexpr const auto &long_value() const { return m_dn; }

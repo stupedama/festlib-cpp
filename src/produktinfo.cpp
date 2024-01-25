@@ -35,16 +35,14 @@ std::optional<std::string> ProduktInfo::produsent() const {
 xml::ProduktInfo get_produktinfo(const pugi::xml_node &node) {
   const pugi::xml_node produktinfo_node{node.child("ProduktInfo")};
 
-  // TODO: use the pugi:: to return .bool()
   const bool varseltrekant{get_bool(produktinfo_node, "Varseltrekant")};
 
-  const std::string referanseprodukt{
-      get_value(produktinfo_node, "Referanseprodukt")};
-  const xml::Cv vaksinestandard{get_cv(produktinfo_node, "Vaksinestandard")};
-  const std::string produsent{get_value(produktinfo_node, "Produsent")};
+  std::string referanseprodukt{get_value(produktinfo_node, "Referanseprodukt")};
+  xml::Cv vaksinestandard{get_cv(produktinfo_node, "Vaksinestandard")};
+  std::string produsent{get_value(produktinfo_node, "Produsent")};
 
-  return xml::ProduktInfo{varseltrekant, referanseprodukt, vaksinestandard,
-                          produsent};
+  return xml::ProduktInfo{varseltrekant, std::move(referanseprodukt),
+                          std::move(vaksinestandard), std::move(produsent)};
 }
 
 } // namespace xml

@@ -17,10 +17,11 @@ xml::Preparatomtaleavsnitt
 get_preparatomtaleavsnitt(const pugi::xml_node &node) {
   const pugi::xml_node avsnitt_node{node.child("Preparatomtaleavsnitt")};
 
-  const xml::Cs avsnittoverskrift{get_cs(avsnitt_node, "Avsnittoverskrift")};
-  const xml::Lenke lenke{get_lenke(avsnitt_node)};
+  xml::Cs avsnittoverskrift{get_cs(avsnitt_node, "Avsnittoverskrift")};
+  xml::Lenke lenke{get_lenke(avsnitt_node)};
 
-  return xml::Preparatomtaleavsnitt{avsnittoverskrift, lenke};
+  return xml::Preparatomtaleavsnitt{std::move(avsnittoverskrift),
+                                    std::move(lenke)};
 }
 
 } // namespace xml

@@ -15,12 +15,13 @@ namespace xml {
 
 namespace {
 xml::PrisVare get_one_prisvare(const pugi::xml_node &node) {
-  const Cv type{get_cv(node, "Type")};
-  const Pq pris{get_pq(node, "Pris")};
-  const Date gyldigfradato{get_value(node, "GyldigFraDato")};
-  const Date gyldigtildato{get_value(node, "GyldigTilDato")};
+  Cv type{get_cv(node, "Type")};
+  Pq pris{get_pq(node, "Pris")};
+  Date gyldigfradato{get_value(node, "GyldigFraDato")};
+  Date gyldigtildato{get_value(node, "GyldigTilDato")};
 
-  return xml::PrisVare{type, pris, gyldigfradato, gyldigtildato};
+  return xml::PrisVare{std::move(type), std::move(pris),
+                       std::move(gyldigfradato), std::move(gyldigtildato)};
 }
 } // namespace
 
