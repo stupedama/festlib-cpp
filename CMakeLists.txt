@@ -10,7 +10,7 @@ set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O2 -Wall -Wpedantic -We
 
 project(
     festlib
-    VERSION 0.1.0
+    VERSION 0.2.0
     DESCRIPTION "Library for reading FEST xml file from Legemiddelverket"
     LANGUAGES CXX)
 
