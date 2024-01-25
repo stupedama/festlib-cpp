@@ -22,8 +22,6 @@ public:
   constexpr Cs() = default;
   explicit Cs(std::string_view V, std::string_view DN);
   ~Cs() = default;
-  Cs(Cs &&other);
-  Cs(const Cs &other);
   constexpr const auto &value() const { return m_v; }
   constexpr const auto &long_value() const { return m_dn; }
 
