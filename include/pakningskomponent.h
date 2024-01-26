@@ -33,7 +33,6 @@ public:
                              std::string_view antall)
       : m_pakningstype{std::forward<C>(pakningstype)},
         m_mengde{std::forward<P>(mengde)}, m_antall{antall} {}
-  ~Pakningskomponent() = default;
   constexpr const auto &pakningstype() const { return m_pakningstype; }
 
 private:

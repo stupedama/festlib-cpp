@@ -33,8 +33,6 @@ public:
       : m_refrefusjonsgruppe{std::forward<T>(refrefusjonsgruppe)},
         m_gyldigfradato{gyldigfradato}, m_forskrivestildato{forskrivestildato},
         m_utleverestildato{utleverestildato} {}
-  ~Refusjon() = default;
-
   constexpr const auto &refrefusjonsgruppe() const {
     return m_refrefusjonsgruppe;
   }

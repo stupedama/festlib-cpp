@@ -51,7 +51,6 @@ public:
         m_svarttrekant{std::forward<T>(svarttrekant)},
         m_refusjon{std::forward<R>(refusjon)},
         m_pakningbyttegruppe{std::forward<P>(pakningbyttegruppe)} {}
-  ~Legemiddel() = default;
 
   // getters
   constexpr const auto &atc() const { return m_atc; }

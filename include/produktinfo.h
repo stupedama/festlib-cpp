@@ -29,7 +29,6 @@ public:
       : m_varseltrekant{varseltrekant}, m_referanseprodukt{referanseprodukt},
         m_vaksinestandard{std::forward<C>(vaksinestandard)},
         m_produsent{produsent} {}
-  ~ProduktInfo() = default;
   std::optional<bool> varseltrekant() const;
   std::optional<std::string> referanseprodukt() const;
   std::optional<Cv> vaksinestandard() const;

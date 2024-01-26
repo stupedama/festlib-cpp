@@ -25,7 +25,6 @@ public:
   constexpr Enkeltoppforing() = default;
   explicit Enkeltoppforing(std::string_view id, std::string_view date,
                            bool status);
-  ~Enkeltoppforing() = default;
   constexpr const auto &id() const { return m_id; }
   constexpr const auto &date() const { return m_date; }
   constexpr bool status() const { return m_status; };

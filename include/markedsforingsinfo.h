@@ -33,7 +33,6 @@ public:
         m_midlutgattdato{std::forward<S>(midlutgattdato)},
         m_ompakkeravendose{ompakkeravendose} {}
 
-  ~Markedsforingsinfo() = default;
   constexpr const auto &varenrutgaende() const { return m_varenrutgaende; }
   constexpr const auto &markedsforingsdato() const {
     return m_markedsforingsdato;

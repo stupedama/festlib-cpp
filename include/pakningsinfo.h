@@ -41,7 +41,6 @@ public:
         m_ddd{std::forward<P>(ddd)}, m_statistikkfaktor{statistikkfaktor},
         m_pakningskomponent{std::forward<K>(pakningskomponent)} {}
 
-  ~Pakningsinfo() = default;
   constexpr const auto &reflegemiddelmerkevare() const {
     return m_reflegemiddelmerkevare;
   }

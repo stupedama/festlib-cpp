@@ -28,7 +28,6 @@ public:
       : m_type{std::forward<C>(type)}, m_pris{std::forward<P>(pris)},
         m_gyldigfradato{std::forward<S>(gyldigfradato)},
         m_gyldigtildato{std::forward<S>(gyldigtildato)} {}
-  ~PrisVare() = default;
   constexpr const auto &pris() const { return m_pris.v; }
 
 private:

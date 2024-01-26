@@ -32,7 +32,6 @@ public:
     m_sortering.push_back(
         std::pair{std::forward<S>(sortering), std::forward<S>(refvirkestoff)});
   }
-  ~SortertVirkestoff() = default;
   constexpr const auto &sortering() const { return m_sortering; };
   bool push_back(const std::string &sortering, const IDREF &refvirkestoff);
 

@@ -51,7 +51,6 @@ public:
         m_reseptgyldighet{std::forward<G>(reseptgyldighet)},
         m_sortertvirkestoffmedstyrke{
             std::forward<V>(sortertvirkestoffmedstyrke)} {}
-  ~LegemiddelMerkevare() = default;
   constexpr const auto &enkeltoppforing() const { return m_enkeltoppforing; };
   constexpr const auto &varenavn() const { return m_varenavn; };
   constexpr const auto &legemiddelformlang() const {

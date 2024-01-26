@@ -45,7 +45,6 @@ public:
         m_enhetdosering{std::forward<V>(enhetdosering)},
         m_kortdose{std::forward<V>(kortdose)},
         m_forhandsregelinntak{std::forward<V>(forhandsregelinntak)} {}
-  ~AdministreringLegemiddel() = default;
   constexpr bool blandingsveske() const { return m_blandingsveske; };
   std::optional<Container<IDREF>> refbladingsveske() const;
   constexpr const auto &administrasjonsvei() const {

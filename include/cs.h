@@ -20,7 +20,6 @@ class Cs {
 public:
   constexpr Cs() = default;
   explicit Cs(std::string v, std::string dn);
-  ~Cs() = default;
   constexpr const auto &value() const { return m_v; }
   constexpr const auto &long_value() const { return m_dn; }
 

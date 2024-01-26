@@ -56,7 +56,6 @@ public:
         m_prisvare{std::forward<P>(prisvare)},
         m_administreringlegemiddel{std::forward<A>(administreringlegemiddel)},
         m_preparatomtaleavsnitt{std::forward<O>(preparatomtaleavsnitt)} {}
-  ~Legemiddelpakning() = default;
   constexpr const auto &varenr() const { return m_varenr; }
   constexpr const auto &id() const { return m_id; }
   std::optional<Container<std::string>> ean() const;
