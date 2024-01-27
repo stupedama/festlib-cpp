@@ -83,7 +83,7 @@ find_generic(const Container<xml::Legemiddelpakning> &container,
 
   for (const auto &id : container) {
     if (id.pakningbyttegruppe() == reference)
-      result.push_back(id);
+      result.push_back(std::move(id));
   }
 
   return result;
@@ -144,7 +144,7 @@ Map<std::string, xml::Legemiddelpakning> map_catalog_legemiddelpakning(
   Map<std::string, xml::Legemiddelpakning> map_container{};
 
   for (const auto &value : container) {
-    map_container.emplace(value.key(), value);
+    map_container.emplace(std::move(value.key()), std::move(value));
   }
 
   return map_container;
