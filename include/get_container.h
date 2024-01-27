@@ -30,7 +30,7 @@ Container<T> get_container(const pugi::xml_node &node,
 
   for (const auto &child_node : node) {
     if (compare_value(attribute, child_node))
-      node_container.push_back(func(child_node));
+      node_container.push_back(std::move(func(child_node)));
   }
 
   return node_container;

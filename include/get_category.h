@@ -50,7 +50,7 @@ get_category_map(const pugi::xml_node &node, std::string_view category,
 
   for (const auto &data : category_node) {
     const auto result = func(data);
-    container.try_emplace(result.key(), result);
+    container.try_emplace(std::move(result.key()), std::move(result));
   }
 
   return container;
