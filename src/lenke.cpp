@@ -12,7 +12,7 @@ namespace festlib {
 namespace xml {
 
 xml::Lenke get_lenke(const pugi::xml_node &node) {
-  return std::move(node.child("Lenke").child("Www").attribute("V").value());
+  return node.child("Lenke").child("Www").attribute("V").value();
 }
 
 } // namespace xml

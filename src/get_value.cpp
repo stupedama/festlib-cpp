@@ -12,12 +12,10 @@ namespace festlib {
 namespace xml {
 
 Value get_value(const pugi::xml_node &node, std::string_view attribute) {
-  return std::move(node.child_value(attribute.data()));
+  return node.child_value(attribute.data());
 }
 
-Value get_value(const pugi::xml_node &node) {
-  return std::move(node.child_value());
-}
+Value get_value(const pugi::xml_node &node) { return node.child_value(); }
 
 } // namespace xml
 } // namespace festlib
