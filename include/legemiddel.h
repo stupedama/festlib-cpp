@@ -35,22 +35,11 @@ using Reference = std::string;
 class Legemiddel {
 public:
   constexpr Legemiddel() = default;
-  template <typename T, typename U, typename S, typename R, typename P>
-  explicit Legemiddel(T &&atc, S &&navnformstyrke, U &&reseptgruppe,
-                      T &&legemiddelformkort, S &&refvilkar, U &&preparattype,
-                      U &&typesoknadslv, bool opioidsoknad, T &&svarttrekant,
-                      R &&refusjon, P &&pakningbyttegruppe)
-      : m_atc{std::forward<T>(atc)},
-        m_navnformstyrke{std::forward<S>(navnformstyrke)},
-        m_reseptgruppe{std::forward<U>(reseptgruppe)},
-        m_legemiddelformkort{std::forward<T>(legemiddelformkort)},
-        m_refvilkar{std::forward<S>(refvilkar)},
-        m_preparattype{std::forward<U>(preparattype)},
-        m_typesoknadslv{std::forward<U>(typesoknadslv)},
-        m_opioidsoknad{opioidsoknad},
-        m_svarttrekant{std::forward<T>(svarttrekant)},
-        m_refusjon{std::forward<R>(refusjon)},
-        m_pakningbyttegruppe{std::forward<P>(pakningbyttegruppe)} {}
+  explicit Legemiddel(Cv atc, Name navnformstyrke, Cs reseptgruppe,
+                      Cv legemiddelformkort, Reference refvilkar,
+                      Cs preparattype, Cs typesoknadslv, bool opioidsoknad,
+                      Cv svarttrekant, Refusjon refusjon,
+                      PakningByttegruppe pakningbyttegruppe);
 
   // getters
   constexpr const auto &atc() const { return m_atc; }

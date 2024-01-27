@@ -11,6 +11,21 @@
 namespace festlib {
 namespace xml {
 
+AdministreringLegemiddel::AdministreringLegemiddel(
+    bool blandingsveske, Container<IDREF> refbladingsveske,
+    Container<Cv> administrasjonsvei, Cs kanknuses, Cs kanapnes, Cs bolus,
+    Cs injeksjonshastighetbolus, Cs deling, Container<Cv> enhetdosering,
+    Container<Cv> kortdose, Container<Cv> forhandsregelinntak)
+    : m_blandingsveske{blandingsveske},
+      m_refblandingsveske{std::move(refbladingsveske)},
+      m_administrasjonsvei{std::move(administrasjonsvei)},
+      m_kanknuses{std::move(kanknuses)}, m_kanapnes{std::move(kanapnes)},
+      m_bolus{std::move(bolus)},
+      m_injeksjonshastighetbolus{std::move(injeksjonshastighetbolus)},
+      m_deling{std::move(deling)}, m_enhetdosering{std::move(enhetdosering)},
+      m_kortdose{std::move(kortdose)},
+      m_forhandsregelinntak{std::move(forhandsregelinntak)} {}
+
 std::optional<Container<IDREF>>
 AdministreringLegemiddel::refbladingsveske() const {
   return check_empty(m_refblandingsveske);

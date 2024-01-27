@@ -23,11 +23,7 @@ namespace xml {
 class PrisVare {
 public:
   constexpr PrisVare() = default;
-  template <typename C, typename P, typename S>
-  explicit PrisVare(C &&type, P &&pris, S &&gyldigfradato, S &&gyldigtildato)
-      : m_type{std::forward<C>(type)}, m_pris{std::forward<P>(pris)},
-        m_gyldigfradato{std::forward<S>(gyldigfradato)},
-        m_gyldigtildato{std::forward<S>(gyldigtildato)} {}
+  explicit PrisVare(Cv type, Pq pris, Date gyldigfradato, Date gyldigtildato);
   constexpr const auto &pris() const { return m_pris.v; }
 
 private:

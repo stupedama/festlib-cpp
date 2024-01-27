@@ -26,13 +26,9 @@ namespace xml {
 class Refusjon {
 public:
   constexpr Refusjon() = default;
-  template <typename T>
-  explicit Refusjon(T &&refrefusjonsgruppe, std::string_view gyldigfradato,
-                    std::string_view forskrivestildato,
-                    std::string_view utleverestildato)
-      : m_refrefusjonsgruppe{std::forward<T>(refrefusjonsgruppe)},
-        m_gyldigfradato{gyldigfradato}, m_forskrivestildato{forskrivestildato},
-        m_utleverestildato{utleverestildato} {}
+  explicit Refusjon(Container<IDREF> refrefusjonsgruppe,
+                    std::string gyldigfradato, std::string forskrivestildato,
+                    std::string utleverestildato);
   constexpr const auto &refrefusjonsgruppe() const {
     return m_refrefusjonsgruppe;
   }

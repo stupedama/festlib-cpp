@@ -10,6 +10,15 @@
 
 namespace festlib {
 namespace xml {
+Markedsforingsinfo::Markedsforingsinfo(std::string varenrutgaende,
+                                       Date markedsforingsdato, Date avregdato,
+                                       Date midlutgattdato,
+                                       std::string ompakkeravendose)
+    : m_varenrutgaende{std::move(varenrutgaende)},
+      m_markedsforingsdato{std::move(markedsforingsdato)},
+      m_avregdato{std::move(avregdato)},
+      m_midlutgattdato{std::move(midlutgattdato)},
+      m_ompakkeravendose{std::move(ompakkeravendose)} {}
 
 // non-member functions
 

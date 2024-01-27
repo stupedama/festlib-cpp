@@ -10,6 +10,10 @@
 
 namespace festlib {
 namespace xml {
+PrisVare::PrisVare(Cv type, Pq pris, Date gyldigfradato, Date gyldigtildato)
+    : m_type{std::move(type)}, m_pris{std::move(pris)},
+      m_gyldigfradato{std::move(gyldigfradato)},
+      m_gyldigtildato{std::move(gyldigtildato)} {}
 
 // non-member functions
 

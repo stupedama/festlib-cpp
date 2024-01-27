@@ -11,6 +11,21 @@
 namespace festlib {
 namespace xml {
 
+Pakningsinfo::Pakningsinfo(IDREF reflegemiddelmerkevare,
+                           std::string pakningsstr, Cv enhetpakning,
+                           const Cv &pakningstype, std::string multippel,
+                           std::string antall, std::string mengde,
+                           std::string sortering, const Pq &ddd,
+                           std::string statistikkfaktor,
+                           Container<Pakningskomponent> pakningskomponent)
+    : m_reflegemiddelmerkevare{std::move(reflegemiddelmerkevare)},
+      m_pakningsstr{std::move(pakningsstr)},
+      m_enhetpakning{std::move(enhetpakning)},
+      m_pakningstype{std::move(pakningstype)},
+      m_multippel{std::move(multippel)}, m_antall{std::move(antall)},
+      m_mengde{std::move(mengde)}, m_sortering{std::move(sortering)},
+      m_ddd{std::move(ddd)}, m_statistikkfaktor{std::move(statistikkfaktor)},
+      m_pakningskomponent{std::move(pakningskomponent)} {}
 // non-member functions
 
 namespace {

@@ -12,7 +12,6 @@
 #include "get_value.h"
 #include <pugixml.hpp>
 #include <string>
-#include <string_view>
 
 namespace festlib {
 namespace xml {
@@ -23,8 +22,7 @@ namespace xml {
 class Enkeltoppforing {
 public:
   constexpr Enkeltoppforing() = default;
-  explicit Enkeltoppforing(std::string_view id, std::string_view date,
-                           bool status);
+  explicit Enkeltoppforing(std::string id, std::string date, bool status);
   constexpr const auto &id() const { return m_id; }
   constexpr const auto &date() const { return m_date; }
   constexpr bool status() const { return m_status; };

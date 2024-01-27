@@ -10,6 +10,9 @@
 
 namespace festlib {
 namespace xml {
+Preparatomtaleavsnitt::Preparatomtaleavsnitt(Cs avsnittoverskrift, Lenke lenke)
+    : m_avsnittoverskrift{std::move(avsnittoverskrift)},
+      m_lenke{std::move(lenke)} {}
 
 // non-member functions
 

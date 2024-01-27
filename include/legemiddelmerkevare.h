@@ -32,25 +32,13 @@ namespace xml {
 class LegemiddelMerkevare {
 public:
   constexpr LegemiddelMerkevare() = default;
-  template <typename E, typename S, typename A, typename L, typename O,
-            typename I, typename G, typename M, typename V>
-  explicit LegemiddelMerkevare(E &&enkeltoppforing, S &&id,
-                               std::string_view varenavn,
-                               std::string_view legemiddelformlang, M &&smak,
-                               A &&administreringlegemiddel, L &&legemiddel,
-                               O &&preparatomtaleavsnitt, I &&produktinfo,
-                               G &&reseptgyldighet,
-                               V &&sortertvirkestoffmedstyrke)
-      : m_enkeltoppforing{std::forward<E>(enkeltoppforing)},
-        m_id{std::forward<S>(id)}, m_varenavn{varenavn},
-        m_legemiddelformlang{legemiddelformlang}, m_smak{std::forward<M>(smak)},
-        m_administreringlegemiddel{std::forward<A>(administreringlegemiddel)},
-        m_legemiddel{std::forward<L>(legemiddel)},
-        m_preparatomtaleavsnitt{std::forward<O>(preparatomtaleavsnitt)},
-        m_produktinfo{std::forward<I>(produktinfo)},
-        m_reseptgyldighet{std::forward<G>(reseptgyldighet)},
-        m_sortertvirkestoffmedstyrke{
-            std::forward<V>(sortertvirkestoffmedstyrke)} {}
+  explicit LegemiddelMerkevare(
+      Enkeltoppforing enkeltoppforing, IDREF id, std::string varenavn,
+      std::string legemiddelformlang, Cs smak,
+      AdministreringLegemiddel administreringlegemiddel, Legemiddel legemiddel,
+      Preparatomtaleavsnitt preparatomtaleavsnitt, ProduktInfo produktinfo,
+      Reseptgyldighet reseptgyldighet,
+      SortertVirkestoff sortertvirkestoffmedstyrke);
   constexpr const auto &enkeltoppforing() const { return m_enkeltoppforing; };
   constexpr const auto &varenavn() const { return m_varenavn; };
   constexpr const auto &legemiddelformlang() const {

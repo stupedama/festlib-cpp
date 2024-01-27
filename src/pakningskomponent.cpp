@@ -10,6 +10,10 @@
 
 namespace festlib {
 namespace xml {
+Pakningskomponent::Pakningskomponent(Cv pakningstype, Pq mengde,
+                                     std::string antall)
+    : m_pakningstype{std::move(pakningstype)}, m_mengde{std::move(mengde)},
+      m_antall{std::move(antall)} {}
 
 // non-member functions
 namespace {

@@ -25,22 +25,12 @@ namespace xml {
 class Pakningsinfo {
 public:
   constexpr Pakningsinfo() = default;
-  template <typename S, typename C, typename P, typename K>
-  explicit Pakningsinfo(S &&reflegemiddelmerkevare,
-                        std::string_view pakningsstr, C &&enhetpakning,
-                        C &&pakningstype, std::string_view multippel,
-                        std::string_view antall, std::string_view mengde,
-                        std::string_view sortering, P &&ddd,
-                        std::string_view statistikkfaktor,
-                        K &&pakningskomponent)
-      : m_reflegemiddelmerkevare{std::forward<S>(reflegemiddelmerkevare)},
-        m_pakningsstr{pakningsstr},
-        m_enhetpakning{std::forward<C>(enhetpakning)},
-        m_pakningstype{std::forward<C>(pakningstype)}, m_multippel{multippel},
-        m_antall{antall}, m_mengde{mengde}, m_sortering{sortering},
-        m_ddd{std::forward<P>(ddd)}, m_statistikkfaktor{statistikkfaktor},
-        m_pakningskomponent{std::forward<K>(pakningskomponent)} {}
-
+  explicit Pakningsinfo(IDREF reflegemiddelmerkevare, std::string pakningsstr,
+                        Cv enhetpakning, const Cv &pakningstype,
+                        std::string multippel, std::string antall,
+                        std::string mengde, std::string sortering,
+                        const Pq &ddd, std::string statistikkfaktor,
+                        Container<Pakningskomponent> pakningskomponent);
   constexpr const auto &reflegemiddelmerkevare() const {
     return m_reflegemiddelmerkevare;
   }

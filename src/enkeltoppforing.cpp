@@ -11,9 +11,8 @@
 namespace festlib {
 namespace xml {
 
-Enkeltoppforing::Enkeltoppforing(std::string_view id, std::string_view date,
-                                 bool status)
-    : m_id{id}, m_date{date}, m_status{status} {}
+Enkeltoppforing::Enkeltoppforing(std::string id, std::string date, bool status)
+    : m_id{std::move(id)}, m_date{std::move(date)}, m_status{status} {}
 
 // no--member functions
 

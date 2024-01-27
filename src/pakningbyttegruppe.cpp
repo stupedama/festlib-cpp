@@ -10,6 +10,11 @@
 
 namespace festlib {
 namespace xml {
+PakningByttegruppe::PakningByttegruppe(IDREF refbyttegruppe, Date gyldigfradato,
+                                       Date gyldigtildato)
+    : m_refbyttegruppe{std::move(refbyttegruppe)},
+      m_gyldigfradato{std::move(gyldigfradato)},
+      m_gyldigtildato{std::move(gyldigtildato)} {}
 
 std::optional<Date> PakningByttegruppe::gyldigtildato() const {
   return check_empty(m_gyldigtildato);

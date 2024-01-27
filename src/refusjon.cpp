@@ -10,6 +10,13 @@
 
 namespace festlib {
 namespace xml {
+Refusjon::Refusjon(Container<IDREF> refrefusjonsgruppe,
+                   std::string gyldigfradato, std::string forskrivestildato,
+                   std::string utleverestildato)
+    : m_refrefusjonsgruppe{std::move(refrefusjonsgruppe)},
+      m_gyldigfradato{std::move(gyldigfradato)},
+      m_forskrivestildato{std::move(forskrivestildato)},
+      m_utleverestildato{std::move(utleverestildato)} {}
 
 std::optional<Date> Refusjon::forskrivestildato() const {
   return check_empty(m_forskrivestildato);
