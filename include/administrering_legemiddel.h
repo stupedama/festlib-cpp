@@ -27,7 +27,6 @@ namespace xml {
 // Used only by class LegemiddelMerkevare and LegemiddelVirkestoff.
 class AdministreringLegemiddel {
 public:
-  constexpr AdministreringLegemiddel() = default;
   explicit AdministreringLegemiddel(
       bool blandingsveske, Container<IDREF> refbladingsveske,
       Container<Cv> administrasjonsvei, Cs kanknuses, Cs kanapnes, Cs bolus,
@@ -76,7 +75,7 @@ private:
   //
   // drugs that this is not relevant does not contain this attribute
   // <KodeVerk> 1103
-  Cs m_kanknuses{};
+  Cs m_kanknuses;
 
   // indicates if the drug can be opened.
   // Information only in class LegemiddelMerkevare.
@@ -86,22 +85,22 @@ private:
   //
   // drugs that this is not relevant does not contain this attribute
   // <KodeVerk> 1103
-  Cs m_kanapnes{};
+  Cs m_kanapnes;
 
   // true on injections that can be given as bolusdose.
   // also set as true when its not recommended in every context.
   // <KodeVerk> 7470
-  Cs m_bolus{};
+  Cs m_bolus;
 
   // defines injectionspeed of drugs that can be given as bolus.
   // <KodeVerk> 7471
-  Cs m_injeksjonshastighetbolus{};
+  Cs m_injeksjonshastighetbolus;
 
   // seperation of dosage, for example tablets.
   // only in class LegemiddelMerkevare and only for
   // formulations that is relevant.
   // <KodeVerk> 7472
-  Cs m_deling{};
+  Cs m_deling;
 
   // unit for dosage. suggestion for what should
   // be typed on the pharmacy label.

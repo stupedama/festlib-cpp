@@ -31,7 +31,6 @@ namespace xml {
 // is one of many main categories for the fest file
 class LegemiddelMerkevare {
 public:
-  constexpr LegemiddelMerkevare() = default;
   explicit LegemiddelMerkevare(
       Enkeltoppforing enkeltoppforing, IDREF id, std::string varenavn,
       std::string legemiddelformlang, Cs smak,
@@ -48,19 +47,19 @@ public:
   constexpr const auto &key() const { return id(); }
 
 private:
-  Enkeltoppforing m_enkeltoppforing{}; // id and status
-  IDREF m_id{};                        // reference to this/stable id
-  std::string m_varenavn{};            // Trade name
-  std::string m_legemiddelformlang{};  // Long name of formulation
-  Cs m_smak{};                         // Taste
-  AdministreringLegemiddel m_administreringlegemiddel{};
-  Legemiddel m_legemiddel{}; // drug information
-  Preparatomtaleavsnitt m_preparatomtaleavsnitt{};
-  ProduktInfo m_produktinfo{};                      // productinfo
-  Reseptgyldighet m_reseptgyldighet{};              // prescription duration
-  SortertVirkestoff m_sortertvirkestoffmedstyrke{}; // sorting from 0 of
-                                                    // active ingridient
-                                                    // contains reference
+  Enkeltoppforing m_enkeltoppforing;  // id and status
+  IDREF m_id{};                       // reference to this/stable id
+  std::string m_varenavn{};           // Trade name
+  std::string m_legemiddelformlang{}; // Long name of formulation
+  Cs m_smak;                          // Taste
+  AdministreringLegemiddel m_administreringlegemiddel;
+  Legemiddel m_legemiddel; // drug information
+  Preparatomtaleavsnitt m_preparatomtaleavsnitt;
+  ProduktInfo m_produktinfo;                      // productinfo
+  Reseptgyldighet m_reseptgyldighet;              // prescription duration
+  SortertVirkestoff m_sortertvirkestoffmedstyrke; // sorting from 0 of
+                                                  // active ingridient
+                                                  // contains reference
 };
 
 // non-member functions

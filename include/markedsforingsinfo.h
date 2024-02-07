@@ -21,7 +21,6 @@ namespace xml {
 // Marketting information
 class Markedsforingsinfo {
 public:
-  constexpr Markedsforingsinfo() = default;
   explicit Markedsforingsinfo(std::string varenrutgaende,
                               Date markedsforingsdato, Date avregdato,
                               Date midlutgattdato,

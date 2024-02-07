@@ -40,7 +40,6 @@ namespace xml {
 // auto legemiddelpakning = catalog_legemiddelpakning(fest);
 class Legemiddelpakning {
 public:
-  constexpr Legemiddelpakning() = default;
   explicit Legemiddelpakning(
       Enkeltoppforing enkeltoppforing, IDREF id, std::string varenr,
       Container<std::string> ean, Legemiddel legemiddel,
@@ -60,7 +59,7 @@ public:
   constexpr const auto &key() const { return varenr(); }
 
 private:
-  Enkeltoppforing m_enkeltoppforing{};
+  Enkeltoppforing m_enkeltoppforing;
   // unique id, even if varenr changes
   IDREF m_id{};
   // itemnumber
@@ -70,12 +69,12 @@ private:
   // conservation
   bool m_ikkekonservering{false};
   // storage condition
-  Pq m_oppbevaring{};
-  Legemiddel m_legemiddel{};
+  Pq m_oppbevaring;
+  Legemiddel m_legemiddel;
   Container<Pakningsinfo> m_pakningsinfo{};
-  Markedsforingsinfo m_markedsforingsinfo{};
+  Markedsforingsinfo m_markedsforingsinfo;
   Container<PrisVare> m_prisvare{};
-  AdministreringLegemiddel m_administreringlegemiddel{};
+  AdministreringLegemiddel m_administreringlegemiddel;
   Container<Preparatomtaleavsnitt> m_preparatomtaleavsnitt{};
 };
 

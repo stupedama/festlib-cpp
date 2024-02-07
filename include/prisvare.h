@@ -22,19 +22,18 @@ namespace xml {
 
 class PrisVare {
 public:
-  constexpr PrisVare() = default;
   explicit PrisVare(Cv type, Pq pris, Date gyldigfradato, Date gyldigtildato);
   constexpr const auto &pris() const { return m_pris.v; }
 
 private:
   // two different types of prices, one for
   // medicines and one for merchendise
-  Cv m_type{};
+  Cv m_type;
   // currency/price
   // only price in NOK
   // <KodeVerk> 3304
   // TODO: make own type MO
-  Pq m_pris{};
+  Pq m_pris;
   // price is valid from date
   Date m_gyldigfradato{};
   // price is valid to date

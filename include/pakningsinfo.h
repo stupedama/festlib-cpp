@@ -24,7 +24,6 @@ namespace xml {
 // Packageinformation
 class Pakningsinfo {
 public:
-  constexpr Pakningsinfo() = default;
   explicit Pakningsinfo(IDREF reflegemiddelmerkevare, std::string pakningsstr,
                         Cv enhetpakning, const Cv &pakningstype,
                         std::string multippel, std::string antall,
@@ -47,10 +46,10 @@ private:
   // "Stk", "pkn", "par", "ml", "IE"
   // <KodeVerk> 7452
   // TODO: make enum class?
-  Cv m_enhetpakning{};
+  Cv m_enhetpakning;
   // package type
   // <KodeVerk> 7449
-  Cv m_pakningstype{};
+  Cv m_pakningstype;
   // Package size =
   // multippel * antall * mengde
   // used by multiple packages
@@ -67,7 +66,7 @@ private:
   std::string m_sortering{}; // TODO: should be int
   // defined daily dose
   // <KodeVerk> 7489
-  Pq m_ddd{};
+  Pq m_ddd;
   // used to calculate how many ddd
   // it is in each package.
   // must be used with member m_ddd.

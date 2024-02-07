@@ -34,7 +34,6 @@ using Reference = std::string;
 // - Legemiddelpakningmerkevare
 class Legemiddel {
 public:
-  constexpr Legemiddel() = default;
   explicit Legemiddel(Cv atc, Name navnformstyrke, Cs reseptgruppe,
                       Cv legemiddelformkort, Reference refvilkar,
                       Cs preparattype, Cs typesoknadslv, bool opioidsoknad,
@@ -58,17 +57,17 @@ public:
 
 private:
   // named as they are in the xml file, only all lowercase.
-  Cv m_atc{};
+  Cv m_atc;
   Name m_navnformstyrke{};
-  Cs m_reseptgruppe{};
-  Cv m_legemiddelformkort{};
-  Reference m_refvilkar{};
-  Cs m_preparattype{};
-  Cs m_typesoknadslv{};
+  Cs m_reseptgruppe;
+  Cv m_legemiddelformkort;
+  Reference m_refvilkar;
+  Cs m_preparattype;
+  Cs m_typesoknadslv;
   bool m_opioidsoknad{};
-  Cv m_svarttrekant{};
-  Refusjon m_refusjon{};
-  PakningByttegruppe m_pakningbyttegruppe{};
+  Cv m_svarttrekant;
+  Refusjon m_refusjon;
+  PakningByttegruppe m_pakningbyttegruppe;
 };
 
 // non-member functions

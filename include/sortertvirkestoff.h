@@ -26,7 +26,7 @@ namespace xml {
 // sorts the order of the ingredient
 class SortertVirkestoff {
 public:
-  constexpr SortertVirkestoff() = default;
+  SortertVirkestoff() = default;
   explicit SortertVirkestoff(const std::string &sortering,
                              const IDREF &refvirkestoff);
   constexpr const auto &sortering() const { return m_sortering; };

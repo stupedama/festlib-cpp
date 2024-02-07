@@ -19,7 +19,6 @@ namespace xml {
 // contains data about SPC and link to SPC
 class Preparatomtaleavsnitt {
 public:
-  constexpr Preparatomtaleavsnitt() = default;
   explicit Preparatomtaleavsnitt(Cs avsnittoverskrift, Lenke lenke);
   constexpr const auto &avsnittoverskrift() const {
     return m_avsnittoverskrift;
@@ -27,7 +26,7 @@ public:
   constexpr const auto &lenke() const { return m_lenke; }
 
 private:
-  Cs m_avsnittoverskrift{};
+  Cs m_avsnittoverskrift;
   Lenke m_lenke{};
 };
 

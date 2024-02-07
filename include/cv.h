@@ -18,7 +18,6 @@ namespace xml {
 // V, S and DN is manidatory values in the Xml fest file
 class Cv {
 public:
-  constexpr Cv() = default;
   explicit Cv(std::string v, std::string s, std::string dn);
   constexpr const auto &value() const { return m_v; }
   constexpr const auto &long_value() const { return m_dn; }

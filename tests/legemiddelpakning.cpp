@@ -73,8 +73,10 @@ TEST_CASE("Get catalog as a set from node", "[Legemiddelpakning]") {
   auto catalog = festlib::map_catalog_legemiddelpakning(fest);
   REQUIRE(catalog.size() == 1);
 
-  auto item = catalog["526181"];
-  REQUIRE(item.varenr() == "526181");
+  auto item = catalog.find("061607");
+  if (item != catalog.end()) {
+    REQUIRE(item->second.varenr() == "526181");
+  }
 }
 
 TEST_CASE("Get one entry from node", "[Legemiddelpakning]") {

@@ -23,7 +23,6 @@ namespace xml {
 // IDREF m_refbyttegruppe identifies which generics group it is part of.
 class PakningByttegruppe {
 public:
-  constexpr PakningByttegruppe() = default;
   explicit PakningByttegruppe(IDREF refbyttegruppe, Date gyldigfradato,
                               Date gyldigtildato);
   constexpr const auto &refbyttegruppe() const { return m_refbyttegruppe; }

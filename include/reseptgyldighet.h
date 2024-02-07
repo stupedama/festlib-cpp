@@ -23,7 +23,6 @@ namespace xml {
 // Defines the duration of the prescription
 class Reseptgyldighet {
 public:
-  constexpr Reseptgyldighet() = default;
   explicit Reseptgyldighet(Cs kjonn, std::string varighet);
   std::optional<Cs> kjonn() const;
   constexpr const auto &varighet() const { return m_varighet; }
@@ -31,7 +30,7 @@ public:
 private:
   // gender defines the gender for the duration
   // <KodeVerk> 3101
-  Cs m_kjonn{};
+  Cs m_kjonn;
   // duration of the prescription
   // <KodeVerk> 3101
   std::string m_varighet{};

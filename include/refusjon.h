@@ -25,7 +25,6 @@ namespace xml {
 
 class Refusjon {
 public:
-  constexpr Refusjon() = default;
   explicit Refusjon(Container<IDREF> refrefusjonsgruppe,
                     std::string gyldigfradato, std::string forskrivestildato,
                     std::string utleverestildato);

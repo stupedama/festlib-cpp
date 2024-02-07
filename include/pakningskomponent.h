@@ -27,17 +27,16 @@ namespace xml {
 // example: liquid and powder
 class Pakningskomponent {
 public:
-  constexpr Pakningskomponent() = default;
   explicit Pakningskomponent(Cv pakningstype, Pq mengde, std::string antall);
   constexpr const auto &pakningstype() const { return m_pakningstype; }
 
 private:
   // same as attribute in packagetype
   // <KodeVerk> 7449
-  Cv m_pakningstype{};
+  Cv m_pakningstype;
   // same as attribute in PakningsInformasjon
   // <KodeVerk> 7452
-  Pq m_mengde{};
+  Pq m_mengde;
   // same as attribute in PakningsInformasjon
   std::string m_antall{}; // TODO: actually a int.
 };

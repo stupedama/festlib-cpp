@@ -21,7 +21,6 @@ namespace xml {
 // Shows information if the entry is active, entry date and unique ID.
 class Enkeltoppforing {
 public:
-  constexpr Enkeltoppforing() = default;
   explicit Enkeltoppforing(std::string id, std::string date, bool status);
   constexpr const auto &id() const { return m_id; }
   constexpr const auto &date() const { return m_date; }

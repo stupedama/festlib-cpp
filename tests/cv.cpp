@@ -12,18 +12,6 @@ TEST_CASE("Create Class", "[Cv]") {
   REQUIRE(l.compare("Propranolol") == 0);
 }
 
-TEST_CASE("Create empty", "[Cv]") {
-  using festlib::xml::Cv;
-
-  Cv cv{};
-
-  std::string v{cv.value()};
-  std::string dn{cv.long_value()};
-
-  REQUIRE(v.length() == 0);
-  REQUIRE(dn.length() == 0);
-}
-
 TEST_CASE("Operator ==", "[Cv]") {
   using festlib::xml::Cv;
 

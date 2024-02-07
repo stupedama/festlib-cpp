@@ -22,7 +22,6 @@ namespace xml {
 
 class ProduktInfo {
 public:
-  ProduktInfo() = default;
   explicit ProduktInfo(bool varseltrekant, std::string referanseprodukt,
                        Cv vaksinestandard, std::string produsent);
   std::optional<bool> varseltrekant() const;
@@ -41,7 +40,7 @@ private:
   // that is vacines.
   // follow NLS
   // <KodeVerk> 7447
-  Cv m_vaksinestandard{};
+  Cv m_vaksinestandard;
   // contains the name of the marketting authorization
   // if theres not no marketting authorization, the producer
   // like hospital pharmacy that is listed
