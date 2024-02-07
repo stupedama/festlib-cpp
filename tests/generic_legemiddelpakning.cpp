@@ -60,6 +60,68 @@ TEST_CASE("Search generic by varenr", "[Generic legemiddelpakning]") {
   REQUIRE(catalog.size() == 1);
 
   auto generic = festlib::generic_legemiddelpakning(catalog, pakning);
-
   REQUIRE(generic.size() == 1);
+}
+
+TEST_CASE("Search generic by varenr that does not exist",
+          "[Generic legemiddelpakning]") {
+  using festlib::Festlib;
+
+  Festlib fest{};
+  fest.load_string(xml_string);
+
+  pugi::xml_node node = fest.get_node();
+  node = node.child("KatLegemiddelpakning").child("OppfLegemiddelpakning");
+
+  auto legemiddelpakning = festlib::xml::get_legemiddelpakning(node);
+
+  node = node.child("Legemiddelpakning");
+
+  auto catalog = festlib::catalog_legemiddelpakning(fest);
+  auto pakning = festlib::find_legemiddelpakning(catalog, "55444");
+
+  auto generic = festlib::generic_legemiddelpakning(catalog, pakning);
+  REQUIRE(generic.size() == 0);
+}
+
+TEST_CASE("Search generic by pakningbyttegruppe reference",
+          "[Generic legemiddelpakning]") {
+  using festlib::Festlib;
+
+  Festlib fest{};
+  fest.load_string(xml_string);
+
+  pugi::xml_node node = fest.get_node();
+  node = node.child("KatLegemiddelpakning").child("OppfLegemiddelpakning");
+
+  auto legemiddelpakning = festlib::xml::get_legemiddelpakning(node);
+
+  node = node.child("Legemiddelpakning");
+
+  auto catalog = festlib::catalog_legemiddelpakning(fest);
+
+  auto generic = festlib::generic_legemiddelpakning(
+      catalog, "ID_BF16B775-2109-41A1-8369-2230FDE6B0EE");
+  REQUIRE(generic.size() == 1);
+}
+
+TEST_CASE("Search generic by non existing pakningbyttegruppe reference",
+          "[Generic legemiddelpakning]") {
+  using festlib::Festlib;
+
+  Festlib fest{};
+  fest.load_string(xml_string);
+
+  pugi::xml_node node = fest.get_node();
+  node = node.child("KatLegemiddelpakning").child("OppfLegemiddelpakning");
+
+  auto legemiddelpakning = festlib::xml::get_legemiddelpakning(node);
+
+  node = node.child("Legemiddelpakning");
+
+  auto catalog = festlib::catalog_legemiddelpakning(fest);
+
+  auto generic = festlib::generic_legemiddelpakning(
+      catalog, "ID_BF16B775-2109-41A2-8369-2230FDE6B0EE");
+  REQUIRE(generic.size() == 0);
 }
