@@ -33,7 +33,7 @@ Container<T> get_category(const pugi::xml_node &node, std::string_view category,
   container.reserve(container_reserve);
 
   for (const auto &data : node.child(category.data())) {
-    container.push_back(std::move(func(data)));
+    container.emplace_back(func(data));
   }
 
   // we reserved some more space than we needed.
