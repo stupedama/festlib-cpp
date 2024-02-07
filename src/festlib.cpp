@@ -150,17 +150,46 @@ Map<std::string, xml::Legemiddelpakning> map_catalog_legemiddelpakning(
   return map_container;
 }
 
+std::optional<xml::Legemiddelpakning>
+find_legemiddelpakning(const Container<xml::Legemiddelpakning> &container,
+                       const std::string &varenr) {
+
+  for (auto const &pakning : container) {
+    if (pakning.key().compare(varenr) == 0) {
+      return pakning;
+    }
+  }
+  return {};
+}
+
+std::optional<xml::Legemiddelpakning> find_legemiddelpakning(
+    const Map<std::string, xml::Legemiddelpakning> &container,
+    const std::string &varenr) {
+
+  try {
+    return container.at(varenr);
+  } catch (const std::out_of_range &) {
+    return {};
+  }
+}
+
 Container<xml::Legemiddelpakning>
 generic_legemiddelpakning(const Container<xml::Legemiddelpakning> &container,
                           const xml::IDREF &reference) {
   return find_generic(container, reference);
 }
 
-Container<xml::Legemiddelpakning>
-generic_legemiddelpakning(const Container<xml::Legemiddelpakning> &container,
-                          const xml::Legemiddelpakning &legemiddelpakning) {
-  return find_generic(container,
-                      legemiddelpakning.pakningbyttegruppe()->refbyttegruppe());
+Container<xml::Legemiddelpakning> generic_legemiddelpakning(
+    const Container<xml::Legemiddelpakning> &container,
+    std::optional<xml::Legemiddelpakning> legemiddelpakning) {
+
+  if (legemiddelpakning.has_value()) {
+    return find_generic(
+        container,
+        legemiddelpakning.value().pakningbyttegruppe()->refbyttegruppe());
+  } else {
+    return {};
+  }
 }
 
 } // namespace festlib

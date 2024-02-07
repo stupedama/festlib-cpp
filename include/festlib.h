@@ -116,10 +116,33 @@ map_catalog_legemiddelpakning(const Festlib &fest);
 Map<std::string, xml::Legemiddelpakning> map_catalog_legemiddelpakning(
     const Container<xml::Legemiddelpakning> &container);
 
+// find a legemiddelpakning by searching the Container for varenr (itemnumber)
+//
+// Example:
+// auto container = catalog_legemiddelpakning(fest);
+// auto pakning = find_legemiddelpakning(container, "519745");
+std::optional<xml::Legemiddelpakning>
+find_legemiddelpakning(const Container<xml::Legemiddelpakning> &container,
+                       const std::string &varenr);
+
+// find a legemiddelpakning by searching the Map for varenr (itemnumber)
+//
+// Example:
+// auto container = map_catalog_legemiddelpakning(fest);
+// auto pakning = find_legemiddelpakning(container, "519745");
+std::optional<xml::Legemiddelpakning> find_legemiddelpakning(
+    const Map<std::string, xml::Legemiddelpakning> &container,
+    const std::string &varenr);
+
 // Uses catalog_legemiddelpakning() to find a generic drug
-Container<xml::Legemiddelpakning>
-generic_legemiddelpakning(const Container<xml::Legemiddelpakning> &container,
-                          const xml::Legemiddelpakning &legemiddelpakning);
+//
+// Example:
+// auto container = catalog_legemiddelpakning(fest);
+// auto pakning = find_legemiddelpakning(container, "519745");
+// auto generic = generic_legemiddelpakning(container, pakning);
+Container<xml::Legemiddelpakning> generic_legemiddelpakning(
+    const Container<xml::Legemiddelpakning> &container,
+    std::optional<xml::Legemiddelpakning> legemiddelpakning);
 
 // Uses catalog_legemiddelpakning() to find a generic drug
 Container<xml::Legemiddelpakning>

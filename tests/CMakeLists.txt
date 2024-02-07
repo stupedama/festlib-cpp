@@ -36,6 +36,7 @@ add_executable(
     lenke.cpp
     legemiddelmerkevare.cpp
     legemiddelpakning.cpp
+    generic_legemiddelpakning.cpp
     xml.cpp
 )
 

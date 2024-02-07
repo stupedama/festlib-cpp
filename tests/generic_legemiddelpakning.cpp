@@ -1,8 +1,6 @@
-#include "legemiddelpakning.h"
 #include "festlib.h"
+#include "legemiddelpakning.h"
 #include <catch2/catch_test_macros.hpp>
-
-#include <iostream>
 
 const char xml_string[] =
     "<?xml version='1.0' encoding='utf-8'?><FEST "
@@ -44,22 +42,7 @@ const char xml_string[] =
     "Markedsforingsdato></Markedsforingsinfo></Legemiddelpakning></"
     "OppfLegemiddelpakning></KatLegemiddelpakning></FEST>";
 
-TEST_CASE("Get catalog from node", "[Legemiddelpakning]") {
-  using festlib::Festlib;
-
-  Festlib fest{};
-  fest.load_string(xml_string);
-
-  pugi::xml_node node = fest.get_node();
-  node = node.child("KatLegemiddelpakning")
-             .child("OppfLegemiddelpakning")
-             .child("Legemiddelpakning");
-
-  auto catalog = festlib::catalog_legemiddelpakning(fest);
-  REQUIRE(catalog.size() == 1);
-}
-
-TEST_CASE("Get one entry from node", "[Legemiddelpakning]") {
+TEST_CASE("Search generic by varenr", "[Generic legemiddelpakning]") {
   using festlib::Festlib;
 
   Festlib fest{};
@@ -69,66 +52,14 @@ TEST_CASE("Get one entry from node", "[Legemiddelpakning]") {
   node = node.child("KatLegemiddelpakning").child("OppfLegemiddelpakning");
 
   auto legemiddelpakning = festlib::xml::get_legemiddelpakning(node);
-  REQUIRE(legemiddelpakning.varenr().compare("526181") == 0);
-}
 
-// TEST_CASE("Search generic by comparing legemiddelpakning",
-//           "[Legemiddelpakning]") {
-//   using festlib::Festlib;
-//
-//   Festlib fest{};
-//   fest.load_string(xml_string);
-//
-//   pugi::xml_node node = fest.get_node();
-//   node = node.child("KatLegemiddelpakning").child("OppfLegemiddelpakning");
-//
-//   auto legemiddelpakning = festlib::xml::get_legemiddelpakning(node);
-//
-//   node = node.child("Legemiddelpakning");
-//
-//   auto catalog = festlib::catalog_legemiddelpakning(fest);
-//   REQUIRE(catalog.size() == 1);
-//
-//   auto generic = festlib::generic_legemiddelpakning(catalog,
-//   legemiddelpakning);
-//
-//   REQUIRE(generic.size() == 1);
-// }
-
-TEST_CASE("Create Map container from Container", "[Legemiddelpakning]") {
-  using festlib::Festlib;
-
-  Festlib fest{};
-  fest.load_string(xml_string);
-
-  pugi::xml_node node = fest.get_node();
-  node = node.child("KatLegemiddelpakning")
-             .child("OppfLegemiddelpakning")
-             .child("Legemiddelpakning");
+  node = node.child("Legemiddelpakning");
 
   auto catalog = festlib::catalog_legemiddelpakning(fest);
+  auto pakning = festlib::find_legemiddelpakning(catalog, "526181");
   REQUIRE(catalog.size() == 1);
 
-  auto map_catalog = festlib::map_catalog_legemiddelpakning(catalog);
-  REQUIRE(map_catalog.size() == catalog.size());
-}
-
-TEST_CASE("Search generic by idref string", "[Legemiddelpakning]") {
-  using festlib::Festlib;
-
-  Festlib fest{};
-  fest.load_string(xml_string);
-
-  pugi::xml_node node = fest.get_node();
-  node = node.child("KatLegemiddelpakning")
-             .child("OppfLegemiddelpakning")
-             .child("Legemiddelpakning");
-
-  auto catalog = festlib::catalog_legemiddelpakning(fest);
-  REQUIRE(catalog.size() == 1);
-
-  auto generic = festlib::generic_legemiddelpakning(
-      catalog, "ID_BF16B775-2109-41A1-8369-2230FDE6B0EE");
+  auto generic = festlib::generic_legemiddelpakning(catalog, pakning);
 
   REQUIRE(generic.size() == 1);
 }
