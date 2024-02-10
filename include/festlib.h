@@ -13,7 +13,7 @@
 // Example: get the HentetDato (Fest XML update date):
 // Festlib fest{};
 // try {
-//  bool load = fest.load_file(filename);
+//  fest.load_file(filename);
 // } catch (const festlib::exceptions::FileNotFound& e) {
 //   std::cerr << e.what();
 // }
