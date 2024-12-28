@@ -75,11 +75,11 @@ void Festlib::validate_file() const {
 // helper functions
 namespace {
 
-Container<xml::Legemiddelpakning>
-find_generic(const Container<xml::Legemiddelpakning> &container,
+Container<xml::OppfLegemiddelpakning>
+find_generic(const Container<xml::OppfLegemiddelpakning> &container,
              const xml::IDREF &reference) {
 
-  Container<xml::Legemiddelpakning> result{};
+  Container<xml::OppfLegemiddelpakning> result{};
 
   for (const auto &id : container) {
     if (id.pakningbyttegruppe() == reference)
@@ -119,29 +119,29 @@ map_catalog_legemiddelmerkevare(const Festlib &fest) {
       [](const pugi::xml_node &n) { return xml::get_legemiddelmerkevare(n); });
 }
 
-Container<xml::Legemiddelpakning>
+Container<xml::OppfLegemiddelpakning>
 catalog_legemiddelpakning(const Festlib &fest) {
   const pugi::xml_node node{fest.get_node()};
 
-  return {xml::get_category<xml::Legemiddelpakning>(
+  return {xml::get_category<xml::OppfLegemiddelpakning>(
       node, "KatLegemiddelpakning", [](const pugi::xml_node &n) {
-        return festlib::xml::get_legemiddelpakning(n);
+        return festlib::xml::get_oppflegemiddelpakning(n);
       })};
 }
 
-Map<std::string, xml::Legemiddelpakning>
+Map<std::string, xml::OppfLegemiddelpakning>
 map_catalog_legemiddelpakning(const Festlib &fest) {
   const pugi::xml_node node{fest.get_node()};
 
-  return xml::get_category_map<xml::Legemiddelpakning>(
+  return xml::get_category_map<xml::OppfLegemiddelpakning>(
       node, "KatLegemiddelpakning",
-      [](const pugi::xml_node &n) { return xml::get_legemiddelpakning(n); });
+      [](const pugi::xml_node &n) { return xml::get_oppflegemiddelpakning(n); });
 }
 
-Map<std::string, xml::Legemiddelpakning> map_catalog_legemiddelpakning(
-    const Container<xml::Legemiddelpakning> &container) {
+Map<std::string, xml::OppfLegemiddelpakning> map_catalog_legemiddelpakning(
+    const Container<xml::OppfLegemiddelpakning> &container) {
 
-  Map<std::string, xml::Legemiddelpakning> map_container{};
+  Map<std::string, xml::OppfLegemiddelpakning> map_container{};
 
   for (const auto &value : container) {
     map_container.emplace(std::move(value.key()), std::move(value));
@@ -150,8 +150,8 @@ Map<std::string, xml::Legemiddelpakning> map_catalog_legemiddelpakning(
   return map_container;
 }
 
-std::optional<xml::Legemiddelpakning>
-find_legemiddelpakning(const Container<xml::Legemiddelpakning> &container,
+std::optional<xml::OppfLegemiddelpakning>
+find_legemiddelpakning(const Container<xml::OppfLegemiddelpakning> &container,
                        const std::string &varenr) {
 
   for (auto const &pakning : container) {
@@ -162,8 +162,8 @@ find_legemiddelpakning(const Container<xml::Legemiddelpakning> &container,
   return {};
 }
 
-std::optional<xml::Legemiddelpakning> find_legemiddelpakning(
-    const Map<std::string, xml::Legemiddelpakning> &container,
+std::optional<xml::OppfLegemiddelpakning> find_legemiddelpakning(
+    const Map<std::string, xml::OppfLegemiddelpakning> &container,
     const std::string &varenr) {
 
   try {
@@ -173,15 +173,15 @@ std::optional<xml::Legemiddelpakning> find_legemiddelpakning(
   }
 }
 
-Container<xml::Legemiddelpakning>
-generic_legemiddelpakning(const Container<xml::Legemiddelpakning> &container,
+Container<xml::OppfLegemiddelpakning>
+generic_legemiddelpakning(const Container<xml::OppfLegemiddelpakning> &container,
                           const xml::IDREF &reference) {
   return find_generic(container, reference);
 }
 
-Container<xml::Legemiddelpakning> generic_legemiddelpakning(
-    const Container<xml::Legemiddelpakning> &container,
-    std::optional<xml::Legemiddelpakning> legemiddelpakning) {
+Container<xml::OppfLegemiddelpakning> generic_legemiddelpakning(
+    const Container<xml::OppfLegemiddelpakning> &container,
+    std::optional<xml::OppfLegemiddelpakning> legemiddelpakning) {
 
   if (legemiddelpakning.has_value()) {
     return find_generic(

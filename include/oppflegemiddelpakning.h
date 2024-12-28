@@ -6,8 +6,8 @@
 //  SPDX-FileCopyrightText: 2024 Fredrik Fjeldvær <fredrik@ffj.no>
 //  SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef LEGEMIDDELPAKNING_H_
-#define LEGEMIDDELPAKNING_H_
+#ifndef OPPFLEGEMIDDELPAKNING_H_
+#define OPPFLEGEMIDDELPAKNING_H_
 
 #include "administrering_legemiddel.h"
 #include "container.h"
@@ -38,9 +38,9 @@ namespace xml {
 // auto res = fest.load_file("festxml251.xml");
 //
 // auto legemiddelpakning = catalog_legemiddelpakning(fest);
-class Legemiddelpakning {
+class OppfLegemiddelpakning {
 public:
-  explicit Legemiddelpakning(
+  explicit OppfLegemiddelpakning(
       Enkeltoppforing enkeltoppforing, IDREF id, std::string varenr,
       Container<std::string> ean, Legemiddel legemiddel,
       Container<Pakningsinfo> pakningsinfo,
@@ -89,8 +89,8 @@ private:
 // auto node = fest.get_node();
 // node.child("KatLegemiddelpakning").child("OppfLegemiddelpakning");
 //
-// auto legemiddelpakning = get_legemiddelpakning(node);
-xml::Legemiddelpakning get_legemiddelpakning(const pugi::xml_node &node);
+// auto oppflegemiddelpakning = get_oppflegemiddelpakning(node);
+xml::OppfLegemiddelpakning get_oppflegemiddelpakning(const pugi::xml_node &node);
 
 } // namespace xml
 } // namespace festlib

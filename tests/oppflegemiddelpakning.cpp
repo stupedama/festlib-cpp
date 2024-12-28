@@ -1,8 +1,6 @@
-#include "legemiddelpakning.h"
+#include "oppflegemiddelpakning.h"
 #include "festlib.h"
 #include <catch2/catch_test_macros.hpp>
-
-#include <iostream>
 
 const char xml_string[] =
     "<?xml version='1.0' encoding='utf-8'?><FEST "
@@ -44,7 +42,7 @@ const char xml_string[] =
     "Markedsforingsdato></Markedsforingsinfo></Legemiddelpakning></"
     "OppfLegemiddelpakning></KatLegemiddelpakning></FEST>";
 
-TEST_CASE("Get catalog from node", "[Legemiddelpakning]") {
+TEST_CASE("Get catalog from node", "[OppfLegemiddelpakning]") {
   using festlib::Festlib;
 
   Festlib fest{};
@@ -59,7 +57,7 @@ TEST_CASE("Get catalog from node", "[Legemiddelpakning]") {
   REQUIRE(catalog.size() == 1);
 }
 
-TEST_CASE("Get one entry from node", "[Legemiddelpakning]") {
+TEST_CASE("Get one entry from node", "[OppfLegemiddelpakning]") {
   using festlib::Festlib;
 
   Festlib fest{};
@@ -68,7 +66,7 @@ TEST_CASE("Get one entry from node", "[Legemiddelpakning]") {
   pugi::xml_node node = fest.get_node();
   node = node.child("KatLegemiddelpakning").child("OppfLegemiddelpakning");
 
-  auto legemiddelpakning = festlib::xml::get_legemiddelpakning(node);
+  auto legemiddelpakning = festlib::xml::get_oppflegemiddelpakning(node);
   REQUIRE(legemiddelpakning.varenr().compare("526181") == 0);
 }
 
@@ -95,7 +93,7 @@ TEST_CASE("Get one entry from node", "[Legemiddelpakning]") {
 //   REQUIRE(generic.size() == 1);
 // }
 
-TEST_CASE("Create Map container from Container", "[Legemiddelpakning]") {
+TEST_CASE("Create Map container from Container", "[OppfLegemiddelpakning]") {
   using festlib::Festlib;
 
   Festlib fest{};
@@ -113,7 +111,7 @@ TEST_CASE("Create Map container from Container", "[Legemiddelpakning]") {
   REQUIRE(map_catalog.size() == catalog.size());
 }
 
-TEST_CASE("Search generic by idref string", "[Legemiddelpakning]") {
+TEST_CASE("Search generic by idref string", "[OppfLegemiddelpakning]") {
   using festlib::Festlib;
 
   Festlib fest{};

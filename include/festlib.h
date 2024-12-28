@@ -29,7 +29,7 @@
 #include "get_value.h"
 #include "idref.h"
 #include "legemiddelmerkevare.h"
-#include "legemiddelpakning.h"
+#include "oppflegemiddelpakning.h"
 #include <pugixml.hpp>
 #include <string_view>
 
@@ -92,7 +92,7 @@ map_catalog_legemiddelmerkevare(const Festlib &fest);
 // auto fest = festlib::Festlib{};
 // fest.load_file("fest251.xml");
 // auto container = catalog_legemiddelpakning(fest);
-Container<xml::Legemiddelpakning>
+Container<xml::OppfLegemiddelpakning>
 catalog_legemiddelpakning(const Festlib &fest);
 
 // return the catalog <KatLegemiddelpakning> as a Map.
@@ -104,7 +104,7 @@ catalog_legemiddelpakning(const Festlib &fest);
 // fest.load_file("fest251.xml");
 //   auto container = map_catalog_legemiddelpakning(fest);
 //   auto item = container["116772"];
-Map<std::string, xml::Legemiddelpakning>
+Map<std::string, xml::OppfLegemiddelpakning>
 map_catalog_legemiddelpakning(const Festlib &fest);
 
 // Create Map container from Container, insted of
@@ -113,16 +113,16 @@ map_catalog_legemiddelpakning(const Festlib &fest);
 // Example:
 // auto container = catalog_legemiddelpakning(fest);
 // auto map_container = map_container_legemiddelpakning(container);
-Map<std::string, xml::Legemiddelpakning> map_catalog_legemiddelpakning(
-    const Container<xml::Legemiddelpakning> &container);
+Map<std::string, xml::OppfLegemiddelpakning> map_catalog_legemiddelpakning(
+    const Container<xml::OppfLegemiddelpakning> &container);
 
 // find a legemiddelpakning by searching the Container for varenr (itemnumber)
 //
 // Example:
 // auto container = catalog_legemiddelpakning(fest);
 // auto pakning = find_legemiddelpakning(container, "519745");
-std::optional<xml::Legemiddelpakning>
-find_legemiddelpakning(const Container<xml::Legemiddelpakning> &container,
+std::optional<xml::OppfLegemiddelpakning>
+find_legemiddelpakning(const Container<xml::OppfLegemiddelpakning> &container,
                        const std::string &varenr);
 
 // find a legemiddelpakning by searching the Map for varenr (itemnumber)
@@ -130,8 +130,8 @@ find_legemiddelpakning(const Container<xml::Legemiddelpakning> &container,
 // Example:
 // auto container = map_catalog_legemiddelpakning(fest);
 // auto pakning = find_legemiddelpakning(container, "519745");
-std::optional<xml::Legemiddelpakning> find_legemiddelpakning(
-    const Map<std::string, xml::Legemiddelpakning> &container,
+std::optional<xml::OppfLegemiddelpakning> find_legemiddelpakning(
+    const Map<std::string, xml::OppfLegemiddelpakning> &container,
     const std::string &varenr);
 
 // Uses catalog_legemiddelpakning() to find a generic drug
@@ -140,13 +140,13 @@ std::optional<xml::Legemiddelpakning> find_legemiddelpakning(
 // auto container = catalog_legemiddelpakning(fest);
 // auto pakning = find_legemiddelpakning(container, "519745");
 // auto generic = generic_legemiddelpakning(container, pakning);
-Container<xml::Legemiddelpakning> generic_legemiddelpakning(
-    const Container<xml::Legemiddelpakning> &container,
-    std::optional<xml::Legemiddelpakning> legemiddelpakning);
+Container<xml::OppfLegemiddelpakning> generic_legemiddelpakning(
+    const Container<xml::OppfLegemiddelpakning> &container,
+    std::optional<xml::OppfLegemiddelpakning> legemiddelpakning);
 
 // Uses catalog_legemiddelpakning() to find a generic drug
-Container<xml::Legemiddelpakning>
-generic_legemiddelpakning(const Container<xml::Legemiddelpakning> &container,
+Container<xml::OppfLegemiddelpakning>
+generic_legemiddelpakning(const Container<xml::OppfLegemiddelpakning> &container,
                           const xml::IDREF &id);
 
 } // namespace festlib

@@ -1,5 +1,5 @@
 #include "festlib.h"
-#include "legemiddelpakning.h"
+#include "oppflegemiddelpakning.h"
 #include <catch2/catch_test_macros.hpp>
 
 const char xml_string[] =
@@ -51,7 +51,7 @@ TEST_CASE("Search generic by varenr", "[Generic legemiddelpakning]") {
   pugi::xml_node node = fest.get_node();
   node = node.child("KatLegemiddelpakning").child("OppfLegemiddelpakning");
 
-  auto legemiddelpakning = festlib::xml::get_legemiddelpakning(node);
+  auto legemiddelpakning = festlib::xml::get_oppflegemiddelpakning(node);
 
   node = node.child("Legemiddelpakning");
 
@@ -73,7 +73,7 @@ TEST_CASE("Search generic by varenr that does not exist",
   pugi::xml_node node = fest.get_node();
   node = node.child("KatLegemiddelpakning").child("OppfLegemiddelpakning");
 
-  auto legemiddelpakning = festlib::xml::get_legemiddelpakning(node);
+  auto legemiddelpakning = festlib::xml::get_oppflegemiddelpakning(node);
 
   node = node.child("Legemiddelpakning");
 
@@ -94,7 +94,7 @@ TEST_CASE("Search generic by pakningbyttegruppe reference",
   pugi::xml_node node = fest.get_node();
   node = node.child("KatLegemiddelpakning").child("OppfLegemiddelpakning");
 
-  auto legemiddelpakning = festlib::xml::get_legemiddelpakning(node);
+  auto legemiddelpakning = festlib::xml::get_oppflegemiddelpakning(node);
 
   node = node.child("Legemiddelpakning");
 
@@ -115,7 +115,7 @@ TEST_CASE("Search generic by non existing pakningbyttegruppe reference",
   pugi::xml_node node = fest.get_node();
   node = node.child("KatLegemiddelpakning").child("OppfLegemiddelpakning");
 
-  auto legemiddelpakning = festlib::xml::get_legemiddelpakning(node);
+  auto legemiddelpakning = festlib::xml::get_oppflegemiddelpakning(node);
 
   node = node.child("Legemiddelpakning");
 

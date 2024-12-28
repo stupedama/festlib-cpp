@@ -4,7 +4,7 @@ add_library(${PROJECT_NAME} SHARED
     legemiddel.cpp
     administrering_legemiddel.cpp
     legemiddelmerkevare.cpp
-    legemiddelpakning.cpp
+    oppflegemiddelpakning.cpp
     preparatomtaleavsnitt.cpp
     pakningbyttegruppe.cpp
     markedsforingsinfo.cpp

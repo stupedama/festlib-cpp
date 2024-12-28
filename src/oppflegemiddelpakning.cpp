@@ -6,11 +6,11 @@
 //  SPDX-FileCopyrightText: 2024 Fredrik Fjeldvær <fredrik@ffj.no>
 //  SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "legemiddelpakning.h"
+#include "oppflegemiddelpakning.h"
 
 namespace festlib {
 namespace xml {
-Legemiddelpakning::Legemiddelpakning(
+OppfLegemiddelpakning::OppfLegemiddelpakning(
     Enkeltoppforing enkeltoppforing, IDREF id, std::string varenr,
     Container<std::string> ean, Legemiddel legemiddel,
     Container<Pakningsinfo> pakningsinfo, Markedsforingsinfo markedsforingsinfo,
@@ -26,26 +26,26 @@ Legemiddelpakning::Legemiddelpakning(
       m_administreringlegemiddel{std::move(administreringlegemiddel)},
       m_preparatomtaleavsnitt{std::move(preparatomtaleavsnitt)} {}
 
-std::optional<Container<std::string>> Legemiddelpakning::ean() const {
+std::optional<Container<std::string>> OppfLegemiddelpakning::ean() const {
   if (m_ean.empty())
     return {};
 
   return m_ean;
 }
 
-std::optional<std::string> Legemiddelpakning::oppbevaring() const {
+std::optional<std::string> OppfLegemiddelpakning::oppbevaring() const {
   if (m_oppbevaring.v.empty())
     return {};
 
   return m_oppbevaring.v;
 }
 std::optional<PakningByttegruppe>
-Legemiddelpakning::pakningbyttegruppe() const {
+OppfLegemiddelpakning::pakningbyttegruppe() const {
   return m_legemiddel.pakningbyttegruppe();
 }
 
 // non-member functions
-xml::Legemiddelpakning get_legemiddelpakning(const pugi::xml_node &node) {
+xml::OppfLegemiddelpakning get_oppflegemiddelpakning(const pugi::xml_node &node) {
 
   xml::Enkeltoppforing enkeltoppforing{get_enkeltoppforing(node)};
 
@@ -67,7 +67,7 @@ xml::Legemiddelpakning get_legemiddelpakning(const pugi::xml_node &node) {
   Container<Preparatomtaleavsnitt> preparatomtaleavsnitt{
       get_preparatomtaleavsnitt(pakning_node)};
 
-  return xml::Legemiddelpakning{std::move(enkeltoppforing),
+  return xml::OppfLegemiddelpakning{std::move(enkeltoppforing),
                                 std::move(id),
                                 std::move(varenr),
                                 std::move(ean),

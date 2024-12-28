@@ -35,7 +35,7 @@ add_executable(
     sortertvirkestoffutenstyrke.cpp
     lenke.cpp
     legemiddelmerkevare.cpp
-    legemiddelpakning.cpp
+    oppflegemiddelpakning.cpp
     generic_legemiddelpakning.cpp
     xml.cpp
 )
