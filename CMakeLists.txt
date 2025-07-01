@@ -20,6 +20,10 @@ find_package(pugixml CONFIG REQUIRED)
 
 add_subdirectory(src)
 
+target_include_directories(${PROJECT_NAME} PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include/${PROJECT_NAME}>)
+
 if(ENABLE_TESTING)
   enable_testing()
   message(STATUS "Building tests. Look at /tests for unit tests.")
